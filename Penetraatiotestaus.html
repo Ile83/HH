@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Penetraatiotestaus</title>
+<style type="text/css">
+   
+    body, html
+            {
+                max-width: 47em;
+            }
+    body,td,th {
+        font-family: "Myriad Pro", "Myriad Pro Bold", Garamond;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Haaga-Helia ammattikorkeakoulu
+        </h1>
+        <h2>
+        Penetraatiotestaus
+        </h2>
+    <br>
+    23.10.2023
+    <br>
+    <h3>h0 Alkuluento</h3>
+
+    <img src="Graphics/Penetraatiotestaus/1.png" alt="" width="700" height=""/>
+    <p>
+        200 koodi tarkoittaa, että pyyntö hyväksyttiin
+        <br>
+        301 pyydetty osoite on muutettu pusyvästi ja uusi osoite on annettu vastautaksessa
+        <br>
+        jokaisessa käytettiin GET metodia
+        <br>
+        Domain: osoite mistä haetaan tai palautetaan tieto
+        <br>
+        File: tiedosto joka kyseessä
+        <br>
+        Lähde: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses
+</p>
+<img src="Graphics/Penetraatiotestaus/2.png" alt="" width="700" height=""/>
+<p>
+Initiator en tiedä tarkalleen, arvioisin, että kyseessä on alkuperäinen tiedosto, josta lähti haku
+Yritin selvittää lähteestä mutta, en ehtinyt. Lähde: https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/request_details/index.html
+</p>
+<img src="Graphics/Penetraatiotestaus/3.png" alt="" width="700" height=""/>
+<p>
+    Esimerkkinä vielä wiresharkin index.php get metodin koodilla 200 tieto mitä tulee palautuksena
+</p>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Penetraatiotestaus
+</h2>
+<br>
+25.10.2023
+<br>
+<h3 id="Luento1">h1 Hacker Warmup</h3>
+    <h3>X) Lue ja tiivistä: € Santos et al: The Art of Hacking (Video Collection): [..] 4.3 Surveying Essential Tools for Active Reconnaissance. Sisältää porttiskannauksen. 5 videota, yhteensä noin 20 min.</h3>
+    <li>- Käytiin läpi eri porttiskannereita Nmap suosituin ja vakain.</li>
+    <li>- Eyewitness sovellus, joka luo tiedoston kuvakaappauksin saitista.</li>
+    <li>- eri verkkohaavoittuvuus skannereita, maksullisia ja open source</li>
+    <li>- eri nettihaavoittuvuus skannereita</li>
+    <h3>Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.</h3>
+    <li>- voidaan kerätä tietoa hyökkäyksistä ja rakentaa sitä vastaan suojaa, että hyökkäykset eivät onnistu</li>
+    <li>- Advanced persistent threat APT</li>
+    <li>- kohteena intellectual property, eli immateriaalisen oikeuden takana olevat asiat, arkaluontoinen data</li>
+    <li>- hyökkääjät hyödyntävät muokattua maltsua ja nollapäivä haavoittuvuuksia</li>
+    <li>- Tunkeutuminen voidaan keskeyttää intteligence driven responsella, eli vastataan siihen omaan tiedusteluun perustuen</li>
+    <li>- Tappoketju on systemaattinen prosessi, joka kohdennetaan ja suoritetaan saavuttaakseen halutun lopputuloksen.</li>
+    <li>- Hyväksikäyttö kohdistuu ohjelmaan, käyttöjärjestelmän haavoittuvuuteen, työntekijän hyväksikäyttöön tai ominaisuuteen, joka automattisesti käynnistää koodin pätkän</li>
+    <li>- Jos vastustajat pystyvät havaitsemaan hyökkäyksen ajoissa ja suojaamaan järjestelmää, he säilyttävät taktisen edun</li>
+    <li>- Hyökkäyksen tarkoituksen, kyvykkyyden, doktriinin ja operaatio muotojen ymmärtäminen on tarpeen, jotta voidaan muodostaa vastustuskyky hyökkäykseen</li>
+    <h3>a) Ratkaise Over The Wire: Bandit kolme ensimmäistä tasoa (0-2).</h3>
+    <img src="Graphics/Penetraatiotestaus/4.png" alt="" width="700" height=""/>
+<p>Pääsin sisään. Lähde: ssh --help komento</p>
+<img src="Graphics/Penetraatiotestaus/5.png" alt="" width="700" height=""/>
+<p>
+Löysin salasanan. Lähde: <a href="https://man7.org/linux/man-pages/man1/cat.1.html">Man pages</a>
+</p>
+<img src="Graphics/Penetraatiotestaus/6.png" alt="" width="700" height=""/>
+<p>
+    Lähde: <a href="https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal">Stack Overflow</a>
+</p>
+<img src="Graphics/Penetraatiotestaus/7.png" alt="" width="700" height=""/>
+<p>
+    kokeilin cat komentoa ja bash autocompletionia ja sillä onnistui
+</p>    
+<h3>b) Ratkaise Challenge.fi:stä yksi tehtävä, esim. Challenge.fi 2021 Where was this picture taken, Encoding basics. Tai joku Challenge.fi 2022. (Nimi vaihtui sattuneesta syystä, se on nykyisin Next Gen Hack Challenge)</h3>
+<img src="Graphics/Penetraatiotestaus/8.png" alt="" width="700" height=""/>
+<p>Valitsin Encoding basics. Tajusin, että se on Base64 formaatissa ja hain base64decode.orgin googlella ja kokeilin. En käyttänyt yhtään vihjettä. Flagi ratkesi heti</p>
+<h3>c) Ratkaise PortSwigger Labs: Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data. (Edellyttää ilmaista rekisteröitymistä. Tehtävän voi ratkaista pelkästään selaimen osoitekenttää muokkaamalla.)</h3>
+<img src="Graphics/Penetraatiotestaus/9.png" alt="" width="700" height=""/>
+<p>Muokkasin osoitekenttää, tajusin suurinpiirtein mitä tein, mutta tälle on varmasti hienompi tapa ja toteutus. En olisi itse keksinyt injektion koodia, ellei se olisi lukenut labissä</p>
+<h3>d) Asenna Linux virtuaalikoneeseen. Suosittelen joko Kali (viimeisin versio) tai Debian 12-Bookworm.</h3>
+<p>
+    Päätin käyttää melkein puhdasta konetta, jonka olin asentanut aikaisemmin Linux kurssin koetta varten, Apache ainakin on siinä valmiina asennettuna.
+<br>
+Kali linuxin olin myös asentanut jo aiemmin, siinä olen ajanut sudo apt-get update ja upgrade komennot, vastaan tuli kyllä sen verta kryptistä asiaa, että en ole varma olisiko kannattanut käyttää upgrade komentoa. Ei ollut aikaa perehtyä ilmoituksiin joita tuli asennuksen aikana.
+</p>
+<h3>f) Porttiskannaa kaikki koneesi (localhost) tcp-portit. Analysoi tulokset. (Edellisissä kohdissa mainittuja analyyseja ei tarvitse toistaa, voit vain viitata niihin ja keskittyä eroihin).</h3>
+<img src="Graphics/Penetraatiotestaus/10.png" alt="" width="700" height=""/>
+<p>
+Asensin porttiskanneri nmapin ja skannasin localhostin, näkyy kellonaika, joka on GMT 0 ajassa, en tiedä mitä BST tarkoittaa mutta kello on kaksituntia jäljessä. Olen asentanut virtuaalikoneen ollessani Lontoossa, en tiedä onko tällä vaikutusta käyttöjärjestelmän kelloon. Tarkstelen sitä myöhemmin.
+<br>
+Local hostosoitteessa 127.0.0.1 latenssi oli 0.00063s, eli kone on todella lähellä. Ja niin on syytäkin olla koska se on vieressäni, eikä välissä ole esim valokaapelia. latenssista voi hieman päätellä kuinka pitkällä kone sijaitsee.
+<br>
+Ilmeisesti yksi portti ei skannautunut kohdassa Other addresses for localhost (not scanned)
+<br>
+Listassa ei näytetä kiinni olevia portteja 997 kpl niihin ei saatu yhteyttä.
+portti 25/tcp, 80/tcp, 631/tcp ovat auki. Ensimmäinen viittaa sähköpostin lähetys palvelimeen, seuraava verkkosivuihin ja viimeinen on internet printing protokollan portti 
+</p>
+<h3>g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset. (Edellisissä kohdissa mainittuja analyyseja ei tarvitse toistaa, voit vain viitata niihin ja keskittyä eroihin.).</h3>
+<img src="Graphics/Penetraatiotestaus/11.png" alt="" width="700" height=""/>
+<li>Portti 25 ssl certifikaatti näyttäisi paljastavan, että käytössä on Debian käyttöjärjestelmä, en tiedä mitä organizationName=Exim tarkoittaa? Sitten taas viitataan UK:hon, saattaa johtua, että asensensin virtuaalikoneeni ollessani lontoossa.</li>
+<li>Sertifikaattion alkamis ja loppumis pvm. ja kellonajat. tosin en ihan ymmärrä noita vuosia ja päiviä.</li>
+<li>Ssl-date TLS randomness does not represent time, selittääkö tämä sitten tuon ylemmän.</li>
+<li>80 portissa pyörii Apache palvelin versio numerolla 2.4.57 ja Debian käytttöjärjestelmällä näyttäen default sivua ja se toimii tekstillä</li>
+<li>631 portissa pyörii palvelu CUPS 2.4 liittyy siis tulostamiseen, en osaa muuta sanoa. Luulisin, että tuo robots.txt on suojattu ja siihen ei päässyt käsiksi</li>
+<li>Yksi ip osite skannatiin ja siihen kului 8.81 sekuntia.</li>
+<h3>h) Asenna ja käynnistä jokin palvelin (apache, ssh...) koneellesi. Vertaile, miten porttiskannauksen tulos eroaa.</h3>
+<p>
+Minulla näköäjään oli koneella jo apache pyörimässä, joten suljin sen tätä tehtävää varten komennolla ”sudo systemctl stop apache2”
+<br>
+sitten tein uudestaan laaja porttiskannauksen
+</p>
+<img src="Graphics/Penetraatiotestaus/12.png" alt="" width="700" height=""/>
+<p>
+    Nyt portti 80 ei näy skannatuissa porteissa, kun siinä ei siis pyöri enää palvelinta.
+</p>
+<h3>i) Kokeile ja esittele jokin avointen lähteiden tiedusteluun sopiva weppisivu tai työkalu. Hyviä esimerkkejä löytyy Bazzel: IntelTechniques: Tools ja Bellingcat: Resources, voit myös käyttää muuta itse valitsemaasi työkalua. Työkalua pitää siis myös kokeilla, pelkkä nimen mainitseminen ei riitä. Pidä esimerkit harmittomina, älä julkaise kenenkään henkilökohtaisia salaisuuksia raportissasi.</h3>
+<img src="Graphics/Penetraatiotestaus/13.png" alt="" width="700" height=""/>
+<p>
+    Laitoin kuvan, jonka otin tuosta lähteen artikkelista, ja laitoin sen Bingiin. Tuloksena oli kuvalle väärät koordinaati, mutta eri kuin mitä Bellincatin artikkelin kirjoittaja oli saanut. Ei näihin kyllä vielä ole luottamista.
+<br>
+Lähde: <a href="https://www.bellingcat.com/resources/2023/07/14/can-ai-chatbots-be-used-for-geolocation/">Bellingcat Geolocation</a>
+</p>
+<p>
+Raportin lähteenä on käytetty: <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup">Terokarvinen.com</a>
+</p>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Penetraatiotestaus
+</h2>
+<br>
+04.11.2023
+<br>
+<h3 id="Luento2">h2 Sniff-n-scan</h3>
+<p>
+    tutustuttaa uuteen lähteeseen, hakkeritapahtumien nauhoihin. Opit valvomaan hyökkäystyökalujen toimintaa snifferillä, ja tutustut Wiresharkiin. Wireshark osaa myös analysoida paketit automaattisesti. Weppiin murtautumista auttaa suomalainen, fuzzereiden huipulle noussut ffuf. Harjoitusmaalien asentamisesta kokeillaan paikallisia binäärejä (by yours truly) ja Dockeria.
+</p>
+<h4>x) Lue/katso ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)   
+</h4>
+<h4>Hoikkala "joohoi" 2020: <a href="https://www.youtube.com/watch?v=mbmsT3AhwWU"> Fuzzing Faster (U fool).</a> In HelSec Virtual meetup #1. (about 1 hour)</h4>
+<li>Joona Hoikkala</li>
+<li>Burbsuiten voi yhistää</li>
+<li>FUZZ on tärkeä komennossa</li>
+<li>Useita ominaisuuksia</li>
+<h4>Lyon 2009: Nmap Network Scanning: Chapter 15. Nmap Reference Guide:
+    <a href="https://nmap.org/book/man-port-scanning-basics.html">PortScanning Basics</a>(opettele, mitä tarkoittavat: open, closed, filtered; muuten vain silmäily)
+    </h4>
+    <li>- Open: avoin portti, näitä hyökkääjät etsivät, tapa päästä sisään. Adminien kannattaisi sulkea tai turvata tulimuurilla. Näistä saa myös selville mitkä palvelut ovat auki verkkoon.</li>
+    <li>- Closed: portti on käytettävissä mutta siinä ei pyöri mikään sovellus, joka kuuntelee. Voi olla hyödyllinen toteamaan, että isäntä kone on ylhäällä. kannattaa mahdollisesti skannata uudelleen, jos vaikka porttiin ilmaantuisi jotain kuuntelemaan.</li>
+    <li>- Filtered: Nmap ei osaa päätellä onko portti auki vai kiinni erilaisten syiden takia. filtered porteista ei saa paljon tietoa, hidastaa skannausta todella paljon.</li>
+<h4><a href="https://nmap.org/book/man-port-scanning-techniques.html">Port Scanning Techniques </a> (opettele, mitä ovat: -sS -sT -sU; muuten vain silmäily.</h4>
+<li>- sS (TCP SYN scan): perusskannaus, skannaa tuhansia portteja sekunneissa, ei tunkeutuva ja hyvin suojassa pysyvä skannaus. Ei muodosta valmiita TCP yhteyksiä. ns. puolijulkinen skannaus. Jakaa skannaukset selkeästi open, closed ja filtered tiloihin.TCP, SYN paketti odotus, A SYN/ACK, RST</li>
+<li>- sT (TCP connect scan): Käytetään perusskannauksena, kun TCP SYN scan ei käy kyseeseen. Johtuu siitä, jos käyttäjällä ei ole rakaa pakettidata oikeuksia (Sudo?) SYN scan on useimmiten parempi vaihtoehto, jos sitä voi käyttää. Connect scan luo TCP yhteyden ja todennäköisemmin jättää jäljen lokiin.</li>
+<li>- sU (UDP scans): UDP Skannaus, UDP palvelut joita pyöritetään. DNS, SNMP, and DHCP (rekisteröidyt portit 53, 161/162, ja 67/68) ovat yleisimmät. Porttiskannus hidasta, kaikkien porttien skannaus voi viedä jopa 18 tuntia, kanttaa usein skannata tavanomaisimmat portit ja pyörittää useita skannauksia rinnakkain. Portit ovat erinomaisia tunkeutujille, koska tietoturvasta vastaavat jättävät usein portit huomioimatta. Voidaan yhdistää SYN skannaukseen samanaikaisesti.</li>
+<h4>a) Fuff. Ratkaise <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge">Teron ffuf-haastebinääri.</a> Artikkelista <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/">Find Hidden Web Directories - Fuzz URLs with ffuf</a>voi olla apua.</h4>
+<img src="Graphics/Penetraatiotestaus/14.png" alt="" width="700" height=""/>
+<p>komento “sudo apt-install wget” 
+    <br>
+    komento” wget https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/dirfuzt-1”
+    </p>
+    <img src="Graphics/Penetraatiotestaus/15.png" alt="" width="700" height=""/>
+    <p>komento “chmod u+x dirfuzt-1”, harjoitusmaalin käynnistys ”./dirfuzt-1”, ja avaus Firefoxilla, harjoitusmaali on käynnissä.
+        <br>
+        hain wgetillä fuzzin teron ohjeiden mukaan ja latasin common.txt
+        <br>
+        ”./ffuf -w common.txt -u http:/127.0.0.2:8000/FUZZ”
+        </p>
+        <img src="Graphics/Penetraatiotestaus/16.png" alt="" width="700" height=""/>
+    <p>
+        Harjoitusmaali oli alhaalla, nostin sen pystyyn komennolla ”./dirfuz-1” ja kokeilen uudestaan.
+    </p>
+    <img src="Graphics/Penetraatiotestaus/17.png" alt="" width="700" height=""/>
+    <p>Onnistui, mutta pitäisi filtteröidä</p>
+    <img src="Graphics/Penetraatiotestaus/18.png" alt="" width="700" height=""/>
+    <p>komento ” ./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154”
+        palautti tämän nälkoisen tulosteen, tässä näkyy kaikki mikä jäi filteröinnin jälkeen, fillteröin siis tiedosto koon mukaan (154 tavuiset tiedostot pois tuloksista). Ja onhan siellä wordressiin admin, kävin selaimella osoitteessa ja lippu löytyi.
+        </p>
+<h4>b) Fuffme. Asenna Ffufme harjoitusmaali paikallisesti omalle koneellesi. Ratkaise tehtävät (kaikki paitsi ei "Content Discovery - Pipes")</h4>
+<p>
+- Valitetavasti en tajunnut tehdä tätä. En ymmärtänyt, että ffufme oli linkki, koska olin kopioinut tehtävän tekstieditoriin.
+</p>
+        <h4>
+            Porttiskannaa paikallinen kone (127.0.0.2 tms), sieppaa liikenne snifferillä, analysoi.
+            En löydä Wiresharkin tiedoista oikeita paketteja ☹
+        </h4>
+            <h4>c) nmap TCP connect scan -sT</h4>
+            <img src="Graphics/Penetraatiotestaus/19.png" alt="" width="700" height=""/>
+<p>
+    Komento ”nmap -sT 127.0.0.2”
+    <br>
+En saanut wiresharkilla skannattua liikennettä tuosta. Se näyttää kyllä verkossa olevaa muuta liikennettä. Minulla on virtuaalikoneesta katkaistu nettiyhteys. En kyllä ymmärrä miten Wireshark näyttää muuta verkkoliikennettä silti. Idea connected scannissa on, että se luo kuitenkin TCP yhteyden ja on näin ollen helpommin havaittavissa lokista.
+<br>
+Yhtään porttia ei ole koneessa auki.
+<br>
+Jatkan tehtävien tekoa ilman Wiresharkkia, en tiedä missä siinä on vika. Dataa tulee paljon, mutta en löydä sieltä oikee, voi toki olla user error 😊
+</p>
+<h4>d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)</h4>
+<img src="Graphics/Penetraatiotestaus/20.png" alt="" width="700" height=""/>
+<p>
+    komento ”nmap -sS locahost” tarvitsee Super user do oikeudet, niin kuin arvelinkin aikaisemmassa tehtävässä. Kokeilen sudolla.
+</p>
+<img src="Graphics/Penetraatiotestaus/21.png" alt="" width="700" height=""/>
+<p>
+    komento ”sudo nmap -sS 127.0.0.2”
+    <br>
+    komenonnon ero on se, että tätä ei pysty niin helposti havaitsemaan, kun tämä ei muodosta täyttä TCP yhteyttä vaan droppaa yhteyden havaitessaan, jos portti vastaa. Ei jätä lokiin jälkeä. En saanut tätäkään Wiresharkilla kaapattua.
+</p>
+<h4>e) nmap ping sweep -sn</h4>
+<img src="Graphics/Penetraatiotestaus/22.png" alt="" width="700" height=""/>
+<p>
+    -sn jättää porttiskannauksen pois, luulisin, että tällä voi päätellä onko tietokone päällä ja jättää vähemmän jälkiä.
+</p>
+<h4>f) nmap don't ping -Pn</h4>
+<img src="Graphics/Penetraatiotestaus/23.png" alt="" width="700" height=""/>
+<p>Kohtele kaikkia koneita kun ne olisivat päällä, skippaa host löytäminen. Lähde Man-Pages ”man nmap”</p>
+<h4>g) nmap version detection -sV (esimerkki yhdestä palvelusta yhdessä portissa riittää)</h4>
+<p>
+    Avasin portin 80 komennolla “sudo ufw allow 80/tcp”
+    <br>
+Netti päälle koneesta
+<br>
+komento ”sudo apt-get install apache2”
+</p>
+<img src="Graphics/Penetraatiotestaus/24.png" alt="" width="700" height=""/>
+<p>komento “firefox localhost” Apache pyörii koneella</p>
+<img src="Graphics/Penetraatiotestaus/25.png" alt="" width="700" height=""/>
+<p>komento “nmap -sV 127.0.0.2” Näyttäisi tunnistavan debianin sieltä ja apachen versio numeron</p>
+<h4>h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii? </h4>
+<img src="Graphics/Penetraatiotestaus/26.png" alt="" width="700" height=""/>
+<p>Lähde: Man pages ”man nmap”
+    <br>
+    En saa toimimaan, pitäisi näyttää kolme ilmeisesti eniten käytössä olevaa tiedosto tyyppiä. Ovatko nämä .gmnmap, .nmap ja .xml
+</p>
+<h4>nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/V, help ?, packet tracing p/P, status s (ja moni muu nappi)</h4>
+<li>-v Verbosity level nostaa tulostettavan tiedon määrää skannauksen aikana.</li>
+<li>-help antaa pika opaan nmapin käyttöön. Ei niin kattava kun man nmap</li>
+<li>-p Skannaa vain haluamasi porttiavaruus Lähde:  Man pages ”man nmap”</li>
+<li>-s Spooffaa ip osoitteen, tämä saattaa olla minun tapauksessani kysessä. Kun Wiresharkilla en saanut tietoa sniffauksesta. Nmap kertoi, että couldn’t resolve dns. viittaisi siihen. kokeilen myöhemmin. Lähde: Man Pages ”man nmap”</li>
+<h4>j) Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta? Vinkkejä: Asenna Apache. Aja nmap-versioskannaus -sV tai -A omaan paikalliseen weppipalvelimeen. Etsi Apachen lokista tätä koskevat rivit. Wiresharkissa "http" on kätevä filtteri, se tulee siihen yläreunan "Apply a display filter..." -kenttään. Nmap-ajon aikana p laittaa packet tracing päälle. Vapaaehtoinen lisäkohta: jääkö Apachen lokiin jokin todiste nmap-versioskannauksesta?</h4>
+<p>
+    kokeilin ”nmap -s -sV localhost” eipä toiminut edelleen varoitus unable to detemine any DNS servers. Reverse DNS is disabled. Veikkaukseni taisi olla väärä. tuota -s käytetään yleisemmin muiden skannausten yhteydessä nmap kertoi.
+</p>
+<img src="Graphics/Penetraatiotestaus/27.png" alt="" width="700" height=""/>
+<p>
+    Kokeilin ilman tuota -s eli komento ” nmap -sV localhost” ja katsoin apachen Acces.login. Jälkiä ei tuosta -sV:stä jäänyt muista localhostin skannauksista oli kuitenkin jäänyt.
+</p>
+<h4> k) UDP-skannaus. UDP-skannaa paikkalinen kone (-sU). "Mulla olis vitsi UDP:sta, mutta en tiedä menisikö se perille":
+    </h4>
+    <img src="Graphics/Penetraatiotestaus/28.png" alt="" width="700" height=""/>
+    <p>
+        Kaksi porttia auki open | filtered tilassa
+    </p>
+    <h4>l) Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia ja snifferiä? (tässä alakohdassa vain vastaus viitteineen, ei tarvita testiä tietokoneella)</h4>
+    <p>
+        Porttiskannaus olisi tehtävä nopeasti, auki olevat portit ja filtered portit harvoin lähettävät mitään vastausta, joka saa NMAPIN aikasulkeutumaan ja uudestaan lähettämään kyselyn varmuuden vuoksi, jos luotain tai vastaus vaikka katosi. useat isännät rajoittavat ICMP porttien vastaus määrää, kuten LINUX ja SOLARIS jotka ovat erittäin tiukkoja tässä. esimerkiksi LINUX 2.4.20 kerneli rajoittaa ei perille menneiden viestien määrää yhteen sekunnissa. Tämä tekee UDP Skannauksesta hidasta. 
+        <br>
+        Lähde: <a href="https://nmap.org/book/man-port-scanning-techniques.html">Port Scanning Techniques | Nmap Network Scanning</a> 
+        <br>
+        --reason flagia kannattaa käyttää, että saa tietää skannattujen porttien tilan. (open, closed, filtered) Lähde: <a href="http://www.chat.openai.com/">Chat-GPT</a>
+        <br>
+        Olettaisi, että snifferillä, kuten Wireshark saa enemmän tietoa, portista, kun mitä nmap antaa. En kyllä osaa vielä tulkita Wiresharkin tietoja.
+    </p>
+    <p>
+        06.11.2023, lisähuomio, sain Wiresharkin toimimaan, kun valitsin sniffattavaksi adapteriksi ANY, nyt näyttää yhteydet, jos tekee porttiskannauksen.
+    </p>
+    Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h2-sniff-n-scan">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
+    <h1>Haaga-Helia ammattikorkeakoulu
+    </h1>
+    <h2>
+    Penetraatiotestaus
+    </h2>
+    <br>
+    12.11.2023
+    <br>
+    <h3 id="Luento3">h3 Lab-kid</h3>
+   <h3>a) Asenna Kali virtuaalikoneeseen
+     , b) Asenna Metasploitable 2 virtuaalikoneeseen
+     ja c) Tee koneille virtuaaliverkko, jossa (1) Kali saa yhteyden Internettiin, mutta sen voi laittaa pois päältä
+    (2) Kalin ja Metasploitablen välillä on host-only network, niin että porttiskannatessa ym. koneet on eristetty intenetistä, mutta ne saavat yhteyden toisiinsa
+    (3)	Osoita eri komennoilla, että Internet-yhteys katkeaa: 'ping 1.1.1.1', 'ping www.google.com', 'curl www.google.com'
+    </h3>
+    <p>
+        
+Latasin Metasploitable 2 VMware valmiin koneen oheiselta sivustolta <a href="https://docs.rapid7.com/metasploit/metasploitable-2/">Metasploitable 2 | Metasploit Documentation (rapid7.com)</a> 
+
+    </p>
+    <p>
+        Seurasin videon ohjeita, miten metasploitable asennetaan omaan verkkoon Vmwaressa Kalin kanssa <a href="https://www.youtube.com/watch?v=Jgiv88_pBbU">(347) Metasploitable and kali setup in vmware on private network - YouTube</a>
+    </p>
+    <img src="Graphics/Penetraatiotestaus/29.png" alt="" width="700" height=""/>
+    <p>
+        Loin uuden virtuaalisen verkon VMnet2 host-only j poistin valinnan connect a host virtual adapter to this network DHCP palvelun jätin päälle.
+    </p>
+    <img src="Graphics/Penetraatiotestaus/30.png" alt="" width="700" height=""/>
+    <p>
+        Laitoin metasploitablen network 2 adapterin kiinni tuohon juuri luotuun virtuaaliseen VMnet2 verkkoon. Laitoin vielä kuvasta poiketen varmuuden vuoksi Network adapter (1) NAT valinnan tilaan Host-only: A private network shared with the host.
+    </p>
+    <p>
+        Kalin koneen asetuksissa : 
+    </p>
+    <img src="Graphics/Penetraatiotestaus/31.png" alt="" width="700" height=""/>
+    <p>
+        Tein samat muutokse, myös kuvasta poiketen network adapter (1) NAT valinta muotoon Host-Only.
+<br>        
+Nyt käsittääkseni koneet pitäisi olla kytketty pois internetistä, mutta niiden välillä on verkkoyhteys.
+<br>
+ja testaaamaan. Kalin internetin saa päälle vaihtamalla Network adapterin NAT valinnan päälle. Kokeilin tätä Kalin asennus vaiheessa ja se toimi.
+</p>
+<img src="Graphics/Penetraatiotestaus/32.png" alt="" width="700" height=""/>
+<p>
+    Kali käyttöjärjestelmän testi Firefoxilla google.comiin 
+</p>
+<img src="Graphics/Penetraatiotestaus/33.png" alt="" width="700" height=""/>
+<p>
+    ja vielä ping komento, Kali linux ei saa yhteyttä internettiin
+</p>
+<img src="Graphics/Penetraatiotestaus/34.png" alt="" width="700" height=""/>
+<p>
+    Metasploitablessa komento ”ifconfig” saa selville ip osoitteen, joka on 192.168.159.130
+</p>
+<img src="Graphics/Penetraatiotestaus/35.png" alt="" width="700" height=""/>
+<p>
+    Kalista käsin Pingasin 192.168.159.130 joka on metaspoloitablen osoite ja se vastaa, verkko siis toimii. packet loss 0% ja latenssi olematon, joten se siis on lähiverkossa oleva kone.
+</p>
+<h3>d) Etsi Metasploitable porttiskannaamalla (db_nmap -sn). Tarkista selaimella, että löysit oikean IP:n - Metasploitablen weppipalvelimen etusivulla lukee Metasploitable. Katso, ettei skannauspaketteja vuoda Internetiin - kannattaa irrottaa koneet netistä skannatessa.</h3>
+<img src="Graphics/Penetraatiotestaus/36.png" alt="" width="700" height=""/>
+<p>
+    Testi kali järjestelmällä, kun network adapter 1 on NAT asennossa ja netti toimii.
+</p>
+<img src="Graphics/Penetraatiotestaus/37.png" alt="" width="700" height=""/>
+<p>
+    NAT asetus pois päältä ja Host-only asentoon virtuaalikoneen asetuksista ja vielä testi, että netti ei toimi mutta metasploitable vastaa.
+komento ”nmap  -sn 192.168.159.130”
+
+</p>
+<img src="Graphics/Penetraatiotestaus/38.png" alt="" width="700" height=""/>
+<p>
+    Menin ip osoitteeseen ja sieltä aukesi metasploitablen weppi palvelin  
+</p>
+<img src="Graphics/Penetraatiotestaus/39.png" alt="" width="700" height=""/>
+<img src="Graphics/Penetraatiotestaus/40.png" alt="" width="700" height=""/>
+<p>
+portti 21/tcp auki, ftp ei enää turvallinen tapa
+<br>
+portti 22/tcp ssh portti auki, en tiedä onko tavallista, että tuossa näkyy nuo ssh-hostkey:t näkyvillä. Olisiko niillä mahdollista saada kone haltuun?
+<br>
+portti 23/tcp telnet auki. Onko tämäkin vanhentunut tapa?
+<br>
+portti 25/tcp smtp sähköpostipalvelimen lähetys portti. en osaa sanoa, kuinka haavoittuvainen tämä on
+<br>
+53/tcp en tiedä mikä on
+<br>
+80/tcp weppi palvelin ja siellä pyörii se metasploitablen nettisivu.
+<br>
+111/tcp en tiedä mikä on
+<br>
+139/tcp Samba jako Workgroup, sanoisin, että haavoittuvainen, vaikuttaa windows jaolta 
+<br>
+445/tcp Sama Samba tekniikkalla tuotettu jako mutta nyt visiin Linux puolelle, en osaa tarkasti sanoa.
+<br>
+512- 2121 ei tietoa
+<br>
+3306/tcp jonkin näköinen mySql tietokanta, versionumeron perusteella voi katsoa haavoittuvuudet.
+<br>
+3632/tcp ei tietoa
+<br>
+3432/tcp posgresql tietokanta
+<br>
+6000/tcp ei tietoa
+<br>
+6667 irc serveri
+<br>
+6697 irc
+<br>
+8009-8180 liittyisikö java ohjelmointiin olisiko devaus palvelin.
+</p>
+<h3>f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)</h3>
+<p>
+    ensimmäinen artikkeli ei avautunut minulle aluksi niin käytin näitö ohjeita <a href="https://www.stationx.net/how-to-use-metasploit-in-kali-linux/">How to Use Metasploit in Kali Linux: A Step-By-Step Tutorial (stationx.net)</a>
+<br>
+Metasploit käyntiin ohjeiden avulla
+</p>
+<img src="Graphics/Penetraatiotestaus/41.png" alt="" width="700" height=""/>
+<p>
+    toisessa terminaalissa komento “sudo service postgresql start”
+</p>
+<img src="Graphics/Penetraatiotestaus/42.png" alt="" width="700" height=""/>
+<p>
+    Komento “db_status” nyt pitäisi olla yhdistetty tietokantaan.  
+</p>
+<img src="Graphics/Penetraatiotestaus/43.png" alt="" width="700" height=""/>
+<p>
+    Loin Workspacen kyseiselle hyökkäykselle komennolla ”workspace -a metasploitable2vsftpd”
+sitten komento ”workspace metasploitable2vsftpd” siirryin workspaceen
+
+</p>
+<img src="Graphics/Penetraatiotestaus/44.png" alt="" width="700" height=""/>
+<p>Laitoin komennon “search vsftpd” ja ”use 1” koska siellä luki backdoor, ajattelin sen olevan sopiva ja rank oli execellent</p>
+<img src="Graphics/Penetraatiotestaus/45.png" alt="" width="700" height=""/>
+<p>
+    asetin rhosti eli kohde osoitteen ja lhostin eli hyökkäävän osoitteen, en tiedä menikö se läpi, osoite oli kuitenkin kali käyttöjärjestelmän ip. Laitoin komennon ”exploit” ja ilmeisesti pääsin sisään mutta shelli oli vielä huono. 
+</p>
+<img src="Graphics/Penetraatiotestaus/46.png" alt="" width="700" height=""/>
+<p>
+    Todisteet vielä, ajoin ”ls” komennon ja näen palvelimen tiedosto rakenteen.
+</p>
+<h3>g) Parempi sessio. Tee vsftpd-hyökkäyksestä saadusta sessiosta parempi. (Voit esimerkiksi päivittää sen meterpreter-sessioksi, laittaa tty:n toimimaan tai tehdä uuden käyttäjän ja ottaa yhteyden jollain tavallisella protokollalla)</h3>
+<p>
+    aika loppui kesken 0.41 Sunnuntai... pitää nukkua
+</p>
+<h3>h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)</h3>
+<h3>i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)</h3>
+<h3>j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)</h3>
+<h3>k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.</h3>
+</body>
+</html>

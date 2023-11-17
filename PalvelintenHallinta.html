@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Palvelinten Hallinta</title>
+<style type="text/css">
+   
+    body, html
+            {
+                max-width: 47em;
+            }
+    body,td,th {
+        font-family: "Myriad Pro", "Myriad Pro Bold", Garamond;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Haaga-Helia ammattikorkeakoulu
+        </h1>
+        <h2>
+        Palvelinten Hallitna
+        </h2>
+    <br>
+   27.10.2023
+    <br>
+    <h4 id="Luento1">h1 Viisikko</h4>
+    <h3>x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)</h3>
+     
+        Karvinen 2023: Create a Web Page Using Github
+        <p>
+            <li>Rekisteröidy Githubiin</li>
+            <li>Luo uusi repositorio, Lisää readme.me tekstitiedosto</li>
+            <li>Lisää .md tiedosto</li>
+            <li>Kirjoita tekstia ja tallenna</li>
+            <li>Sivusi on julkaistu</li>
+        </p>
+        Karvinen 2023: Run Salt Command Locally
+        <p>
+            <li>Salt:ia käytetään normaalisti hallitsemaan isoja määriä orjatietokoneita verkossa</li>
+            <li>Samat toiminnot toimivat niin Linux kuin Windowssissa</li>
+            <li>Kaikista tärkeimmät komennot ovat pkg, file, service, user and cmd.</li>
+        </p>
+
+
+
+
+    <h3>a) Asenna Salt (salt-minion) koneellesi.</h3>
+    
+    <img src="Graphics/PalvelintenHallinta/1.png" alt="" width="700" height=""/>
+    <p>
+        Lisäsin paketin hallintaan tiedot mistä Saltin voi hakea komennoilla, jotka näytettiin tunnilla.
+        <br>
+        Sen jälkeen ”sudo apt-get update” ja ”sudo apt-get install salt-minion”
+        
+</p>
+<img src="Graphics/PalvelintenHallinta/2.png" alt="" width="700" height=""/>
+<p>”sudo salt-call  - -version” Sulfur versio on asentuneen Saltista koneella.</p>
+<h3>b) Viisi tärkeintä. Näytä esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.</h3>
+<img src="Graphics/PalvelintenHallinta/3.png" alt="" width="700" height=""/>
+<p>
+    ”sudo salt-call --local -l info state.single pkg.installed tree”
+    <br>
+    Paketti pitää olla asennettuna, tässä tapauksessa tree komento asensi ohjelman, jos komennon laittaa uudestaan tuo changed=1 ei tulostu, koska mikään ei muutu tilanteessa, kun tree on jo asennettu.
+
+</p>
+<img src="Graphics/PalvelintenHallinta/4.png" alt="" width="700" height=""/>
+<p>
+    Loin tmp kansioon helloilkka tiedoston komennolla touch helloilkka ja sen jälkeen ajoin salt komennon ”sudo salt-call --local -l info state.single file.managed /tmp/helloilkka” salt löysi tiedoston ja ei tehnyt muutoksia siihen.
+</p>
+<img src="Graphics/PalvelintenHallinta/5.png" alt="" width="700" height=""/>
+<p>
+    Apache2 palvelin pyöri koneella, Sammutin apachen pyörimästä komennpolla: “sudo salt-call --local -l info state.single service.running apache2 enable=False”  
+</p>
+<img src="Graphics/PalvelintenHallinta/6.png" alt="" width="700" height=""/>
+<p>
+    Komento “sudo salt-call --local -l info state.single user.present ilkkah”
+<br>
+Tarkastaa on ilkkah käyttäjä kirjautuneena sisään. Näin todellakin tässä tapauksessa on. Ehkä hyödyllisempi, kun on useampia orjia.
+</p>
+<img src="Graphics/PalvelintenHallinta/7.png" alt="" width="700" height=""/>
+<p>
+    sudo salt-call --local -l info state.single cmd.run 'touch /tmp/test' creates="/tmp/test"
+    <br>
+    Salt loi tiedoston test kansioon /tmp/   
+</p>
+<h3>c) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.</h3>
+<img src="Graphics/PalvelintenHallinta/8.png" alt="" width="700" height=""/>
+<p>
+    Udestaan komento ” sudo salt-call --local -l info state.single pkg.installed tree”
+    <br>
+    tree paketti oli jo asennettuna, joten tulos on idempotentti. Komennon voi ajaa usemman kerran ja tulos ei muutu.
+</p>
+    <h3>
+    d) Tietoa koneesta. Kerää tietoja koneesta Saltin grains.items -tekniikalla. Poimi kolme kiinnostavaa kohtaa, näytä tulokset ('grains.item osfinger virtual') ja analysoi ne.
+</h3>
+<p>    
+Tästä puuttui terokarvinen.com sivuilta ohjeet. En alkanut selvittämään omatoimisesti. Muistaakseni ei tunnillakaan käyty läpi.
+</p>
+
+Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/#h1-viisikko">Terokarvinen.com</a>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Palvelinten Hallinta
+</h2>
+<br>
+05.11.2023
+<br>
+<h4 id="Luento2">h2 karjaa</h4>
+<h3>Host kone</h3>
+<p>
+<li>Prosessori: Intel i7-11700K</li>
+<li>Muisti: 32Gb ddr 4</li>
+<li>Näytönohjain: 3080RTX Mobile 16Gb</li>
+<li>SSD: 2tb Samsung 980 PPO NVMe, SSD2 2tb Samsung 970 EVO NVMe</li>
+<li>1 Näyttö: Clevo 17,3” 4k 60Hz, 2 Näyttö: Acer Predator 43” 4k 120Hz ja 3 Näyttö: Acer Predator 24” FHD 144Hz</li>
+</p>
+<p>
+    Cattle, not pets. 
+</p>
+<h3>x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)</h3>
+<h3>Slater 2017: <a href="https://devops.stackexchange.com/questions/653/what-is-the-definition-of-cattle-not-pets#654">What is the definition of "cattle not pets"?.</a> (Vain tuo yksi vastaus DevOps Stack Exchangen kysymykseen)</h3>
+<li>Ennen serverit olivat kuin lemmikkejä, jos serveri kaatui, piti ryhtyä hommiin, että se saadaan takaisin ylös. Nykyään servereitä on useampia ja toinen ottaa roolin, jos yksi kaatuu.</li>
+<li>Ennen serverit olivat uniikkeja järjestelmiä, joita ihminen ohjasi. Nykyään ne ovat automatisoituja, että ihmisten tekemisiä ei välttämättä tarvita, jos serveri kaatuu vaan automaatio hoitaa homman ja serveri palaa linjoille tai se tuhotaan. Tämä ei kyllä ole optimia, se kannattaa mieluummin ”jäädyttää” ja tutkia perimmäinen syy miksi serveri ylipäätään kaatui.</li>
+<h3>Karvinen 2017: <a href="https://terokarvinen.com/2017/04/11/vagrant-revisited-install-boot-new-virtual-machine-in-31-seconds/">Vagrant Revisited – Install & Boot New Virtual Machine in 31 seconds</a> (Suosittelen koneeksi 'vagrant init debian/bullseye64')</h3>
+<p>
+    <li>- “sudo apt-get update” paketin hallinnan päivitys</li>
+   
+    <li>- “sudo apt-get -y install vagrant” vagrantin asennus</li>
+    
+    <li>- “vagrant init bento/ubuntu-16.04” ubuntun alustus vagrantille</li>
+    
+    <li>- “vagrant up” koneet ylös</li>
+    
+    <li>- “vagrant ssh” ssh yhteys vagrantiin</li>
+    
+    <li>- “vagrant destroy” koneet alas</li>    
+</p>
+<h3>Karvinen 2023:<a href="https://terokarvinen.com/2023/salt-vagrant/"> Salt Vagrant - automatically provision one master and two slaves</a></h3>
+<li>- Artikkeli käsittellee Vagrantin asennusta yhdellä masterilla ja kahdella orjalla</li>
+<li>- Artikkeli on tehty raudalla pyörivää linux asennusta varten, ei sovellu windowsille suoraan</li>
+<li>- Artikkelia voi soveltaa Vagrantin asennukseen Windowsille</li>
+<h3>a)	Asenna Vagrant. (Toiminee parhaiten isäntäkäyttöjärjestelmässä, siis siinä, joka pyörii raudalla)</h3>
+<p>
+    Vagrantin asennus windowsille Vmwaren kanssa osoittautui jokseenkin haastavaksi, ohjeita ei ollut paljon. Jo pitkään ollut tämä mielessä, joten päätin asentaa Linuxin toiseksi käyttöjärjestelmäkseni pääkoneeseen Windowsin rinnalle. Valitsin Linuxiksi Debian 12.
+    <br>
+    Asensin Rufuksen Windowsille ja loin bootaavan usb tikun Debianilla
+</p>
+<p>
+    Kirjoitan seuraavan osion ulkomuistista.
+    <br>
+    Debianin asennus onnistui mutta tuli grafiikka bugeja, en aluksi päässy kirjautumaan roottina, mutta komento ”su – root” onnistui sen tekemään. Koitin päivittää näytönohjaimen ajureita, se osoittautui hankalaksi. Näytön ohjain on Nvidia 3080 RTX mobile paketinhallinnasta niitä ei löytynyt. Nvidian sivuilta sain .run tiedoston, jonka muokkasin ”chmod u+x tiedostonimi” suoritetavaksi tiedostoksi kaikki tämä kun näyttö pomppi miten sattuu ja oli hankalaa lukea. komento ./nvidia-drivers-xxx-xxx.run. Installeri varoitti, että X-server pyörii ja se pitää lopettaa. Googlasin, mutta ohjeet eivät auttaneet, tietokone oli ohjeiden jälkeen aina käynnistettävä reset napilla uudestaan. Ohjeita oli esim. CTR+ALT+F1 tai ”sudo service gdm stop” Kokeilin useita muitakin metodeja ratkaista ongelma, asensin jopa kahteen kertaan koko Debianin ja lopuksi kokeilin vielä Ubuntua asentaa, mutta se tökkäsi jo asennus vaiheessa mustaan ruuttuun. Tähän kaikkeen meni aikaa yli 6 tuntia
+    <br>
+    Päätin palata asentamaan Vagrantin Windowsille, koska Linuxin asentaminen raudalleni tuntuu olevan todella haastava homma. Tällä hetkellä Grubissa on pari debiania asennettuna. Mitenhän sen siivoaisi? 😊
+    <br>
+    Googlasin ohjeet vagrantin asennukseen Windows 11 ja Vmawarelle, löysin Github sivun: <a href="https://gist.github.com/1eedaegon/6a5a2ab64f09b0800eadf3f84dad96f8"> Install vagrant with vmware for windows 11 (github.com) </a>
+    <br>
+    Latasin ja asensin Gon (ohjelmointikieli), uudelleen asennus vaadittin
+    <br>
+    Skippasin kohdan 2, koska minulla oli jo Vmware asennettuna.
+    <br>
+    Latasin ja asensin Vagrantin VMware Utilityn.
+    <br>
+    Aloin asentamaan pluginia Vmwarelle, näiden ohjeiden mukaan: <a href="https://www.hashicorp.com/blog/introducing-the-vagrant-vmware-desktop-plugin">Introducing the Vagrant VMware Desktop Plugin (hashicorp.com)</a>
+    <br>
+    Pyysin lisää aikaa tehtävien tekoon ja jatkan tästä..
+    <br>
+    jatkoin 6.11.2023
+    <br>
+    Selvitin tuo Vagrant VMware Desktop Plugin on maksullinen, koitan vielä asentaa Ubuntun tuoreimman ei LTS version koneelleni.
+    </p>
+    <img src="Graphics/PalvelintenHallinta/9.png" alt="" width="700" height=""/>
+    <p>
+        Sain Ubuntun version 23.10 ilman ongelmia pyörii nyt raudan päällä siis. Nyt tehtävien pariin.
+    </p>
+    <h3>a) Asenna Vagrant. (Toiminee parhaiten isäntäkäyttöjärjestelmässä, siis siinä, joka pyörii raudalla) ja b) Yksi maankiertäjä. Asenna yksi kone Vagrantilla, ota siihen SSH-yhteys, osoita että netti toimii.
+    </h3>
+<p>Komento ”sudo apt-get install vagrant virtualbox” komento asensi vagrantin ja virtualboxin
+    <br>
+    komento alustaa Debianin version bullseye64 toimimana vagrantissa ja luo Vagranfile tiedoston, tiedostolla voi muokata asetuksia ympäristössä ”vagrant init debian/bullseye64”
+
+</p>
+<img src="Graphics/PalvelintenHallinta/10.png" alt="" width="700" height=""/>
+<p>
+    Debian/bullseye64 ei löytynyt aluksi, joten vagrant latasi sen.    
+</p>
+<img src="Graphics/PalvelintenHallinta/11.png" alt="" width="700" height=""/>
+<p>
+    Synkronoidut kansiot ovat päällä, tämä pitää kyllä opetella laittamaan pois päältä. Komentohan tuossa onkin jo annettu valmiiksi, kun muuttaa ilmeisesti vagrantfilessä olevia tietoja.
+</p>
+<img src="Graphics/PalvelintenHallinta/12.png" alt="" width="700" height=""/>
+<p>
+    Komento ”vagrant ssh” ja siellä pyörii debian ja olen kirjautuneena sisään
+</p>
+<h3>c) Oma orjansa. Asenna Salt herra ja orja samalle koneelle.</h3>
+<p>
+    Tehtävä pitäisi olla paremmin avattu. Eli vagrant koneelle vai pääkoneelle.
+    <br>
+Asennan pääkoneelle. ”sudo apt-get update”, ”sudo apt-get install salt-minion”
+<br>
+eipä asennukkaan myöskään ubuntuun. Lisäsin paketinhallintaan näiden ohjeiden mukaisesti: <a href="https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/debian.html#install-salt-on-debian-11-bullseye-amd64">Docs.saltprojet.io</a>
+</p>
+<img src="Graphics/PalvelintenHallinta/13.png" alt="" width="700" height=""/>
+<p>
+    sitten komento uudestaan ”sudo apt-get update” ja sudo apt-get install salt-minion” ja vielä komento ”sudo apt-get install salt-master”, kummatkin asentuivat hienosti
+</p>
+<img src="Graphics/PalvelintenHallinta/14.png" alt="" width="700" height=""/>
+<p>
+    Yritin käynnistää salt masterin ja minionin, eipä lähteneetkään käyntiin.
+Koitin ohjeiden mukaan, vaikka ne ovatkin debianille, mutta käsittääkseni Ubintu on debian pohjainen distro, joten ne saattavat toimia.
+<br>
+Laitoin komennon ”sudo systemctl enable salt-master && systemctl start salt-master” ja ukomennon ”sudo systemctl enable salt-minion && systemctl start salt-minion”
+</p>
+<img src="Graphics/PalvelintenHallinta/15.png" alt="" width="700" height=""/>
+<p>
+komento ”ps aux -e | grep salt” löytyi prosessit joita salt-minion ja salt-master käytttä. Se siis oli nyt asennettu koneelle.
+</p>
+<img src="Graphics/PalvelintenHallinta/16.png" alt="" width="700" height=""/>
+<p>
+    arkastin vielä saltin version komennolla ” salt-call  --version”
+
+</p>
+<h3>Asenna Saltin herra-orja arkkitehtuuri toimimaan verkon yli. (Verkko voi olla virtuaalinen verkko paikallisten virtuaalikoneiden välillä, kuten muissakin alakohdissa)</h3>
+<li>”vagrant up”</li>
+<li>”vagrant ssh” </li>
+<li>”sudo apt-get update” </li>
+<li>”sudo apt-get install curl”</li>
+<li>”sudo mkdir /etc/apt/keyrings” </li>
+<li>”sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://repo.saltproject.io/salt/py3/debian/11/amd64/SALT-PROJECT-GPG-PUBKEY-2023.gpg”</li>
+<li>”echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.gpg arch=amd64] https://repo.saltproject.io/salt/py3/debian/11/amd64/latest bullseye main" | sudo tee /etc/apt/sources.list.d/salt.list”</li>
+<li>”sudo apt-get update”</li>
+<li>”sudo apt-get install salt-minion”</li>
+<li>”logout”</li>
+<p>
+    komento ”sudo hostname I” tällä sai masterin ip:n selville
+</p>
+<img src="Graphics/PalvelintenHallinta/17.png" alt="" width="700" height=""/>
+<p>
+    komento ”nc -vz 192.168.178.70 4505” portiin kytekeytyminen tcp yhteydellä onnistui eli portti on ylipäättään auki.
+</p>
+<p>
+    ”vagrant ssh”
+    <br>
+”sudo apt-get install micro”
+<br>
+”sudo micro etc/salt/minion”
+<br>
+lisätään tiedostoon master: 192.168.178.70
+id: ilkkah
+</p>
+<img src="Graphics/PalvelintenHallinta/18.png" alt="" width="700" height=""/>
+<p>
+    ”sudo systemctl enable salt-minion && systemctl start salt-minion”
+    <br>
+    eipä antanut vagrant virtuaalikone käynnistää salt-minionia
+    <br>
+    ”ps aux -e | grep salt”
+    <br>
+    kyllä se siellä pyöri kuitenkin 
+</p>
+<img src="Graphics/PalvelintenHallinta/19.png" alt="" width="700" height=""/>
+<p>kokeilin käynnistää salt orjan uudestaan näiden ohjeiden mukaan: <a href="https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/?fromSearch=salt%20master">Terokarvinen.com salt-quickstart salt master and slave on ubuntu</a>
+<br>
+”sudo systemctl restart salt-minion.service”
+<br>
+sitten ”logout” mutta vagrant kone sanoo, että There are stopped jobs. Mitköhän nyt sitten? :)
+<br>
+Googlasin ja ohjeita <a href="https://unix.stackexchange.com/questions/116959/there-are-stopped-jobs-on-bash-exit">Stackexchange.com</a>
+<br>
+uudestaan vaan komento ”exit”
+</p>
+<img src="Graphics/PalvelintenHallinta/20.png" alt="" width="700" height=""/>
+<p>
+    ”sudo hostname I” ei antanut mitään tulosta
+    <br>
+”salt-master” väärin uudelleen käynnistetty salt-master
+<br>
+”sudo salt-master” taas väärin uudelleen käynnistetty salt-master” virhe ilmoitus, koska se pyörii jo. Pitäisi käynnistää udeelleen systemctl avulla
+<br>
+”sudo hostname -I” kuitenkin antaa nyt IP osoitteen
+<br>
+”sudo salt-key -A” The key glob ’*’ does not match any unaccepted keys. En kyllä tajua missä vika
+<br>
+Kävin katsomassa vielä etc/salt/minion tiedostoa ja ip osoitteessa oli kirjoitusvirhe. Korjasin sen ja tadaa.
+</p>
+<img src="Graphics/PalvelintenHallinta/21.png" alt="" width="700" height=""/>
+<p>
+    Komento ”sudo salt-key” paljasti, että orjaoli ilmoittautunut.
+    <br>
+Komento ”sudo salt-ket -A” hyväksyin vaimen.
+</p>
+<img src="Graphics/PalvelintenHallinta/22.png" alt="" width="700" height=""/>
+<p>
+    Ja testaus, että orja vastaa ja toimi.
+</p>
+Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/#h1-viisikko">Terokarvinen.com</a>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Palvelinten Hallinta
+</h2>
+<br>
+12.11.2023
+<br>
+<h4 id="Luento3">h3 Versio</h4>
+<h3>a)	Online. Tee uusi varasto GitHubiin (tai Gitlabiin tai mihin vain vastaavaan palveluun). Varaston nimessä ja lyhyessä kuvauksessa tulee olla sana "winter". Aiemmin tehty varasto ei kelpaa. (Muista tehdä varastoon tiedostoja luomisvaiheessa, esim README.md ja GNU General Public License 3) ja b)	Dolly. Kloonaa edellisessä kohdassa tehty uusi varasto itsellesi, tee muutoksia, puske ne palvelimelle, ja näytä, että ne ilmestyvät weppiliittymään.</h3>
+<img src="Graphics/PalvelintenHallinta/23.png" alt="" width="700" height=""/>
+<p>
+    Loin repositorion Github nettisivuilla, en luonut vielä ssh avainta. katsoin miten tämä toimii.
+    <br>
+komennolla ”git clone repostorion osoite.git” sain kopioitua repositorion koneelle. Githubissa laitoin repostitorion publiciksi ja loin read.me tiedoston ja kirjoitin siihen hieman tekstiä.
+<br>
+Homma ei toiminut, kysyi käyttäjätunnusta ja salasanaa ja niillä en päässyt sisään.
+<br>
+Loin komennolla ”ssh-keygen” Enter Enter ssh avaimen ja kopioin sen Githubin ssh avaimiin sen jälkeen poistin virtuaalikoneelta tuon kansion ja kloonasin sen uudestaan.
+</p>
+<img src="Graphics/PalvelintenHallinta/24.png" alt="" width="700" height=""/>
+<p>
+    Muokkasin microlla README.md tiedostoa ja lisäsin tekstin testi.
+    <br>
+    Komento ”git add README.md”
+    <br>
+    Komento “git commit -m “tekstiä…”
+    <br>
+    ja komento ”git push”
+</p>
+    <img src="Graphics/PalvelintenHallinta/25.png" alt="" width="700" height=""/> 
+    <p>
+        Repositorio oli päivittynyt Githubiin
+    </p>
+    <h3>
+        c)	Doh! Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset --hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia.
+        </h3>
+        <p>
+            Lisäsin tekstiä ”tyhmä muutos” REDME.md tiedostoon
+        </p>
+        <img src="Graphics/PalvelintenHallinta/26.png" alt="" width="700" height=""/>
+        <p>
+            komento ”git add README.md” Komento “git reset –hard”
+            <br>
+        
+Git palautti version aikaisempaan
+
+        </p>
+        <h3>d)	Tukki. Tarkastele ja selitä varastosi lokia. Tarkista, että nimesi ja sähköpostiosoitteesi näkyy haluamallasi tavalla ja korjaa tarvittaessa.</h3>
+        <img src="Graphics/PalvelintenHallinta/27.png" alt="" width="700" height=""/>
+        <p>
+            Author commitin tekijä
+            <br>
+            Date pvm ja kellonaika, aikavyöhyke
+            <br>
+            commitin sisältö
+              
+        </p>
+        Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/#h3-versio">Terokarvinen.com</a>
+
+
+</body>
+</html>

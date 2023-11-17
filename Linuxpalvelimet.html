@@ -1,0 +1,922 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+   
+    body, html
+            {
+                max-width: 47em;
+            }
+    body,td,th {
+        font-family: "Myriad Pro", "Myriad Pro Bold", Garamond;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Haaga-Helia ammattikorkeakoulu
+        </h1>
+        <h2>
+        Linux palvelimet ICI003AS2A-3006
+        </h2>
+    <br>
+    24.8.2023
+    <br>
+<p>
+
+    A program is free software if the program's users have the four essential freedoms: [1]
+</p>
+   <li>The freedom to run the program as you wish, for any purpose (freedom 0).</li>
+   <li>The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.</li>
+    <li>The freedom to redistribute copies so you can help others (freedom 2).</li>
+    <li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.</li>
+</p>
+Lähde: https://www.gnu.org/philosophy/free-sw.html#four-freedoms
+<br>
+
+
+<h2>Linuxin asentaminen virtuaalikoneeseen kurssia varten</h2>
+
+<p>
+    Host tietokone
+    <br>
+    Microsoft Surface Laptop Studio 14,4" -kannettava, Win 11 Pro
+    <li>Käyttöjärjestelmä: Windows 11 Pro</li>
+      <li>Näyttö: 14,4" 120 Hz PixelSense Flow -näyttö, tarkkuus: 2400 x 1600 (201 PPI), kuvasuhde: 3:2, 10 pisteen monikosketus, Dolby Vision -tuki</li>
+      <li>Prosessori: neliytiminen 11. sukupolven Intel Core H35 i5-11300H -suoritin</li>
+       <li>Keskusmuisti: 16 Gt LPDDR4X</li>
+        <li>Kiintolevy: 512 Gt SSD</li>
+        <li>Grafiikka: Intel Iris Xe</li>
+        <li>Verkko-ominaisuudet: WiFi 6: 802.11ax-yhteensopiva, Bluetooth Wireless 5.1 -teknologia</li>
+        <li>Liitännät: 2 x USB-C ja USB 4.0 / Thunderbolt 4, 3,5 mm:n kuulokeliitäntä, 1× Surface Connect -portti </li>
+
+</p>
+
+    <h2>VMWaren käynnistys</h2>
+<img src="Graphics/Linux/1.png" alt="" width="700" height=""/>
+<p>
+    Käynnistettäessä Vmwarea, se pyysi päivittämään itsensä versioon 17.0.0. painoin nappia skip this version. Tämän jäkeen kävin tarkastamassa oman Vmwareni version, se on 16.2.5 build-20904516.
+
+Vmwaressa oli valmiina aikaisemmin luomani ubunto 64-bittinen virtuaalikone. Kuitenkin tehtävässä neuvottiin tekemään uusi kone kokonaan ja dokumentoimaan sen luonti.
+
+</p>
+
+<p>
+    Tässä vaiheessa perehdyin lisää kurssimateriaaliin ja päätin, että teen kuten on ohjeistettu ja asennan Virtualboxin ja Debianin 😊
+</p>
+<img src="Graphics/Linux/2.png" alt="" width="700" height=""/>
+<p>
+    Laitoin asetukset ohjeiden mukaan keskusmuisti 4GB ja kovalevy 60GB, ei pre-allocated, laitoin koneelle vain 1 CPU:n koska kannettavassani ei ole kuin neljä ydintä, toki HT:n avulla on madollista käyttää kahdeksaa. Ohjeissa neuvottiin asettamaan ISO tiedosto virtualliseen CDROM asemaan, tein ISO tiedoston liittämisen kuitenkin jo virtuaalikoneen luonti vaiheessa.
+</p>
+<img src="Graphics/Linux/3.png" alt="" width="700" height=""/>
+<p>
+    Valmis käynnistämätön kone näyttää tältä.
+</p>
+<img src="Graphics/Linux/4.png" alt="" width="700" height=""/>
+
+<p>
+    Käynnistin koneen ja se on valmiina testiä varten boottaamaan liveen.
+    <br>
+
+Mouse integration tuotti ongelmia, koska se oli defaulttina oikea CTRL, jota ei näppäimistöstäni löytynyt. Sammutin virtuaalikoneen ja vaihdoin näppäimeksi pelkkä CTRL. Käynnistin koneen uudestaan, mutta nyt ISO tiedosto oli kadonnut ja boottimediaa ei ollut koneessa. Mounttasin sen uudestaan ja boottasin liveen takasin.
+
+</p>
+<img src="Graphics/Linux/5.png" alt="" width="700" height=""/>
+
+<p>
+    Ihmettelin mitä tämä tarkoittaa, mutta jatkoin eteenpäin.
+<br>
+Avasin nettiselaimen ja kokeilin Googlata, kaikki toimi niin kuin pitikin.
+
+</p>
+<img src="Graphics/Linux/6.png" alt="" width="700" height=""/>
+
+<p>
+    Yhteenveto asennuksesta
+</p>
+</p><img src="Graphics/Linux/7.png" alt="" width="700" height=""/>
+<p>
+    Debian asentui noin kymmenessä minuutissa ja käynnistin koneen uudelleen.
+</p>
+<img src="Graphics/Linux/8.png" alt="" width="700" height=""/>
+
+<p>
+    Avasin nettiselaimen ja menin YouTubeen, kaikki vaikutti toimivan.
+</p>
+<img src="Graphics/Linux/9.png" alt="" width="700" height=""/>
+<p>
+    Oli päivittämisen aika, laitoin kuvan komennon sisään ja paketinhallintaan päivittyi tiedot mitä on päivitettävissä.
+</p>
+<img src="Graphics/Linux/10.png" alt="" width="700" height=""/>
+<p>
+    $ sudo apt-get -y dist-upgrade komento päivitti kaiken ja uudelleenkäynnistystä ei tarvittu.
+</p>
+<img src="Graphics/Linux/11.png" alt="" width="700" height=""/>
+<p>
+    $ sudo apt-get -y install ufw asensi palomuurin, ei ongelmia.
+    <br>
+$ sudo ufw enable komento kuitenkin antoi virheilmoituksia, palomuuri ei käynnistynyt.
+<br>
+Kokeilen käynnistää uudelleen koneen.
+
+</p>
+<img src="Graphics/Linux/12.png" alt="" width="700" height=""/>
+<p>
+    Se korjasi ongelman palomuuri oli käynnistynyt koneen bootatessa.
+</p>
+<h2>Lisä tehtävä:</h2>
+<img src="Graphics/Linux/13.png" alt="" width="700" height=""/>
+<p>
+   asensin VirtualBoxin guest additionsin, asennus tarvitsee uudelleenkäynnistyksen.
+</p>
+<img src="Graphics/Linux/14.png" alt="" width="700" height=""/>
+<p>
+    Uudelleenkäynnistyksen jälkeen tulos oli tämä. Musta ruutu. Opettajalla oli ohjeet tämän korjaamiseen. Työstän tätä ongelmaa myöhemmin.
+</p>
+<p>
+    Kokeilin pakottaa vesa grafiikat päälle boottivalikosta lisämäällä komennon xforcevesa. Se ei auttanut. edelleen tuloksena oli musta ruutu.
+</p>
+<img src="Graphics/Linux/15.png" alt="" width="700" height=""/>
+<p>
+Kokeilin ohjeiden mukaisesti päivittää paketinhallinan ja koneen komentokehoitteesta.
+<br>
+Poistin quest additionsin, kun en saanut sitä asennettua uudelleen.
+<br>
+kokeilin "reboot" komentoa ja "shutdown -r" komentoa, ne eivät tomineet.
+<br>
+Käynnistin koneen Gui valikosta uudelleen.
+</p>
+<img src="Graphics/Linux/16.png" alt="" width="700" height=""/>
+<p>
+    Tuloksena toimiva kone, mutta ilman kivoja lisäominaisuuksia.
+    <br>
+    Asensin vielä kerran guest additionsin mutta sama tilanne, musta ruutu tulee takaisin ☹
+    <p>
+    Jos asia ei korjaannu vihje oli asentaa toinen distro, kuten Xubuntu. Tämä on harmmillista, koneessani ei toimi siis lisäherkut Host koneen ja virtuualikoneen käyttöjärjestelmään välillä. Ainakaan Debian ja VirtualBox yhdistelmässä.
+    <p>
+    Poistin uudestaan Guest additionsin ja taas toimii Gui.
+    <p>
+    Asensin Vmwareen Debianin ja teen jatkossa virtualisoinnin Vmwarella.
+</p>
+<h3 id="Luento2">Luento 2</h3>
+<br>
+30.08.2023
+<p>
+Olen siis siirtynyt käyttämään Vmware virtualisointi sovellusta ja siihen asennettua Debian 12 käyttöjärjestelmää. Windows 11 ympäristössä. Päivitin luento 1 läksyjen loppua hieman tämän osalta.
+</p>
+<img src="Graphics/Linux/17.png" alt="" width="700" height=""/>
+<p>
+    Törmäsin heti ongelmaan. Asiasta ilmoitettiin järjestelmänvalvojalle 😊
+</p>
+<img src="Graphics/Linux/18.png" alt="" width="700" height=""/>
+<p>
+    Googlasin ja päädyin Debianin foorumille. löysin ohjeet ja asensin sudon, sekä lisäsin ilkkah käyttäjän sudoers tiedostoon komento: ”usermod -a -G sudo USER”, jossa USER on siis käyttäjänimesi.
+</p>
+    <br>
+  Lähde: <a href="https://forums.debian.net/viewtopic.php?t=152483">I'm somehow not in the sudoers file. - Debian User Forums</a>
+</p>
+<img src="Graphics/Linux/19.png" alt="" width="700" height=""/>
+<p>
+    Kirjauduin käyttäjällä ilkkah ja kokeilin tomiiko sudo komento päivittämällä paketinhallinan ja homma toimi.
+</p>
+    <h3>x)</h3>
+<li>pwd = print working directory</li>
+<li>ls =list files and folders</li>
+<li>cd = change directory</li>
+<li>less = program to shows inside of text files in terminal</li>
+<li>nano = word editor</li>
+<li>mkdir = make directory</li>
+<li>cp = copy file</li>
+<li>rmdir = remove directory</li>
+<li>rm = remove file</li>
+<h3>a) Micro asennus</h3>
+    <p>
+    Asensin Micron, komento “sudo apt-get install micro”, se asentui onnistuneesti.
+    </p>
+
+ <h3>b) Rauta</h3>
+<img src="Graphics/Linux/20.png" alt="" width="700" height=""/>
+<p>
+    Kokeilin listata koneen tiedot lshw:llä, mutta sitä ei ollut asennettu. Asensin lshw:n komennolla ”sudo apt-get install lshw”.
+</p>
+<img src="Graphics/Linux/21.png" alt="" width="700" height=""/>
+<p>
+    Listasin raudan komennolla ”sudo lshw -short -sanitize”.</p>
+    </p>
+    <li>H/W path on luullakseni kansio jossa sijaitsee raudan tarvitsemat tiedot toimiakseen
+    </li>
+    <li>-	Device kohta kertoo tietokoneeseen yhdistetyt laitteet, kuten cd-rom tai usb-muisti</li>
+<li>-	Class kertoo luokan mihin kyseinen rauta kuuluu</li>
+<li>-	Description on kuvaus raudasta, esim. prosessori ja sen tyyppi tai muisti</li>
+<h3>c) Apt</h3>
+<h4>Gitin asennus</h4>
+<p>
+komennot ”apt-cache show git”, sain paketinhallinnan tiedot gitistä.
+</p>
+<p>
+    Itse asennus “sudo apt-get install git”.
+</p>
+<h4>Telnetin asennus</h4>
+<p>
+    ”sudo apt-get install telnet” asentaa Telnetin koneelle, jolla voi ottaa yhteyttä internetin palvelimiin, jolloin pääsee käyttämään palvelimen tarjontaa hyväkseen.
+</p>
+<img src="Graphics/Linux/22.png" alt="" width="700" height=""/>
+<p>
+    ”telnet towel.blinkenlights.nl” komennolla pitäisi pystyä alkaa katsomaan Star Wars elokuvaa Ascii merkeillä tehtynä, mutta palvelin oli alhaalla. Kannattaa kokeilla myöhemmin uudestaan.
+</p>
+<h4>Neofetchin asennus</h4>
+<img src="Graphics/Linux/23.png" alt="" width="700" height=""/>
+<p>
+    “sudo apt-get install neofetch” asentaa neofetchin ja komento “neofetch” pirtää tiedot distrosta näytölle.
+</p>
+<h4>Wgetin asennus</h4>
+<p>
+    ”sudo apt-get install wget” asentaa wget ohjeman, jolla voi ladata tiedostoja internetistä. Esim. Teamviewer sovelluksen Debianille. Alla komento sille.
+</p>
+<p>
+”wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb”
+</p>
+<p>
+    ”sudo dpkg -i teamviewer_amd64.deb” asentaa .deb asennustiedoston. Tämä oli toinen kerta, kun asennan graafisen ohjelman terminaalin kautta. En tiedä minne se asentuu ja miten se käynnistettäisiin komentokehotteesta. Gui:n puolella application finderilla löydän ohjelman ja voin käynnistää sen.   
+</p>
+<h4>Useamman ohjelman samanaikainen asennus terminaalista</h4>
+<img src="Graphics/Linux/24.png" alt="" width="700" height=""/>
+<p>
+    ”sudo apt-get install ensimmäinen ohjelma, toinen ohjelma, kolmas ohjelma</p>
+</p>
+Lähde: <a href="https://linuxhint.com/use-apt-to-install-multiple-programs-from-command-line-debian/">How to Use apt to Install Multiple Programs from the Command Line in Debian 11 (linuxhint.com)</a>
+<h3>Tärkeät tiedostot FSF</h3>
+<img src="Graphics/Linux/25.png" alt="" width="700" height=""/>
+<p>
+    Root, koneen tiedostojärjestelmän juuri.
+    <br>
+    Home, koti kansio
+    <br>
+    User, käyttäjän omat tiedosto kansio
+    
+</p>
+<img src="Graphics/Linux/26.png" alt="" width="700" height=""/>
+<p>
+    komennot ”cd /”, ”cd etc”, ”ls”.
+</p>
+<img src="Graphics/Linux/27.png" alt="" width="700" height=""/>
+<p>
+    Yllä kuvassa komennot ja listaus media kansion sisällöstä.
+</p>
+<img src="Graphics/Linux/28.png" alt="" width="700" height=""/>
+<p>
+    komennot ”cd ..”, ”find var/log”, cd var/log/”, ”ls”.
+</p>
+<h3>Grep komento</h3>
+<img src="Graphics/Linux/29.png" alt="" width="700" height=""/>
+<p>
+    Loin komenolla ”nano teksti” tiedoston teksti ja laitoin sisällöksi numeroita.
+</p>
+<img src="Graphics/Linux/30.png" alt="" width="700" height=""/>
+<p>
+    Etsin ”grep 2 teksti” komennolla sisältääkö tiedosto teksti numeroa 2 ja se löytyi.
+</p>
+<img src="Graphics/Linux/31.png" alt="" width="700" height=""/>
+<p>
+    ”grep -c 2 teksti” laskee kuinka monta osumaa tiedostossa on numerolle 2
+</p>
+<p>
+    Tekstitiedostoni oli huono tähän tehtävään, en enää alkanut luomaan uutta. Googlasin grep komennosta lisää, alla oleva vaikutti todella hyödylliseltä:
+</p>
+    <p>
+<italic>“Matching the lines that start with a string : The ^ regular expression pattern specifies the start of a line. This can be used in grep to match the lines which start with the given string or pattern.</italic>
+
+ </p>
+<p>
+<italic>$ grep "^unix" geekfile.txt</italic>
+<p>
+<italic>Output: unix is great os. unix is free os.”</italic>
+</p>
+Lähde: <a href="https://www.geeksforgeeks.org/grep-command-in-unixlinux/">grep command in Unix/Linux - GeeksforGeeks</a>
+</p>
+<h3>f) Pipeline</h3>
+<img src="Graphics/Linux/32.png" alt="" width="700" height=""/>
+<p>
+    komento ”ls /etc|less”
+</p>
+<img src="Graphics/Linux/33.png" alt="" width="700" height=""/>
+<p>
+    Epäonnistunut kirjautuminen sudo komentoon, 3 virheellistä kirjautumisyritystä käyttäjälle ilkkah koneella Kone1, elokuun 30, kello 18.02. Sudo PID numero 7665, yrittänyt käynnistää apt-get ohjelman komennolla update.
+</p>
+<img src="Graphics/Linux/34.png" alt="" width="700" height=""/>
+<p>
+    Kone1 käyttäjä ilkkah käynnisti sudo komennon, prosessi (PID) 7689 toimi root oikeuksilla apt-get update komento. Tällä kertaa onnistuneesti.
+</p>
+</p>
+<h3 id="Luento3">Luento 3</h3>
+<br>
+05.09.2023
+<p>
+alkusanat
+</p>
+<h3>x) Lue ja tiivistä</h3>
+<li>Apachen asennus: sudo apt-get install apache2 komento</li>
+<li>käynnistää firefoxin ja katsoo mitä palvelimella pyörii: firefox "http://localhost"</li>
+<li>selvittää kuinka serverin voi löytää netistä: ip addr</li>
+<li>avaa firefoxin webbipalvelimesi tiedoilla, syötä edellisestä kohdastasi saama IP osoite tähän firefox "http://x.x.x.x"</li>
+<li>Jos kaikki on kunnossa, tuolla samalla IP:llä saat sen selville komennolla: host x.x.x.x</li>
+<br>
+Käytännöllinen komento
+<li>tarkasta käyttäjä: whoami</li>
+<h3>Asenna Apache-weppipalvelin</h3>
+<img src="Graphics/Linux/35.png" alt="" width="700" height=""/>
+komennolla "sudo apt-get install apache2" asensin apachen ja komennolla "firefox localhost" testasin, että palvelin toimii.
+<h3>b) Etsi lokista rivit, jotka syntyvät, kun lataat omalta palvelimeltasi yhden sivun. Analysoi rivit.</h3>
+<p>
+<img src="Graphics/Linux/36.png" alt="" width="700" height=""/>
+</p>
+Sain aluksi tälläisen vastauksen "sudo journalctl -f komenolla" ja sen jälkeen komennolla "firefox localhost"
+<img src="Graphics/Linux/37.png" alt="" width="700" height=""/>
+Olin unohtanu Apachen asennuksessa pari asiaa. Koitin "systemclt restart apache2" (huomaa kirjoitusvirhe) komentoa ei löytynyt. Päätin asentaa sen komennolla "sudo apt-get install systemctl" (tällä kertaa oikein kirjoitettuna) Virheitä tuli useita. Päätin silti jatkaa ja kokeilla mitä käy. Laitoin komennon "sudo a2enmod userdir" ja käynnistin demonin uudestaan komennolla "sudo systemctl restart apache2"
+<br>
+Sen jälkeen sain ulos logista kuvan mukaisen tuloksen. kello 22:54:05 kone1 (tämä virtuualikone) Käyttäjä id=1000 aktivoi palvelun "org.xfce.Xfconf" sitä pyysi ":1.38" en tiedä mikä tämä on?  käyttäjä id= 1000, prosessi id:llä 1642 comm="xfsettingsd --display : :0.0 (en tiedä mitä tarkoittaa, luulisin, että jotain grafiikkaan liittyvää piiretään näytölle) --smclient-id 218f3658") tämä on ehkä webbiselaimen asiakas ID, en ole kyllä yhtään varma :) 
+<br>
+<img src="Graphics/Linux/38.png" alt="" width="700" height=""/>
+<p>
+tämän jälkeen virtuaalikone kaatui, enkä saanu sitä enää päälle. Se luultavasti johtui systemlctl:n asentamisesta mikä ei mennyt onnistuneesti. Kone ei siis enää käynnistyny graafiseen liittymään.
+</p>
+<img src="Graphics/Linux/39.png" alt="" width="700" height=""/>
+boottasin recovery moodiin, mutta en alkanut enää googlaamaan mitä olisi tehtävissä. tutkin hiemna, laiton komennon "sudo apt-get update" paketinhallinta ei ollut enää toiminnassa ja se ei pystynyt päivittymään. löysin root hakemistosta "ls" komennolla initrd.imd.old. Yritin avata sen micro editorilla. Sisältö oli ASCII merkkejä. Päätin jatkaa tehtävää toisella läppärillä, jolla olin kurssin alunkin tehnyt.
+En ottanut näistä kuvia siksi, että niitä olisi tullut aivan liikaa ja en saisi tät raporttia koskaan valmiiksi. Näiden tekeminen on aika työlästä.
+<img src="Graphics/Linux/40.png" alt="" width="700" height=""/>
+<p>
+    Siiryin toiselle virtuaalikoneelle ja asensin Apachen. komento "sudo a2enmod userdir" ja koitin saada oman kotihakemistoni auki selaimella.
+</p>
+<img src="Graphics/Linux/41.png" alt="" width="700" height=""/>
+<p>Firefox antaa ilmoituksen 404 pyydettyä osoitetta ei löydy palvelimelta. Luultavasti koska index.html puuttuu</p>
+<img src="Graphics/Linux/42.png" alt="" width="700" height=""/>
+<p>
+    Laitoin komennon ”sudo journalctl -f” avasin toisen terminaal ja sinne komento ”firefox ”http://localhost” Firefox aukesi ja Logissa näkyi rtkit-daemon(1332) prosessi valvomassa 4 lankaa kahdesta prosessista yhdellä käyttäjällä. Käyttäjä oli tämä virtuaalikone, nimeltää kone1. Googlasin hieman ja tuo prosessi on jonkinlainen palvelija prosessi. Lähde: Hukkasin lähteen (se oli jokin Linux keskustelupalsta). Demoni myös onnistuneesti loi langan 5283 prosessista 5175 jonka omisti käyttäjä ID 1000, eli käyttjä kone1 prioriteetillä 10. Tuo on luultavasti korkea prioriteetti luku.
+</p>
+<h3>c) Vaihda Apachen esimerkkisivu johonkin lyheen sivuun niin, että vanha esimerkkisivu ei näy.</h3>
+<img src="Graphics/Linux/43.png" alt="" width="700" height=""/>
+<p>
+Loin microlla index.html tiedoston sisällöllä Hello World! kansioon public_html
+</p>
+<p>
+Laitoin komennon chmod + x index.html ja muutin tiedoston oikeudet executable (korjaus 17.09.2023 tätä ei tarvinnut tehdä tiedostolle. Se piti tehdä public_html kansiolle, sieltä puuttui oikeudet. mkdir public_html kannattaa ilmeisesti tehdä sudo komennolla, jolloin homma pelittää heti)
+</p>
+<img src="Graphics/Linux/44.png" alt="" width="700" height=""/>
+<p>
+    Laitoin komennon ”firefox ”http://localhost/ilkkah/” Ei aukea, en keksi missä on ongelma.
+</p>
+<p>
+Tein googlauksen ” how to change apache2 default page”
+<p>
+Vastaus suoraan googlen esimerkeistä:
+
+What is apache2 Ubuntu default page?
+The default Ubuntu document root is /var/www/html. You can make your own virtual hosts under /var/www. This is different to previous releases which provides better security out of the box. Please use the ubuntu-bug tool to report bugs in the Apache2 package with Ubuntu.
+</p>
+<p>
+Komento terminaaliin: “cd /”, ”cd var”, ”cd www”, ”cd html”, ”ls” ja sieltä löytyi index.html kokeilin komentoa ”firefox index.html” selaimeen aukesi tuossa tiedostopolussa oleva index.html ja se näytti olevan Apachen vakio aloitussivu.
+<br>
+komento ”sudo cp index.html index2.html, tein siis backupin index.html tiedostosta ja nimesin sen index2.html
+</p>
+<img src="Graphics/Linux/45.png" alt="" width="700" height=""/>
+<p>komento ”cd”, ”cd public_html” “ls” ja muutama väärä komento ja kopioin oikealla komennolla ”sudo cp index.html /var/www/html/” Huom. varoituksia ei anneta, tuossa kyseisessä tiedostopolussa on jo index.html ja se ylikirjoitettiin nyt.</p>
+</p>
+<img src="Graphics/Linux/46.png" alt="" width="700" height=""/>
+<p>
+menin /var/www/html/ hakemistoon ja kokeilin komennolla ”micro index.html” tiedosto on nyt korvattu luomallani index.html, joka on myös käyttäjä ilkkah kotihakemistossa public_html kansiossa, jonka pitäisi näkyä ulkomaailmaan, mutta en ole saanut sitä vielä toimimaan. Tässä jäi mietityttämään mikä tuo var kansio on variables?
+</p>
+<img src="Graphics/Linux/47.png" alt="" width="700" height=""/>
+<p>
+    Komento ” firefox ”http://localhost” ” varmisti, että apache palvelin pyörittää nyt tuota sivua.
+</p>
+<h3>Laita käyttäjien kotisivut (http://example.com/~tero) toimimaan. Testaa esimerkkikotisivulla. Katso, että voit muokata weppisivua normaalina käyttäjänä (ilman sudoa).</h3>
+<p>
+    kohta c) sivuaa tätä. En saa ilkkah käyttäjän public_html kansiota näkymään ulkomaailmaan.
+</p>
+<h3>e) Tee validi HTML5 sivu.</h3>
+<img src="Graphics/Linux/48.png" alt="" width="700" height=""/>
+<p>Loin tämän html tiedoston host koneella Vscodella</p>
+<p>Sammutin virtuaalikoneen ja koitin asentaa VMWare tools lisäohjelman, mutta se olikin jo asennettuna. Käynnistin koneen uudestaan. Tuo ohjelma mahdollistaa kopioinnin käyttäen graafista käyttöliittymää host koneen ja virtuaalikoneen välillä.</p>
+<img src="Graphics/Linux/49.png" alt="" width="700" height=""/>
+<p>Kuvakaappaus host koneen tiedostoista. Tästä kopion tiedoston virtuaalikoneeseen (kuva alla)</p>
+<img src="Graphics/Linux/50.png" alt="" width="700" height=""/>
+<p>Tiedosto helloworldlorem.html kopioitiin onnistuneesti.</p>
+<h3>f) Anna esimerkit 'curl -I' ja 'curl' -komennoista. Analysoi 'curl -I' tuloste.</h3>
+<img src="Graphics/Linux/51.png" alt="" width="700" height=""/>
+<p>Komento curl kuvan mukaisesti -l lisätiedolla. Se tulostaa terminaalin kyseisen .html tiedoston sisällön. Huomio, en huomannut mitään eroa laittaako tuota -l mukaan komentoon, komento tulosti saman sisällön kummallakin kerralla.</p>
+<h3>m) Vapaaehtoinen, suosittelen tekemään: Hanki GitHub Education -paketti.
+</h3>
+<p>Olen tehnyt tämän joskus aikaisemmin ja liittänyt haaga-helian sähköpostin Gihubiin oman sähköpostini rinnalle.</p>
+<h3 id="Luento4">Luento 4 Maailma kuulee</h3>
+<br>
+17.09.2023
+<h4>x) Lue ja tiivistä</h4>
+    <p>
+    Komentoja: 
+    </p>
+    ”ssh root@xxx.xxx.xxx.xxx” (IP-osoite) shh yhteys palvelimeen
+    <br>
+    “sudo ufw allow 22/tcp” ssh yhteyttä varten reikä palomuuriin
+    <br>
+    “sudo ufw enable” palomuuri päälle
+    <br>
+    “sudo adduser (username)” lisää käyttäjä
+    <br>
+    “sudo adduser (username) sudo” lisää käyttäjä pääkäyttäjätiedostoon
+    <br>
+    “ssh (username)@xxx.xxx.xxx.xxx” otas ssh yhteys palvelimeen
+    <br>
+    “sudo usermod –lock root” lukitse pääkäyttäjän salasana
+    <br>
+    “sudoedit /etc/ssh/sshd_config” # PermitRootLogin no # Lukitse pääkäyttäjä
+    <br>
+    “sudo service ssh restart” käynnistä ssh uudestaan
+    <br>
+    “sudo apt-get update” paketin hallinnan päivitys
+    <br>
+    “sudo apt-get dist-upgrade” ohjelmistojen päivitys
+    <br>
+    ”sudo ufw allow 80/tcp” palomuurin reikä Apache palvelinta varten	
+    <br>
+    ”sudo systemctl reboot” ?
+    <br>
+    ”journaltctl -n 2000; journalctl  --since today” tunkeutumis tietoja
+    <br>
+    “/var/log/auth.log” Autentikointi logitiedosto
+    <br>
+    “journalctl SYSLOG_FACILITY=10 # auth events tunkeutumis tietoja
+    <br>
+    “journalctl –grep pam_ --priority err” tunkeutumis tietoja
+    <br>
+    “/var/log/apache2/access.log” Apachen access logitiedosto
+    <br>
+    “sudo systectl restart apache2” Apachen uudelleen käynnistys
+    <h4>a)	Vuokraa oma virtuaalipalvelin haluamaltasi palveluntarjoajalta. (Vaihtoehtona voit käyttää ilmaista kokeilujaksoa, GitHub Education krediittejä; tai jos mikään muu ei onnistu, voit kokeilla ilmaiseksi vagrant:ia paikallisesti. Suosittelen kuitenkin harjoittelemaan oikeilla, tuotantoon kelpaavilla julkisilla palveluilla).</h4>
+<p>valitsin Digital Ocenin palveluntarjoajaksi. Shared cpu 1gb ram 25GB ssd, hinta 6 dollaria/kk valitsin vielä ilmaiset telemetria tiedot palvelimesta graafiseen käyttöliittymään ja varoitus viestit. Onkohan tällä teho vaikutuksia palvelimeen? Eli kannattaako näitä ottaa?</p>
+<h4>
+    b) Tee alkutoimet omalla virtuaalipalvelimellasi: tulimuuri päälle, root-tunnus kiinni, ohjelmien päivitys.  
+</h4>
+<p>
+    Etenin näillä komennoilla:
+</p>
+”ssh root@46.101.117.13” yhteys palvelimeen
+<br>
+”sudo ufw allow 22/tcp” Ei löytynyt tulimuuria
+<br>
+”sudo apt-get update” paketinhallinnan päivitys
+<br>
+”sudo apt-get dist-upgrade” ohjelmistojen päivitys
+<br>
+“sudo apt-get install ufw” palomuurin asennus
+<br>
+“sudo ufw allow 22/tcp” Tulimuuriin reikä ssh yhteyksiä varten
+<br>
+”sudo ufw enable” palomuuri päälle
+<br>
+”sudo ufw status” palomuurin tila selville
+<br>
+”sudo adduser ilkkah” ilkkah käyttäjän lisäys
+<br>
+”sudo adduser ilkkah sudo” ilkkah käyttäjän lisäys sudo tiedostoon
+<img src="Graphics/Linux/52.png" alt="" width="700" height=""/>
+<p>Testaus, että ilkkah on lisätty sudo tiedostoon ja voi toimia pääkäyttäjänoikeuksin.</p>
+<img src="Graphics/Linux/53.png" alt="" width="700" height=""/>
+<p>Lukitsin root käyttäjän ja kävin vielä uudestaan katsomassa config tiedoissa, että Permitrootlogin on varmasti ”no”</p>
+<h4>
+    c) Asenna weppipalvelin omalle virtuaalipalvelimellesi. Korvaa testisivu. Kokeile, että se näkyy julkisesti. Kokeile myös eri koneelta, esim kännykältä.
+</h4>
+<img src="Graphics/Linux/54.png" alt="" width="700" height=""/>
+<p>Asensin Apachen komennolla ”sudo apt-get install apache2”, sitten komento ”sudo ufw allow 80/tcp” palomuuriin reikä weppipalvelimelle. Loin index.html tiedoston sisällöllä Hello World! /var/www/html/ kansioon ja kävin katsomassa, että sivut aukeavat, niin host koneella, kuin kännykällä.</p>
+<h4>
+   d) Murtautumis yrityksiä
+</h4>
+<img src="Graphics/Linux/55.png" alt="" width="700" height=""/>
+<p>Löin komennon ”sudo journalctl -n 2000” ja lokista löytyy useita epäonnistuneita kirjautumisyrityksiä ties keneltä.</p>
+<h3 id="Luento5">Luento 5 Nimittäin</h3>
+<p>24.09.2023</p>
+<h4>x) Lue ja tiivistä, Karvinen 2016: New Default Website with Apache2 – Show your homepage at top of example.com, no tilde</h4>
+<p>”sudoedit /etc/apache2/sites-available/ilkkah.conf”
+<br>
+    ## /etc/apache2/sites-enabled/ilkkah.conf
+    <br>
+    <VirtualHost *:80>
+        <br>
+     DocumentRoot /home/ilkkah/public_html/
+     <br>
+     <Directory /home/ilkkah/public_html/>
+     <br>
+       Require all granted
+       <br>
+     </Directory>
+     <br>
+    </VirtualHost>
+    <p>    
+    ”sudo a2ensite ilkkah.conf”
+    <br>
+    ”sudo a2dissite 000-default.conf”
+    <br>
+
+    "sudo tail -1 /var/log/apache2/error.log"</p>
+</p>
+<h4>x) Lue ja tiivistä, Karvinen 2018: Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address</h4>
+<p>virtual hosts
+    <br>
+<p>
+    "sudoedit /etc/apache2/sites-available/pyora.example.com.conf"
+    <br>
+    "cat /etc/apache2/sites-available/pyora.example.com.conf"
+</p>
+    VirtualHost *:80
+        <br>
+     ServerName pyora.example.com
+     <br>
+     ServerAlias www.pyora.example.com
+     <br>
+     DocumentRoot /home/xubuntu/publicsites/pyora.example.com
+     <br>
+     Directory /home/xubuntu/publicsites/pyora.example.com
+     <br>
+       Require all granted
+       <br>
+     /Directory
+     <br>
+    /VirtualHost
+    <br>
+</p>
+<p>
+    komentoja:
+<br>
+    "sudo a2ensite pyora.example.com"
+    <br>
+    "sudo systemctl restart apache2"
+    <br>
+    "mkdir -p /home/xubuntu/publicsites/pyora.example.com/"
+    <br>
+    curl localhost
+</p>
+<h4>x) lue ja tiivistä: Apache Software Foundation 2023: Name-based Virtual Host Support</h4>
+<p>
+    VirtualHost *:80
+    <br>
+    # This first-listed virtual host is also the default for *:80
+    <br>
+    ServerName www.example.com
+    <br>
+    ServerAlias example.com 
+    <br>
+    DocumentRoot "/www/domain"
+    <br>
+/VirtualHost
+<br>
+
+VirtualHost *:80
+<br>
+    ServerName other.example.com
+    <br>
+    DocumentRoot "/www/otherdomain"
+    <br>
+/VirtualHost
+</p>
+<h4>a) Vuokraa domain-nimi ja aseta se osoittamaan virtuaalipalvelimeesi.</h4>
+<img src="Graphics/Linux/56.png" alt="" width="700" height=""/>
+<p>ostin domainin harkkatehtava.pro namecheapilta ja muutin dns palvelimen tiedot osoittamaan oman virtuaalipalvelimen ip osoitteeseen.
+    <br>
+    Kokeilin viiden minuutin päästä osoitetta harkkatehtava.pro ja se ohjasi minun palvelimelleni.
+    </p>
+    <h4>b) Tutki oman nimesi tietoja 'host' ja 'dig' -komennoilla. Analysoi tulokset.</h4>
+    <img src="Graphics/Linux/57.png" alt="" width="700" height=""/>
+    <p>host harkkatehtava.pro antaa tällaista tietoa, viittaako vielä siihen, että osoite on rekisteröinti vaiheessa vai valintaan namecheapissä, että minun tietoa ei anneta. Ainakin sen pitäisi vaikutta whois tietokantaan.</p>
+    <img src="Graphics/Linux/58.png" alt="" width="700" height=""/>
+    <p>harkkatehtava.pro osoittaaa palvelimeni ip osoitteeseen. Haku kesti 16ms, haku tapahtui lauantaina kello 15:17 Suomen aikaa, eli palvelin on GMT 00.00</p>
+    <h4>c) Etusivu uusiksi. Name based virtual hosting. Laita kotisivusi näkymään oman palvelimen etusivulla. Sivujen tulee olla tallennettu jonnekin kotihakemistojen alle ja olla muokattavissa ilman sudoa.</h4>
+    <img src="Graphics/Linux/59.png" alt="" width="700" height=""/>
+    <p>Tein ilkkah.conf tiedoston /etc/apache/sites-available/ kansioon ja  loin public_html hakemiston sudo oikeuksilla home kansioon ja sen alle index.html tiedoston, jossa sisältö ”Hello World! kayttajan alla” ajoin komennon sudo a2ensite ilkkah.conf, käynnistin apachen uudestaan ja kokeilin Curlilla oliko sisältö muuttunut. Näin ei ollut käynyt. uskoisin, että vika on .conf tiedostossa tai sen aktivoinnissa.</p>
+    <img src="Graphics/Linux/60.png" alt="" width="700" height=""/>
+    <p>Olin unohtanut yhden komennon sudo ”a2dissite 000-default.conf” joka disabloi vakio nettisivun ja luullakseni aktivoi virtuaalihostin. Käynnistin apachen uudestaan ja kokeilin curlilla harkkatehtava.pro osoitetta. Nyt tuli 403 Forbidden. uskoisin, että tässä on nyt kyse usergroupista ja oikeuksista tuohon home kansion alla olevaan public_html kansioon ja index.html tiedostoon.</p>
+    <p>Poistin public_html kansion ja loin sen ilman sudo komentoa uudestaan, koska sudon kanssa sille oli tullut käyttöoikeudet rootille. kokeilin uudestaan, mutta homma ei toiminut. Edelleen 403 forbidden.</p>
+    <img src="Graphics/Linux/61.png" alt="" width="700" height=""/>
+    <p>Katsoin apachen error login ja jonkin näköiset oikeudet puuttuvat, että kansion saisi auki. Googlasin ja ”sudo chmod 755 public_html” pitäisi antaa pääsyn public_html kansionn. Mutta sekään ei auttanut. Kokeilin vielä chmod komennolla erilaisia variaatioita public_html kansioon, mutta en saanut hommaa toimimaan. Minulla oli tämä sama ongelma localhostissa virtuaalikoneella aikaisemmalla luennolla, silloin sivun sai näkymään, kun tero opasti hieman tai olisi luonut sudo komennolla public_html kansion. Tässä se ei kuitenkaan toiminut. "ls -l" komennolla tutkin kansion oikeuksia, mutta en keksinyt miten saisin homman toimimaan.
+        <br>
+        26.09.2023
+        <br>
+        Poistin taas kansion ja kokeilin vielä luoda kansion "mkdir -p public_html" mutta ei auttanut asiaan, edelleen tulee 403 forbidden. Tero karvisen materiaaleistam, en löytänyt vastaavaa virhe tilannetta, koska mielestäni olen tehnyt kaiken mitä ohjeet neuvovat. En kyllä täysin ymmärrä "chmod" komentoa ja miten oikeuksia pitäisi tulkita tuossa "ls -l" komennolla lukiessa. Myöskin "man chmod" manuaalista ei ollut apua, tai sitten olin liian hätäinen sen kanssa. Pitäisi perehtyä manuaaleihin paremmin.
+        <br>
+        Sain homman toimimaan komento "chmod ugo+x ilkkah" kansiolle
+    </p>
+    <h3 id="Luento6">Luento 6 Django</h3>
+    <p>02.10.2023</p>
+<h4>x) Lue ja tiivistä Artikkeli: Karvinen 2023: Python Web - Idea to Production - 2023</h4>
+<li>palvelee asiakkaita Linuxilla, Macilla, Windowsilla, iPhonella, Androidilla - millä vain selaimella</li>
+<li>kerää itsestään tietoa siitä, miten palveluasi käytetään</li>
+<li>antaa monien käyttäjien muokata tietoja yhtä aikaa (aika tavallinen vaatimus yritysten ohjelmissa)</li>
+<li>toimii käyttäjillä asentamatta mitään</li>
+<li>käyttää automaattisesti uusinta versiota ohjelmastasi</li>
+<h4>x) Lue ja tiivistä Artikkeli: Karvinen 2022: Django 4 Instant Customer Database Tutorial</h4>
+<li>artikkelissa luodaan kehitysympäristö</li>
+<li>käsitellään virtuaali ympäristön asennus</li>
+<li>artikkeli ohjeistaa pip paketinhallinnan käyttöö</li>
+<li>kuinka luodaan tietokanta djangoon</li>
+<h4>x) Lue ja tiivistä Artikkeli: Deploy Django 4 - Production Install</h4>
+<li>artikkeli käsittellee django tuotanto palvelimen pystyttämistä</li>
+<h4>a) Asenna Django-kehitysympäristö niin, että näet './manage.py runserver' esimerkkisivun.</h4>
+<img src="Graphics/Linux/62.png" alt="" width="700" height=""/>
+<p>Etenin Tero Karvisen tehtävän ohjeiden mukaan ja runserver esimerkkisivu on näkyvissä. Ongelmia ei tullut vastaan.</p>
+<h4>b) Tee yksinkertainen esimerkkitietokanta django-kehitysympäristöön ja muokkaa tietoja admin-liittymällä. (Voit käyttää sellaisenaan CRM-artikkelin koodia.)</h4>
+<p>
+Etenin komennoilla
+<br> 
+- ”python manage.py migrate”
+<br>
+- ”python manage.py createsuperuser” asetin käyttäjänimen, sähköpostin ja salasanan, käytin vahvaa salasana.
+<br>
+Kokeilin vielä tässä vaiheessa Teron komennot:
+<br>
+- ”sudo apt-get install pwgen”
+<br>
+- “pwgen -s 20 1” joka loi satunnais salasanan. En käyttänyt tätä.
+<br>
+Sitten aloin luomaan asiakastietokantaa
+<br>
+”micro testi/settings.py”
+</p>
+<img src="Graphics/Linux/63.png" alt="" width="700" height=""/>
+<p>
+lisäsin ’crm’ asennettuihin ohjelmiin
+<br>
+-	”micro crm/models.py”
+<br>
+Lisäsin koodi pätkän: ” class Customer(models.Model):
+<br>
+   name = models.CharField(max_length=300)”
+   <br>
+-	“ ./manage.py makemigrations”
+<br>
+-	“./manage.py migrate”
+<br>
+-	“micro crm/admin.py”
+<br>
+lisäsin koodi pätkän: “from . import models
+<br>
+admin.site.register(models.Customer)”
+<br>
+käynnistin djangon serverin komennolla “./manage.py runserver
+</p>
+<img src="Graphics/Linux/64.png" alt="" width="700" height=""/>
+<p>RM ja sen alle customer tietokanta oli luotu.
+</p>
+<h4>c) Tee Djangon tuotantotyyppinen asennus omalle, paikalliselle virtuaalikoneellesi. Siis sellainen, joka pyörii Apachella. Tämä tehtävä on hieman haastavampi.</h4>
+<p>
+    komennot ”deactivate” virtualiympäristön sulkeminen
+    <br>
+-	” echo Hello World! sudo tee /var/www/html/index.html”
+<br>
+-	“firefox localhost” ja sivu oli päivittynyt
+<br>
+
+home kansiossa: komento “mkdir -p publicwsgi/production/static/”
+<br>
+-	“echo “statically see you at localhost” tee|publicwsgi/production/static/index.html
+<br>
+-	“sudoedit /etc/apache2/sites-available/production.conf”
+</p>
+<img src="Graphics/Linux/65.png" alt="" width="700" height=""/>
+<p>
+Tallensin kuvan sisällön tiedostoon
+<br>
+“sudo a2ensite production.conf”
+<br>
+“sudo a2dissite 000-default.conf”
+<br>
+“/sbin/apachectl configtest” Tuli errori ja aloin selvittämään. kirjoitan seuraavan kohdan ulkomuistista
+<br>
+katsoin errologin ”sudo tail /var/log/apache2/error.log”
+<br>
+siellä oli maininta caught SIGWINCH virhe. apache shutdown gracefully
+<br>
+komento “sudo2dissite production.conf”
+<br>
+“sudo systemctl restart apache2”
+<br>
+“firefox localhost” toimii taas
+<br>
+“/sbin/apachectl configtest” Syntax Ok
+<br>
+kävin katsomassa production.conf tiedostoa, kaikki oli kunnossa.
+<br>
+päätin kokeilla uudestaan komentoa ”sudo a2ensite production.conf”
+<br>
+”sudo systemctl restart apache”
+<br>
+”sbin/apachectl configtest” Syntax Ok, eli en tiedä missä vika oli tullut, mutta tämä auttoi.
+<br>
+”firefox localhost/static/” 403 Forbidden.
+<br>
+”ls -l” home kansiossa. execute oikeudet puuttuivat ilkkah kansiolta.
+<br>
+”chmod ugo+x ilkkah”
+<br>
+”firefox localhost/static/”
+</p>
+<img src="Graphics/Linux/66.png" alt="" width="700" height=""/>
+<p>Toimii
+</p>
+<p>
+    Seuraavaksi tein tehtävän ja en kirjoittanut raporttia samalla, kiireen takia, joten kirjoitan tämän ulkomuistista. Sain homman kuitenkin toimimaan. Jäi mietityttämään, että ohjeet eivät olleet suoraan sopivat tähän tehtävään ja olisiko voinut jättää tuon ylemmän osuuden tekemättä osittain tuon staattisuuden tarkastuksen kohdalta?
+<br>
+    Asensin virtuaaliympäristön, komento ”virtualenv -p python3 –system-site-packages env”
+    ollessani publicwsgi/ kansiossa. Tämä meni oikeessa kansiossa, mutta jossain välissä tulin luoneeksi yhden ylimääräisen kansion, joka aiheutti .conf tiedoston kanssa hieman säätämistä.
+    <br>  
+    aktivoin virtuaaliympäristön komennolla ”source env/bin/activate”, sitten tarkastin onko pip virtuaalisessa ympäristössä komennolla ”which pip” se oli.
+    <br>
+    seuraavaksi editoin ”requirements.txt” tiedoston, lisäämällä sinne sanan ”django”
+    <br>
+    seuraavaksi tarkastus mikä versio djangosta oli asentunut komennolla ”django-admin –version”
+    <img src="Graphics/Linux/67.png" alt="" width="700" height=""/>
+    <br>
+    4.2.5 eli yli neljän, homma onnistui.
+</p>
+<p>
+seuraavaksi aloitin uuden projektin komennolla ”django-admin startproject production”
+<br>
+sitten kytkin Pythonin Apacheen, editoin production.conf tiedostoa apachen sites-available kansiosta ja lisäsin Teron kansioiden määritys muuttujat ja skriptin tiedostoon. Tässä vaiheessa kansiot menivät vielä väärin.
+<br>
+Sitten komento ”sudo apt-get -y install libapache2-mod-wsgi-py3” ja tarkastin syntaxin komennolla ”/sbin/apache2ctl configtest” tuli ilmoitus syntax ok
+<br>
+Käynnistin Apachen uudestaan komennolla ”sudo systemctl restart apache2”
+<br>
+ja katsoin toimiko tuotanto ympäristö komennolla ”curl -s localhost|grep title”
+vastaus oli 404 not found
+</p>
+<img src="Graphics/Linux/68.png" alt="" width="700" height=""/>
+<p>Aloin selvittämään asiaa production.conf tiedostosta ja kävin läpi ls -l komennolla kaikki asianomaiset kansiot home kansiossa koneellani. Oikeudet kansioissa olivat kunnossa, mutta tässä vaiheessa huomasin, että kansioita oli tullut liikaa. Eli hakemisto puu ei vastannut production.conf tiedostossa olevia määrityksiä ja Pythoninkin versio oli 3.11, eikä 3.9.</p>
+<img src="Graphics/Linux/69.png" alt="" width="700" height=""/>
+<p>Muutin production.conf tiedoston polut vastamaan kansiorakennetta virtuaalikoneella ja pythonin kansion oikeaksi. Näin jälkikäteen, kun tarkastelin harkkatehtävän ohjetta, voi ongelman ohittaa jo teko vaiheessa toimimalla eri tavalla, kun kopioi osoitteita. Mutta tein oman totutun käytännön mukaan 😊 Ei mennyt ihan oppikirjan mukaisesti.
+<br>
+    Kokeilin uudestaan komento ”curl -s localhost|grep title”
+    <br>
+    edeleen 404 not found. Unohdin käynnistää Apachen uudestaan, komento ”sudo systemctl restart apache2”
+    </p>
+    <img src="Graphics/Linux/70.png" alt="" width="700" height=""/>
+    <p>”curl -s localhost|grep title” ja komento “curl SI localhost|grep Server”
+<br>
+        Tuotantoympäristö oli asennettu ja se toimi Apache palvelimella.
+        </p>
+        <h3 id="Luento7">Luento 7 Hello World</h3>
+        <p>07.10.2023</p>
+    <h4>x) Kaikki läksyt tähän. Palauta tähän linkki kuhunkin läksyraporttisi.</h4>
+    <a href="Linuxpalvelimet.html">Koko dokumentti</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento2">Luento 2</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento3">Luento 3</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento4">Luento 4</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento5">Luento 5</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento6">Luento 6</a>
+    <br>
+    <a href="Linuxpalvelimet.html#Luento7">Luento 7</a>
+<h4>Lue ja tiivistä. Tiivistelmäksi riittää muutama ranskalainen viiva per artikkeli.</h4>
+<p>
+    <li>artikkelissa käsitellään ohjelmointiekielien eri syntaxeja hello worldille
+    </li>
+ 
+</p>
+<h4>a)	Käännä "Hei maailma" Pythonilla, Javalla ja C-kielellä. (Kirjoita lähdekoodi erilliseen tiedostoon, vaikka Pythonissa onkin interaktiivinen tulkki [REPL]).</h4>
+<img src="Graphics/Linux/71.png" alt="" width="700" height=""/>
+<p>
+    Kaikki erillisissä tiedostoissa ja ajettuina kuvassa
+
+</p>
+<h4>b)	Käännä "Hei maailma" jollain muulla kielellä (kuin Python, Java, C).</h4>
+<p>“sudo apt-get -y install golang-go”
+    <br>
+    “micro helloilkka.go”
+    <br>
+    koodin kopiointi Terolta ja muokkaus vastaamaan omia tarpeita.
+    </p>
+    <img src="Graphics/Linux/72.png" alt="" width="700" height=""/>
+    <p>Koodin kääntäminen go:lla ja ajo, tulostaa Hello Ilkka</p>
+    <h4>
+        c)	 Esittele Pythonin käyttöä interaktiivisena taskulaskimena. Voit käyttää myös Jupyteria, eli ipython3-liittymää.
+        </h4>
+        <img src="Graphics/Linux/73.png" alt="" width="700" height=""/>
+        <p>Esittelykuva, hieman laskuja.</p>
+        <h4>d)	Tee shell script.
+            </h4>
+            <p>            
+                micro helloilkka.sh sisällöllä echo ”Hello Ilkka”
+                </p>
+            <img src="Graphics/Linux/74.png" alt="" width="700" height=""/>
+          <h4>
+            e)	Tee uusi komento Linuxiin. Osoita, että se toimii kaikilla käyttäjillä ja ilman, että tarvitsee kirjoittaa polkua tuohon komentoon. (Voit käyttää esimerkkiohjelmana äsken tekemääsi shell scriptiä)
+            </h4>
+            <img src="Graphics/Linux/75.png" alt="" width="700" height=""/>
+ 
+            <h4>f)	Intelligent intelligence. Ratkaise vanha arvioitava laboratorioharjoitus tältä kurssilta. Saa soveltaaa. Jos harjoituksessa on kohtia, jotka ovat liian vaikeita tai kovin erilaisia kuin tällä toteutuksella opetetut, voit vaihtaa ne sopivampaan tai jopa hypätä niiden yli.</h4>
+<h3>Arvioitava laboratorioharjoitus – Linux palvelimet ict4tn021-2 (uusi OPS) alkukeväällä 2017 p1</h3>
+            <p>
+”sudo apt-get update”
+<br>
+”sudo apt-get upgrade”
+<br>
+”sudo apt-get install bash-completion”
+<br>
+“sudo apt-get install ufw”
+<br>
+“sudo apt-get ufw enable”
+<br>
+“sudo ufw status”
+<br>
+“sudo adduser maija”
+<br>
+“sudo adduser jormama”
+<br>
+“sudo deluser jormama”
+<br>
+“sudo useradd -G RegularUser jormama”
+<br>
+“sudo groupadd RegularUser”
+<br>
+“sudo useradd -G RegularUser jormama”
+<br>
+“sudo useradd -G RegularUser pekkahu”
+<br>
+“sudo useradd -G RegularUser ronaldosm”
+<br>
+“sudo useradd -G RegularUser hakanpe”
+<br>
+“sudo useradd -G RegularUser einarimi”
+<br>
+“sudo useradd -G RegularUser einariva”
+<br>
+“sudo useradd -G RegularUser eijava”
+<br>
+“sudo apt-get install apache2” tässä kohtaa katsoin vanhasta youtube videosta miten voisin edetä. Video oli puuttellinen tai liian vanha, jotta olisin saanut sen mukaan edettyä Lähde: https://www.youtube.com/watch?v=KCwnCoJWe48&t=10s
+<br>
+“sudo apt-get install php” tulee versio 8.2
+<br>
+“sudo apt-get install composer”
+<br>
+“sudo chown -R ilkkah:ilkkah /var/www/html” en laittanut tätä komentoa koska minulla oli oikeudet kansioon (tämä pitää varmaan tehdä muille käyttäjille, jotta he pääsevät avaamaan tuon kansion) en nyt rupenut sitä tässä tekemään.
+<br>
+poistin var/www/html kansiosta index.html tiedoston.
+<img src="Graphics/Linux/76.png" alt="" width="700" height=""/>
+<br>
+Loin phpinfo.ph tiedoston yllä olevalla sisällöllä
+<br>
+”firefox localhost” ja sieltä avaa phpinfo.php tiedoston hiirelllä
+<img src="Graphics/Linux/77.png" alt="" width="700" height=""/>
+<br>
+Tulostuu asennetusta PHP:stä tietoja
+<img src="Graphics/Linux/78.png" alt="" width="700" height=""/>
+<br>
+Lisäsin Apache2.conf tiedostoon User ilkkah ja Group ilkkah (tähän varmaan pitäisi lisätä myös Pekka Hurme, pekkahu käyttäjä)
+<br>
+”sudo apt-get install mysql-server” ei toimi googlaus netistä, pitää lisätä polku paketinhallintaan. En saanut tätä tehtyä, oikean.deb paketin lisääminen ei onnistunut siirryin eteenpäin.
+<br>
+<img src="Graphics/Linux/79.png" alt="" width="700" height=""/>
+
+<br>
+wowstats.sh loin microlla wowstats.sh yllä olevan kuvan sisällöllä
+<br>
+”sudo apt-get install neofetch”
+<br>
+“sudo cp wowstats.sh /usr/local/bin”
+<br>
+“sudo chmod ugo+rx /usr/local/bin/wowstats.sh”
+<br>
+“wowstats.sh”
+<img src="Graphics/Linux/80.png" alt="" width="700" height=""/>
+<br>
+<img src="Graphics/Linux/81.png" alt="" width="700" height=""/>
+<br>
+Loin index.php /var/www/html/ kansioon yllä olevalla sisällöllä. Lähde: https://www.php.net/manual/en/function.get-current-user.php
+<br>
+<img src="Graphics/Linux/82.png" alt="" width="700" height=""/>
+“firefox localhost” näyttää kayttajtunnuksen joka suorittaa php scriptiä
+<br>
+Ei nyt mene ihan, kuin harkassa, mutta minulla ei ole kokemusta php:stä. Myöskin tuossa käyttäjien luonnissa kaikille ei syntynyt kotikansioita ja en perehtynyt sen enempää siihen. Käyttäjät olivat kuitenkin luotu.
+
+
+
+
+
+
+
+
+
+
+
+</p>
+
+
+            <h4>g)Asenna arvioitavaa laboratorioharjoitusta varten itsellesi uusi tyhjä virtuaalikone. Suosittelen Debian 12-Bookworm, amd64. Koneella saa halutessasi olla paketit päivitettynä ja palomuuri asennettuna. Koneella ei saa olla näiden lisäksi muita asetuksia ja ohjelmia kuin ne, jotka tulivat tavalliesn asennuksen yhteydessä. Katso, että koneella on toimiva nettiyhteys, riittävästi kovalevytilaa ja RAM-muistia. Virtuaalikoneella ei saa olla luottamuksellisia tietoja.</h4><p>Tehty</p>
+
+</body>
+</html>
