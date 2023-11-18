@@ -431,5 +431,209 @@ sitten komento ”workspace metasploitable2vsftpd” siirryin workspaceen
 <h3>i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)</h3>
 <h3>j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)</h3>
 <h3>k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.</h3>
+Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#aikataulu">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Penetraatiotestaus
+</h2>
+<br>
+18.11.2023
+<br>
+<h4 id="Luento4">h4 Totally Legit Sertificate</h4>
+<h3>x) Lue/katso ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
+    <li>OWASP 2021: OWASP Top 10:2021</li>
+    <li><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">Broken Access Control (IDOR ja path traversal ovat osa tätä)</a> </li>
+    </h3>
+    <li>Vähimmäisoikeusperiaatteen tai oletuskiellon rikkominen, jossa käyttöoikeus tulisi myöntää vain tietyille toiminnoille, rooleille tai käyttäjille, mutta se on saatavilla kenelle tahansa.</li>
+    <li>Pääsynhallinnan ohittaminen muokkaamalla URL-osoitetta (parametrin manipulointi tai pakotettu selaaminen), sovelluksen sisäistä tilaa, HTML-sivua tai käyttämällä hyökkäystyökalua API-pyyntöjen muokkaamiseen.</li>
+    <li>Sallii toisen henkilön tilin katselun tai muokkauksen tarjoamalla sen yksilöllisen tunnisteen (turvattomat suorat objektiviitteet).</li>
+    <li>API:n käyttäminen puuttuvilla pääsynhallintamekanismeilla POST, PUT ja DELETE -pyyntöihin.</li>
+    <li>Käyttöoikeuksien korottaminen. Toimiminen käyttäjänä ilman kirjautumista tai adminina kirjautuneena tavallisena käyttäjänä.</li>
+    <li>Metatiedon manipulointi, kuten JSON Web Token (JWT) pääsynhallintamerkin uudelleenlähetys tai manipulointi, tai evästeen tai piilotetun kentän muokkaaminen käyttöoikeuksien korottamiseen tai JWT:n mitätöinnin väärinkäyttöön.</li>
+    <li>CORS-väärinkonfigurointi mahdollistaa API-pääsyn luvattomista/luottamattomista lähteistä.</li>
+    <li>Pakotettu selaaminen autentikoituihin sivuihin autentikoimattomana käyttäjänä tai privilegioituihin sivuihin tavallisena käyttäjänä.</li>
+    <p>Voidaan estää tavoilla:</p>
+    <li>Lukuun ottamatta julkisia resursseja, käytä oletusarvoisesti kieltämisperiaatetta.</li>
+    <li>Toteuta pääsynhallintamekanismit kerran ja käytä niitä uudelleen koko sovelluksessa, mukaan lukien Cross-Origin Resource Sharing (CORS) käytön minimointi.</li>
+    <li>Mallin pääsynhallintojen tulisi valvoa tietueen omistajuutta sen sijaan, että hyväksyttäisiin, että käyttäjä voi luoda, lukea, päivittää tai poistaa mitä tahansa tietuetta.</li>
+    <li>Yksilölliset sovellusliiketoiminnan rajoitusvaatimukset tulisi valvoa toimialamalleilla.</li>
+    <li>Poista web-palvelimen hakemistolistaus käytöstä ja varmista, että tiedostometatietoja (esim. .git) ja varmuuskopiotiedostoja ei ole web-juurissa.</li>
+    <li>Kirjaa pääsynhallinnan epäonnistumiset, hälytä ylläpitäjiä tarvittaessa (esim. toistuvat epäonnistumiset).</li>
+    <li>Rajoita API:n ja ohjaimen pääsyä määrällisesti vähentääksesi automatisoitujen hyökkäystyökalujen aiheuttamaa vahinkoa.</li>
+    <li>Tilaan perustuvat istuntotunnisteet tulisi mitätöidä palvelimella uloskirjautumisen jälkeen. Tilaamattomat JWT-tunnukset tulisi olla lyhytaikaisia, jotta hyökkääjän mahdollisuusikkuna minimoidaan. Pidempikestoisille JWT-tunnisteille on erittäin suositeltavaa noudattaa OAuth-standardeja pääsyn peruuttamiseksi.</li>
+<p>
+    Lähde: <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">Broken Access Control (IDOR ja path traversal ovat osa tätä) Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"> Server-Side Request Forgery (SSRF)</a></li></h3>
+<li>SSRF-virheet tapahtuvat aina, kun web-sovellus noutaa etäresurssin validioimatta käyttäjän toimittamaa URL-osoitetta. Se mahdollistaa hyökkääjän pakottaa sovelluksen lähettämään muokatun pyynnön odottamattomaan kohteeseen, vaikka se olisi suojattu palomuurilla, VPN:llä tai muulla verkon pääsynhallintalistalla (ACL).</li>
+<li>Kun modernit web-sovellukset tarjoavat loppukäyttäjille käteviä ominaisuuksia, URL-osoitteen noutaminen muodostuu yleiseksi skenaarioksi. Tämän seurauksena SSRF:n esiintyminen on lisääntymässä. Lisäksi SSRF:n vakavuus kasvaa pilvipalvelujen ja arkkitehtuurien monimutkaisuuden vuoksi.</li>
+<p>Voidaan estää tavoilla:</p>
+<p>Verkkokerroksesta:</p>
+<li>Segmentoi etäresurssien käyttötoiminnot erillisiin verkkoihin SSRF:n vaikutusten vähentämiseksi.</li>
+<li>Valvo 'kiellä oletusarvoisesti' -palomuurikäytäntöjä tai verkon pääsynhallintasääntöjä, jotta kaikki muu paitsi välttämätön intranet-liikenne estetään.</li>
+<p>Sovelluskerroksesta:</p>
+<li>Puhdista ja validoi kaikki asiakkaan toimittamat syöttötiedot.</li>
+<li>Valvo URL-kaavaa, porttia ja kohdetta positiivisen sallimislistan avulla.</li>
+<li>Älä lähetä raakoja vastauksia asiakkaille.</li>
+<li>Poista HTTP-uudelleenohjaukset käytöstä.</li>
+<li>Ole tietoinen URL:n johdonmukaisuudesta välttääksesi hyökkäyksiä, kuten DNS-uudelleensidonta ja 'tarkistuksen ajan, käytön ajan' (TOCTOU) kilpailutilanteet.</li>
+<li>Älä lievennä SSRF-ongelmaa käyttämällä kieltolistaa tai säännöllisiä lausekkeita. Hyökkääjillä on kuormalistoja, työkaluja ja taitoja kieltolistojen ohittamiseen.</li>
+<p>
+    Lähde: <a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"> Server-Side Request Forgery (SSRF) Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li>PortSwigget Academy:</li><li><a href="https://portswigger.net/web-security/access-control">Access control vulnerabilities and privilege escalation (IDOR on osa tätä)</a></li>
+    </h3>
+    <li>Pääsynhallinta on rajoitusten soveltamista siihen, kuka tai mikä on valtuutettu suorittamaan toimenpiteitä tai käyttämään resursseja. Web-sovellusten kontekstissa pääsynhallinta perustuu autentikointiin ja istunnonhallintaan:</li>
+    <li>Autentikointi vahvistaa, että käyttäjä on se, kuka sanoo olevansa.</li>
+    <li>Istunnonhallinta tunnistaa, mitkä seuraavista HTTP-pyynnöistä tehdään saman käyttäjän toimesta.</li>
+    <li>Pääsynhallinta määrittää, onko käyttäjällä oikeus suorittaa yrittämäänsä toimintoa.</li>
+    <li>Rikkinäiset pääsynhallintamekanismit ovat yleisiä ja usein esittävät kriittisen turvallisuusongelman. Pääsynhallinnan suunnittelu ja hallinta on monimutkainen ja dynaaminen ongelma, joka soveltaa liiketoiminnallisia, organisaation ja laillisia rajoituksia tekniseen toteutukseen. Pääsynhallinnan suunnittelupäätökset on tehtävä ihmisten toimesta, joten virheiden mahdollisuus on suuri.</li>
+    <p>Pääsynhallinnan haavoittuvuudet voidaan estää ottamalla käyttöön monitasoinen puolustus ja soveltamalla seuraavia periaatteita:</p>
+    <li>Älä koskaan luota pelkkään hämärtämiseen pääsynhallinnassa. Ellei resurssi ole tarkoitettu julkisesti saataville, kiellä pääsy oletusarvoisesti</li>
+    <li>Käytä mahdollisuuksien mukaan yhtä sovelluslaajuista mekanismia pääsynhallinnan valvontaan.</li>
+    <li>Kooditasolla tee kehittäjille pakolliseksi ilmoittaa, mikä pääsy on sallittu kullekin resurssille, ja kiellä pääsy oletusarvoisesti.</li>
+    <li>Tarkasta ja testaa pääsynhallinta perusteellisesti varmistaaksesi, että se toimii suunnitellusti.</li>
+<p>
+    Lähde: <a href="https://portswigger.net/web-security/access-control">Access control vulnerabilities and privilege escalation (IDOR on osa tätä) Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li><a href="https://portswigger.net/web-security/server-side-template-injection">Server-side template injection</a></li></h3>
+<p>
+    Palvelinpuoleinen mallineen injektio tapahtuu, kun hyökkääjä pystyy käyttämään natiivia mallinekieltä syöttääkseen haitallisen kuorman mallineeseen, joka sitten suoritetaan palvelimen puolella. 
+</p>
+<p>
+   Mallinekoneet on suunniteltu tuottamaan verkkosivuja yhdistämällä kiinteitä mallineita vaihteleviin tietoihin. Palvelinpuoleiset mallineen injektiohyökkäykset voivat tapahtua, kun käyttäjän syöte liitetään suoraan mallineeseen, sen sijaan että se välitettäisiin datana. Tämä antaa hyökkääjille mahdollisuuden injektoida mielivaltaisia mallineohjeita manipuloidakseen mallinekonetta, usein mahdollistaen heille täydellisen hallinnan palvelimen yli. Kuten nimi viittaa, palvelinpuoleiset mallineen injektiokuormat toimitetaan ja arvioidaan palvelimen puolella, mikä tekee niistä mahdollisesti paljon vaarallisempia kuin tyypilliset asiakaspuolen mallineen injektiot.
+ </p>
+ <p>
+    Miten estää palvelinpuoleiset mallineen injektiohaavoittuvuudet
+ </p>
+<p>
+    Paras tapa estää palvelinpuoleiset mallineen injektiot on olla sallimatta käyttäjien muokata tai lähettää uusia mallineita. Tämä on kuitenkin joskus välttämätöntä liiketoimintavaatimusten vuoksi.
+</p>
+<p>
+    Yksi yksinkertaisimmista tavoista välttää palvelinpuoleiset mallineen injektiohaavoittuvuudet on aina käyttää "logiikattomia" mallinekoneita, kuten Mustache, ellei se ole ehdottoman välttämätöntä. Logiikan erottaminen esityksestä mahdollisimman paljon voi suuresti vähentää altistumistasi vaarallisimmille mallinepohjaisille hyökkäyksille.
+</p>
+<p>
+    Toinen toimenpide on suorittaa käyttäjien koodi hiekkalaatikkoympäristössä, josta mahdollisesti vaaralliset moduulit ja funktiot on poistettu kokonaan. Valitettavasti epäluotettavan koodin hiekkalaatikointi on luonteeltaan vaikeaa ja altis ohituksille.
+</p>
+<p>
+    Lopuksi toinen täydentävä lähestymistapa on hyväksyä, että mielivaltainen koodin suorittaminen on lähes väistämätöntä ja soveltaa omaa hiekkalaatikointiasi käyttämällä mallineympäristöäsi esimerkiksi tiukasti rajoitetussa Docker-säiliössä.
+</p>
+<p>
+    Lähde: <a href="https://portswigger.net/web-security/server-side-template-injection">Server-side template injection Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li><a href="https://portswigger.net/web-security/ssrf">Server-side request forgery (SSRF)</a></li></h3>
+<p>
+    SSRF-hyökkäykset hyödyntävät usein luottamussuhteita laajentaakseen hyökkäystä haavoittuvasta sovelluksesta ja suorittaakseen luvattomia toimia. Nämä luottamussuhteet voivat olla olemassa palvelimeen liittyen tai muihin saman organisaation taustajärjestelmiin liittyen.  
+</p>
+<p>
+    Lähde: <a href="https://portswigger.net/web-security/ssrf">Server-side request forgery (SSRF) Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li><a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting</a></li></h3>
+<p>
+    Poikkisivujen skriptaus (tunnetaan myös nimellä XSS) on verkkoturvallisuuden haavoittuvuus, joka mahdollistaa hyökkääjän vaarantaa käyttäjien vuorovaikutukset haavoittuvan sovelluksen kanssa. Se mahdollistaa hyökkääjän kiertää saman alkuperän politiikan, joka on suunniteltu eristämään eri verkkosivustot toisistaan. Poikkisivujen skriptauksen haavoittuvuudet sallivat yleensä hyökkääjän esiintyä uhri-käyttäjänä, suorittaa kaikki toimet, joita käyttäjä pystyy tekemään, ja päästä käsiksi mihin tahansa käyttäjän dataan. Jos uhri-käyttäjällä on etuoikeutettu pääsy sovelluksessa, hyökkääjä saattaa pystyä saavuttamaan täyden hallinnan sovelluksen kaikkien toimintojen ja datan yli. 
+</p>
+<p>Estääksesi poikkisivujen skriptaus (XSS) -hyökkäykset, tehokas suojaus saattaa edellyttää useiden seuraavien toimenpiteiden yhdistelmää:</p>
+<li>Suodata tietoja saapuessa. Siinä vaiheessa, kun käyttäjän syöte vastaanotetaan, suodata se mahdollisimman tiukasti perustuen siihen, mikä on odotettua tai kelvollista syötettä.</li>
+<li>Koodaa tiedot lähtiessä. Siinä vaiheessa, kun käyttäjän hallinnoima data tuotetaan HTTP-vastauksissa, koodaa tulos estääksesi sen tulkinnan aktiivisena sisältönä. Riippuen tulostusyhteydestä, tämä voi vaatia HTML-, URL-, JavaScript- ja CSS-koodauksen yhdistelmien soveltamista.</li>
+<li>Käytä sopivia vastausotsikoita. Estääksesi XSS:n HTTP-vastauksissa, jotka eivät ole tarkoitettu sisältämään HTML:ää tai JavaScriptiä, voit käyttää Content-Type- ja X-Content-Type-Options -otsikoita varmistaaksesi, että selaimet tulkitsevat vastaukset niin kuin olet tarkoittanut.</li>
+<li>Sisältöturvapolitiikka. Viimeisenä puolustuslinjana voit käyttää Content Security Policy (CSP) -toimenpiteitä vähentämään mahdollisesti esiintyvien XSS-haavoittuvuuksien vakavuutta.</li>
+<p>
+    Lähde: <a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting Chat-GPT käännös osasta komennolla translate to Finnish</a>
+</p>
+<h3><li><a href="https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/">Using New Webgoat 2023.4 to Try Web Hacking</a></li></h3>
+<p>
+    Artikkeli käsittelee WebGoatin asennusta ja sen käyttämistä vaihtoehtoisessa tietoliikenne porttinumerossa.
+</p>
+<h3>a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään. (Ei toimi localhost:lla ilman Foxyproxya)</h3>
+<img src="Graphics/Penetraatiotestaus/47.png" alt="" width="700" height=""/>
+<p>Latasin Zap crossplatform paketin ja purin sen kansioon home/ilkkah/Downloads/Zap_2.14.0/</p>
+<p>
+    Komento ”sudo apt-get update”
+    <br>
+    Komento ”sudo apt-get install default-jre”
+</p>
+<img src="Graphics/Penetraatiotestaus/48.png" alt="" width="700" height=""/>
+<p>
+    komento “java -jar zap_2.14.0” käynnisti Zapin. 
+    <br>
+    Tässä vaiheessa siirryin tehtävään b) ja asensin FoxyProxy lisäosan Firefoxiin ja sitten palasin takaisin tähän tehtävään.
+</p>
+<img src="Graphics/Penetraatiotestaus/49.png" alt="" width="700" height=""/>
+<p>
+    Kävin tarkastamassa Zapin asetuksista osoitteen (localhost) ja portin 8080
+</p>
+<img src="Graphics/Penetraatiotestaus/50.png" alt="" width="700" height=""/>
+<p>
+    FoxyProxyn asetuksita lisäsin uuden proxyn ja asetin IP osoitteeksi kuvasta poiketen localhost ja portti 8080 niin kuin Zapinkin asetuksissa.
+</p>
+<img src="Graphics/Penetraatiotestaus/51.png" alt="" width="700" height=""/>
+<p>Menin osoitteeseen google.com Firefoxilla ja tulos oli tämä Firefox varoitti turvattomasta yhteydestä.</p>
+<img src="Graphics/Penetraatiotestaus/52.png" alt="" width="700" height=""/>
+<p>Loin Zapilla sertifikaatin ja lisäsin sen Firefoxiin</p>
+<img src="Graphics/Penetraatiotestaus/53.png" alt="" width="700" height=""/>
+<p>
+    Menin Firefoxilla osoitteeseen www.google.com ja zap toimi nyt välimies proxyna ja tallensi liikenteen. Sertifikaatti valitusta ei Firefox enää antanut.
+</p>
+<h3>b) Kettumaista. Asenna FoxyProxy Standard Firefox Addon, ja lisää ZAP proxyksi siihen.</h3>
+<p>Tein tämän tehtävän, tuolla a) tehtävän aikana</p>
+<img src="Graphics/Penetraatiotestaus/54.png" alt="" width="700" height=""/>
+<p>
+    Asensin Foxy Proxy Standardin Fitefoxin extensions valikosta.
+</p>
+<h3>PortSwigger Labs. Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)
+    <li>Insecure Direct Object Reference (IDOR)</li>
+    <li><a href="https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references">Insecure direct object references</a></li>
+</h3>
+<p>
+    En oikein saanut selvää mitä tässä pitää tehdä ja en päässyt eteenpäin. Kokeilin Zapin Hudia, mutta en ottanut kuvia. En Päässyt sitä loppuun asti, kun en tajunnut kaikkia ominaisuuksia mistä keyt olisi pitänyt löytää.
+    <br>
+    Kokeilin kuitenkin tehtäävää mutta, en löytänyt salasanaa nimettyäni tiedostonimen, mutta tämä johtui siitä että en perehtynyt tarpeeksi ZAPin käyttöön. Yritin jotenkin väärällä tavalla. Tuntui myös, että ZAPIN käyttö hidasti konetta merkittävästi ja nettiliikennettä.
+</p>
+<h3><li>Path traversal</li>
+<li>d) <a href="https://portswigger.net/web-security/file-path-traversal/lab-simple">File path traversal, simple case</a></li>
+<li>e) <a href="https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass">File path traversal, traversal sequences blocked with absolute path bypass</a></li>
+<li>f) <a href="https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively">File path traversal, traversal sequences stripped non-recursively</a></li>
+</h3>
+<p>En kokeillut vielä näitä</p>
+<h3>Server Side Template Injection (SSTI)
+<li>g) <a href="https://portswigger.net/web-security/server-side-template-injection/exploiting/lab-server-side-template-injection-with-information-disclosure-via-user-supplied-objects">Server-side template injection with information disclosure via user-supplied objects </a></li>
+</h3>
+<p>En kokeillut vielä tätä</p>
+<h3>Server Side Request Forgery (SSRF)
+    <li>h) <a href="https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost">Basic SSRF against the local server</a></li>
+</h3>
+<p>En kokeillut vielä tätä, palaan tähän</p>
+<h3><li>Cross Site Scripting (XSS)</li>
+    <li>i) <a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded">Reflected XSS into HTML context with nothing encoded</a></li>
+    <li>j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Stored XSS into HTML context with nothing encoded</a></li>
+    <p>En kokeillut vielä näitä, palaan näihin</p>
+</h3>
+<h3>k) Asenna Webgoat 2023.4. (Uusi versio, jossa on eri tehtäviä kuin vanhemmissa)</h3>
+<p>
+    Seurasin Teron ohjeita asentamiseen: <a href="https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/">Try Web Hacking on New Webgoat 2023.4</a>
+</p>
+<p>
+    Skippasin javan asennuksen, kun se oli jo asennettu.
+</p>
+<img src="Graphics/Penetraatiotestaus/55.png" alt="" width="700" height=""/>
+<p>
+    Komento ”sudo apt-get install ufw” asensin palomuurin
+    <br>
+“sudo ufw enable” käynnistin palomuurin
+<br>
+“sudo ufw status” katsoin palomuurin tilan ja se oli aktiivinen
+</p>
+<p>
+    Komento ”wget https://github.com/WebGoat/WebGoat/releases/download/v2023.4/webgoat-2023.4.jar” latasin WebGoatin koneelle
+</p>
+<img src="Graphics/Penetraatiotestaus/56.png" alt="" width="700" height=""/>
+<p>Komento ”java -Dfile.encoding=UTF-8 -Dwebgoat.port=8888 -Dwebwolf.port=9090 -jar webgoat-2023.4.jar” käynnisti WebGoatin toimimaan portissa 8888, en ole varma mikä tuo portti 9090 on.</p>
+<p>
+    Menin selaimella osoitteeseen http://127.0.0.1:8888/WebGoat ja aukesi WebGoatin login näkymä. En rekisteröitynyt. En oikestaa vielä tiedä mikä on WebGoatin tarkoitus. Sanoisin, että se on harjoitusmaali, jossa voi harjoitella hyökkäyksiä.</p>
+<p>En ole avain varma onko ympäristön täysin turvallinen sen pitämiseen päällä tällä hetkellä. Tuli muuriminulla on päällä virtuaalikoneessa, mutta tämä olisi varmaan pitänyt asentaa siis toiseen virtuaali koneeseen kun Kaliin, enpä perehtynyt tarpeeksi asiaan.</p>
+<p>
+    Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#aikataulu">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
+</p>
 </body>
 </html>
