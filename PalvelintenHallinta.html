@@ -365,8 +365,89 @@ Git palautti version aikaisempaan
         17.11.2023
         <br>
         <h4 id="Luento4">h4 Demonit</h4>
-        <p>
-        testi testi
-        </p>
+        <h3>x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)</h3>
+       <h3>Karvinen 2023:<a href="https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file">Salt Vagrant - automatically provision one master and two slaves</a> 
+            </h3>
+            <h3>Infra as Code - Your wishes as a text file</h3>
+            
+                <li>"sudo mkdir -p /srv/salt/hello"</li>
+                <li>"sudoedit /srv/salt/hello/init.sls"</li>
+                <li>Sisennys on kaksi välilyöntiä YAML syntaksissa</li>
+                <li>“cat /srv/salt/hello/init.sls”</li>
+<p>
+---------
+/tmp/infra-as-code:
+  file.managed
+---------
+
+</p>
+<li>“sudo salt '*' state.apply hello”</li>
+<h3>top.sls - What Slave Runs What States</h3>
+<li>top.sls määrittelee mitä tiloja orjille ajetaan</li>
+<li>”cat /srv/salt/top.sls”</li>
+<p>
+----------
+base:
+  ‘*’:
+    - hello
+----------
+</p>
+<li>komento: “sudo salt ‘*’ state.apply</li>
+<h3>Salt contributors: <a href="https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml">Salt overview, kohdat</a></h3>
+<h3>Rules of YAML</h3>
+<li>Koodi järjestellään avain: arvo pareina.</li>
+<li>Mappaus käyttää kaksoispistettä ja yksi välilyönti ”: ” merkitäkseen avain: arvo parit. </li>
+<li>Avainten arvot voivat olla monessa erilaisessa rakenteessa.</li>
+<li>Isot ja pienet kirjaimet vaikuttavat avaimissa ja ominaisuuksissa.</li>
+<li>Tabulaattoria ei käytetä, vain välilyöntiä.</li>
+<li>Kommentointi alkaa ”#”.</li>
+<h3>YAML simple structure</h3>
+<li>1. Skaalaajat: avain: arvo mappaukset, jossa arvo voi olla merkkijono, numero tai boolean operaattori</li>
+<li>2. Listat: avain, jota seuraa lista arvoja omalla rivillää kahden välilyönnin ja vii-van kanssa</li>
+<li>3. Sanakirjat: kokoelma avainten arvo mappauksia ja listoja</li>
+<h3>Lists and dictionaries - YAML block structures</h3>
+<li>YAML on järjestelty lohko rakenteiksi</li>
+<li>    Sisennys määrää kontekstin. On pakko sisentää ominaisuudet ja listat yhdellä tai useammalla välilyönnillä. Kaksi välilyöntiä on standardi.
+    </li>
+    <h3>Salt contributors: <a href="https://docs.saltproject.io/salt/user-guide/en/latest/topics/states.html#state-modules">Salt states</a> </h3>
+<h3>State modules</h3>
+<li>Konflikteja voi esiintyä</li>
+<li>moduuleilla ei ole ”status check” mahdollisuutta, vaan täytyy kutsua orjaa selvittääkseen statuksen</li>
+<h3>The state SLS data structure</h3>
+<li>Identifier tunniste</li>
+<li>State modulin nimi</li>
+<li>Function jota kutsutaan, kuten installed</li>
+<li>Name tilan nimi kutsu, yleensä tiedoston nimi</li>
+<li>Arguments parametrit joita, funktio hyväksyy</li>
+<h3>Organizing states</h3>
+<li>Salt tilojen puu pitäisi kirjoittaa niin, että toinen kehittäjä helposti näkee tilan tarkoituksen ja näkee kokopuun ”workflown”</li>
+<li>hyvä käytäntö on, että ei luo liikaa pesiä polkuun, vain pari tasoa. Näin puu on helpommin navigoitavissa ja ongelmia tulee vähemmän tulevaisuudessa.</li>
+<h3>The top.sls file</h3>
+<li>Koska joissain ympäristössä on satoja tiedostoja kohdistuen orjiin, ei ole käy-tännöllistä ajaa jokainen tilaa yksitellen. tähän auttaa top.sls tiedosto</li>
+<li>top.sls tiedosto kartoittaa mitä orjien tulisi noutaa tietyistä ym
+    päristöistä
+    </li>
+<li>top.sls määrittää mitä tiloja tulisi suorittaa noista ympäristöistä</li>
+<h3>Create the SSH state, Create the Apache state</h3>
+<li>Eli tänne pitäisi laittaa name kohdan tilalle muttuja,  tiedosto on sitten myös au-tomatisoitu toimimaan paremmin uudelleen käytettäessä?</li>
+<li>
+    Apache state, apachen uudellen käynnistyksen kohdalla sanoisin, että .conf tiedosto tulee käyttöön, voisi olla hyödyllistä käynnistää demoni uudestaan service-watchin avulla, joka seuraa .conf tiedostoa. En kyllä tiedä miten tämä toteutetaan. 
+    </li>
+<h3>Karvinen 2018: <a href="https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh">Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port</a> </h3>
+<p>
+    Artikkeli käsittelee demonien ohjausta Saltilla ja kuinka vaihtaa SSH serveriin alterna-tiivinen portti
+</p>
+<h3>a) Hello SLS! Tee Hei maailma -tila kirjoittamalla se tekstitiedostoon, esim /srv/salt/hello/init.sls.</h3>
+<h3>b) Top. Tee top.sls niin, että tilat ajetaan automaattisesti, esim komennolla "sudo salt '*' state.apply".</h3>
+<h3>•	c) Apache. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy.
+    <li>	Ensin käsin, vasta sitten automaattisesti.</li>
+    <li>Kirjoita tila sls-tiedostoon.</li>
+        <li>pkg-file-service</li>
+            <li>Tässä ei tarvita service:ssä watch, koska index.html ei ole asetustiedosto</li>
+    </h3>
+    <h3>d) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee.
+        
+        </h3>
+        Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/#h4-demonit">Terokarvinen.com</a>
 </body>
 </html>
