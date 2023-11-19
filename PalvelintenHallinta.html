@@ -376,8 +376,11 @@ Git palautti version aikaisempaan
                 <li>“cat /srv/salt/hello/init.sls”</li>
 <p>
 ---------
+<br>
 /tmp/infra-as-code:
+<br>
   file.managed
+  <br>
 ---------
 
 </p>
@@ -387,9 +390,13 @@ Git palautti version aikaisempaan
 <li>”cat /srv/salt/top.sls”</li>
 <p>
 ----------
+<br>
 base:
+<br>
   ‘*’:
+  <br>
     - hello
+    <br>
 ----------
 </p>
 <li>komento: “sudo salt ‘*’ state.apply</li>
@@ -438,6 +445,9 @@ base:
     Artikkeli käsittelee demonien ohjausta Saltilla ja kuinka vaihtaa SSH serveriin alterna-tiivinen portti
 </p>
 <h3>a) Hello SLS! Tee Hei maailma -tila kirjoittamalla se tekstitiedostoon, esim /srv/salt/hello/init.sls.</h3>
+
+On ollut vähän kiire viikko, valitettavasti en ehtinyt tekemään näitä tehtäviä, luin kuitenkin teorian. Koitan palata näihin tehtäviin vielä huomenna. 20.11.2024
+
 <h3>b) Top. Tee top.sls niin, että tilat ajetaan automaattisesti, esim komennolla "sudo salt '*' state.apply".</h3>
 <h3>•	c) Apache. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy.
     <li>	Ensin käsin, vasta sitten automaattisesti.</li>
