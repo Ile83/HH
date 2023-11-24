@@ -635,5 +635,135 @@ Penetraatiotestaus
 <p>
     Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#aikataulu">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
 </p>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Pentest
+</h2>
+<br>
+24.11.2023
+<br>
+<h4 id="Luento5">h5 Injected Sequel</h4>
+<h3>Karvinen 2016: <a href="https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/"> PostgreSQL Install and One Table Database – SQL CRUD tutorial for Ubuntu </a>(Virtuaaliympäristöä ei tarvita, voit aloittaa kohdasta "Three line install")</h3>
+<h4>Asennus</h4>
+<li>”sudo apt-get update”</li>
+<li>”sudo apt-get -y install postgresql</li>
+<li>”sudo systemctl start postgres</li>
+<li>“sudo -u postgres createdb $(whoami)”</li>
+<li>“sudo -u postgres createuser $(whoami)”</li>
+<li>“psql”</li>
+<h4>Apu</h4>
+<li>"help"</li>
+<li>”\q” poistuu</li>
+<li>”\?” listaa psql komennot</li>
+<li>"\h" listaa SQL komennot</li>
+<h4>CRUD, Create, Read, Update, Delete
+<br>
+C: luo taulu</h4>
+<li>“CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR (200));”</li>
+<h4>C: Luo sisältöä INSERT</h4>
+<li>“INSERT INTO students(name) VALUES ('Matti');”</li>
+<li>   “INSERT INTO students(name) VALUES ('Maija');”</li>
+<li>  “INSERT INTO students(name) VALUES ('Liisa') RETURNING id, name;”
+</li>
+<h4>R: lue sisältöä SELECT</h4>
+<li>“SELECT * FROM students;”</li>
+<li>“SELECT * FROM students WHERE name LIKE 'Ma%';”</li>
+<h4>U: päivitä sisältöä UPDATE</h4>
+<li>“UPDATE students SET name = 'Tero Karvinen' WHERE name='Tero';”</li>
+<li>"UPDATE 1"</li>
+<h4>D: poista sisältöä DELETE</h4>
+<li>“DELETE FROM students WHERE name='Liisa';”</li>
+<li>"DELETE 1"</li>
+<h3>OWASP 2017: <a href="https://owasp.org/www-project-top-ten/2017/A1_2017-Injection">A1:2017-Injection</a> </h3>
+<h4>Esimerkki hyökkäys skenaariot</h4>
+<h5>Ensimmäinen skenaario:</h5>
+<p>
+String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
+</p>
+<h5>Toinen Skenaario:</h5>
+<p>
+Query HQLQuery = session.createQuery("FROM accounts WHERE custID='" + request.getParameter("id") + "'");
+</p>
+<p>
+Molemmissa skenaariossa hyökkääjä modifioi ”id” parametriä selaimessaan lähettääkseen ’ or ’1’=’1.
+<br>
+Tämä muuttaa kummassakin skenaarioissa haun merkityksen ja palauttaa kaikki tiedot tietokannassa ”accounts” taulusta. Käsittääkseni tuo OR ’1’=’1’ aina tosi ja tästä syystä palautuu kaikki tiedot.
+</p>
+<h3>PortSwigger Academy: <a href="https://portswigger.net/web-security/sql-injection">SQL injection</a> </h3>
+<p>
+Luin materiaalin, mutta ajan säästämiseskis en tehny tiivistelmää. Tämä on kuitenkin hyvä materiaali, jota kannattaa lukea.
+</p>
+<h4>a) CRUD. Tee uusi PostgreSQL-tietokanta ja demonstroi sillä create, read, update, delete (CRUD). Keksi taulujen ja kenttien nimet itse. Taulujen nimet monikossa, kenttien nimet yksikössä, molemmat englanniksi.</h4>
+<li>“sudo apt-get update”</li>
+<li>“sudo apt-get install postgresql”</li>
+<li>“sudo systemctl start postgresql”</li>
+<li> “sudo -u postgres createdb $(whoami)”</li>
+<li>“sudo -u postgres createuser $(whoami)”</li>
+<img src="Graphics/Penetraatiotestaus/57.png" alt="" width="700" height=""/>
+<p>Tietokanta ja käyttäjä on luotu ja käynnistin tietokannan ”psql” komennolla</p>
+<img src="Graphics/Penetraatiotestaus/58.png" alt="" width="700" height=""/>
+<p>
+    “CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR (200));” Tuli virheilmoitus, enkä saanut luotua taulua users.
+    ei aikaa nyt perehtyä tähän, jatkan eteenpäin.
+</p>
+<h4>b) SQLi me. Kuvaile yksinkertainen SQL-injektio, ja demonstroi se omaan tietokantaasi psql-komennolla. Selitä, mikä osa on käyttäjän syötettä ja mikä valmiina ohjelmassa. (Tässä harjoituksessa voit vain kertoa koodista, ei siis tarvitse välttämättä koodata sitä ohjelmaa, joka yhdistää käyttäjän syötteen SQL:n)</h3>
+    <p>
+        SQL-injektio on hyökkäys, jossa hyökkääjä syöttää SQL-komentoja käyttäjän syötteeseen. Tämä on mahdollista, kun käyttäjän syöte ei ole tarpeeksi tarkistettu ja se välitetään suoraan tietokantaan. Tämä mahdollistaa hyökkääjän suorittaa SQL-komentoja tietokannassa.
+        <br>
+        Helppo SQL injektio, muuttaa selaimessa palautuvaa osoitetta esim.  '-- joka tarkoittaa kommenttia, jolloin -- takana olevaa SQL koodia ei lueta.
+        <br>
+        En kuitenkaan saanut A tehtävässä taulua luotua, niin en voi demonstroida tätä.
+    </p>
+    <h4>c) Poistettu</h4>
+    <h4>d) <a href="https://portswigger.net/web-security/sql-injection/lab-login-bypass"> SQL injection vulnerability allowing login bypass</a></h4>
+    <img src="Graphics/Penetraatiotestaus/59.png" alt="" width="700" height=""/>
+    <p>Kaapasin liikenteen Zapilla ja löysin sieltä oikean kohdan jossa syöttämäni tiedot näkyivät. Muokkasin kohtaa username=administrator’--, joka siis kommentoi password kohdan pois ja näin sain ratkaistuksi tehtävän. En katsonut ohjetta tähän, mutta tämän ratkaisuhan luki saamissamme Portswigger teoria materiaalissa.</p>
+    <h4>e) <a href="https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle">SQL injection attack, querying the database type and version on Oracle</a> </h4>
+    <img src="Graphics/Penetraatiotestaus/60.png" alt="" width="700" height=""/>
+    <p>
+        Katsoin ratkaisun mutta en silti saanut syötettyä annettua injektiota oikeaan paikkaan. Yritin muokata category parametria, seuraavalla injektiolla '+UNION+SELECT+'abc','def'+FROM+dual-- tuloksetta, en saanut tietokannan versiota näkyviin.
+    </p>
+    <h4>f) <a href="https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft"> SQL injection attack, querying the database type and version on MySQL and Microsoft</a></h4>
+    <p>Kun en pääsyt aikaisemmasta eteenpäin. Katsoin vihjeen, ratkaisun ja videon miten tämä tehtävä tehdään</p>
+    <img src="Graphics/Penetraatiotestaus/61.png" alt="" width="700" height=""/>
+    <p>Kokeilin syöttää videon ohjeiden muikaisesti Gifts kaegorian perään '+UNION+SELECT+'abc','def'#</p>
+    <p>Serverin vastaus oli OK ja kävin katsomassa nettisivua Firefoxilla ja tosissaan sinne oli tulostunut alas abc ja def ja näin pystyi todentamaan, että SQL haavoittuvuus oli löytynyt.</p>
+    <img src="Graphics/Penetraatiotestaus/62.png" alt="" width="700" height=""/>
+    <p>MySQL versio 8.0.35 joka varmaankin pyöri Linuxin vanhassa versioss 20.04.1 Muistaakseni LTS versio, joka alkaa kyllä olemaan jo vanha.</p>
+    <h4>g) <a href="https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle">SQL injection attack, listing the database contents on non-Oracle databases</a> </h4>
+    <P>Onko otsikossa virhe? linkki ohjasi nimenomaan contents on Oracle database?</P>
+    <p>Katsoin vihjee ja ratkaisun</p>
+    <p>+UNION+SELECT+'abc','def'+FROM+dual--</p>
+    <p>Tämän kun syötti requesteriin ja lähetti, tulostui taas abc ja def sivulle, haavoittuvuus oli olemassa.</p>
+    <p>Kokeilin syöttää toisen vastauksessa olevan SQL injektion, serveri vastasi 200 ok ja katsoin tuloksen Firefoxissa. </p>
+    <img src="Graphics/Penetraatiotestaus/63.png" alt="" width="700" height=""/>
+    <p>En kuitenkaan löytänyt sieltä heti silmiinpistävää kategoriaa, joka sisältäisi käyttäjänimet ja salasanat. Joten päätin katsoa ensimmäisen Community solution videon, jota Portswigger tarjosi, video varmaankin oli vanhalle tehtävälle, koska taulujen nimet eivät täsmänneet.</p>
+<p>Katsoin  vastauksesta, että sieltä olisi pitänyt löytyä USERS_ABCDEF niminen taulu. Syötin alla olevan Zapin requesteriin.</p>
+<p>'+UNION+SELECT+column_name,NULL+FROM+all_tab_columns+WHERE+table_name='USERS_ABCDEF'—</p>
+<img src="Graphics/Penetraatiotestaus/64.png" alt="" width="700" height=""/>
+<p>Sain tällaisen vastauksen, joku ei nyt menny oikein.</p>
+<img src="Graphics/Penetraatiotestaus/65.png" alt="" width="700" height=""/>
+<p>Muokkasin komentoa USERS_EUVJOW muotoon, jonka löysin sivujen table listauksesta, joka oli tulostunut tuolla aikasemmassa vaiheessa. ja lähetin komennon. Tämä taulunimi siis poikkesi videon taulun nimestä.</p>
+<img src="Graphics/Penetraatiotestaus/66.png" alt="" width="700" height=""/>
+<p>Taas tällainen vastaus, mutta nyt katsoin sivun alas ja siellä oli:</p>
+<img src="Graphics/Penetraatiotestaus/67.png" alt="" width="700" height=""/>
+<p>PASSWORD_DJAGUI
+    <br>
+    USERNAME_SNFRGW
+    <br>
+    Näistä muodostin injektion: ’ UNION select USERNAME_SNFRGW, PASSWORD_DJAGUI from USERS_EUVJOW—
+    </p>
+    se toimi:
+    <p>
+        <img src="Graphics/Penetraatiotestaus/68.png" alt="" width="700" height=""/>
+
+    </p>
+    <p>Kirjauduin adminina sisään ja labra oli ratkaistu</p>
+    <p>Jatkan tehtävien tekoa myöhemmin</p>
+    <p>
+        Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
+    </p>
+
 </body>
 </html>
