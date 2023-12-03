@@ -521,7 +521,275 @@ On ollut vähän kiire viikko, valitettavasti en ehtinyt tekemään näitä teht
 <p>
     Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/">Terokarvinen.com</a>
 </p>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Palvelinten Hallinta
+</h2>
+<br>
+03.12.2023
+<br>
+<h4 id="Luento6">h6 Windows</h4>
+<h3>x) Lue ja tiivistä.
+    <br>
+    Vapaavalintainen aiemman vuoden kotitehtäväraportti Saltin käytöstä Windowsilla. Löydät raportteja esimerkiksi Google-haulla: salt windows karvinen.</h3>
+<h3>Halonen, Rajala ja Ollikainen 2023:<a href="https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md"> Installing Windows 10 on a virtual machine</a>
+    <br>
+    Vain tämä Windowsin asennusohje. Samassa varastossa on hyökkäysohjelmia, joiden käsittely edellyttää, että osaa tehdä sen turvallisesti ja laillisesti, mm. eristää harjoituskoneita Internetistä. Nämä taidot oppii esim. kurssillani Tunkeutumistestaus. Tällä kurssilla ei käytetä hyökkäystyökaluja. Mutta tämä Windowsin asennus virtuaalikoneeseen on yksinkertaista ja turvallista.
+</h3>
+<p>Näitä on nyt luettu, eikä tämä toimi ympäristössäni</p>
+<h3>LSB Workgroup, The Linux Foundation 2015: Filesystem Hierarchy Standard
+    <li>
+Lue otsikot, katso sisältöä jos asia ei ilmene otsikosta</li>
 
+<li>Poimi tiivistelmääsi sellaisten kansioiden määritelmät, joiden kanssa olet itse tekemisissä.</li></h3>
+<p>
+    Tein päin vastoin ja listasin, mistä haluan enemmän tietoa, jotka ovat tuntemattomampia minulle, joihin haluan tulevaisuudessa perehtyä enemmän.
+    <li>3.5. /boot : Static files of the boot loader</li>
+    <li>3.6. /dev : Device files</li>
+    <li>3.7. /etc : Host-specific system configuration</li>
+    <li>3.9. /lib : Essential shared libraries and kernel modules</li>
+    <li>3.12. /mnt : Mount point for a temporarily mounted filesystem</li>
+    <li>3.13. /opt : Add-on application software packages</li>
+    <li>3.15. /run : Run-time variable data</li>
+    <li>3.16. /sbin : System binaries</li>
+    <li>3.17. /srv : Data for services provided by this system</li>
+    <li>4.5. /usr/include : Directory for standard include files.</li>
+    <li>4.6. /usr/lib : Libraries for programming and packages</li>
+    <li>4.7. /usr/libexec : Binaries run by other programs (optional)</li>
+    <li>4.8. /usr/lib qual : Alternate format libraries (optional)</li>
+    <li>4.10. /usr/sbin : Non-essential standard system binaries</li>
+    <li>4.11. /usr/share : Architecture-independent data</li>
+    <li>4.12. /usr/src : Source code (optional)</li>
+</p>
+<img src="Graphics/PalvelintenHallinta/39.png" alt="" width="700" height=""/>
+<p>
+    Aloin luomaan uutta virtuaalikonetta VMWarella.
+</p>
+<img src="Graphics/PalvelintenHallinta/40.png" alt="" width="700" height=""/>
+<p>
+    Tein iso tiedoston Windows media creation toolin avulla, jo aikasemmin Penetraatiotestaus kurssilla <a href = "Penetraatiotestaus.html#mediacreationtool">Tässä linkki raporttiin</a>
+</p>
+<img src="Graphics/PalvelintenHallinta/41.png" alt="" width="700" height=""/>
+<p>
+    Valitsin windowsin .iso tiedoston koneeltani
+</p>
+<img src="Graphics/PalvelintenHallinta/42.png" alt="" width="700" height=""/>
+<p>
+    valitsin minne kone tallennetaan.
+</p>
+<img src="Graphics/PalvelintenHallinta/43.png" alt="" width="700" height=""/>
+<p>Valitsin millainen käynnistyslohko? onko termi oikein? luodaan, BIOS on vanhempi, Basic input out put system, UEFI on uudempi ja Windows 11 alkaen tarvitaan Secure boot valinta. Jätin sen pois, koska kyseessä Win 10 Pro.</p>
+<img src="Graphics/PalvelintenHallinta/44.png" alt="" width="700" height=""/>
+<p>Valitsin neljä prosessoria ja kussakin 2 ydintä, koska Windows toimii sulavammin mitä enemmän on tehoa. On esim. raskaampi kuin Linux.</p>
+<img src="Graphics/PalvelintenHallinta/45.png" alt="" width="700" height=""/>
+<p>Valitsin 16GB keskusmuistia virtuaalikoneelle.</p>
+<img src="Graphics/PalvelintenHallinta/46.png" alt="" width="700" height=""/>
+<p>NAT päälle, jotta netti toimii.</p>
+<img src="Graphics/PalvelintenHallinta/47.png" alt="" width="700" height=""/>
+<p>Valitsin suosituksen, en ole varma mikä to Paravirtualized valinta on. Mutta kyse on siis kovalevyn controlleri tyypistä, joka ohjaa kovalevyjen kirjoitusta ja luentaa. SCSI on vanhaa tekniikkaa, nykyään käytetään Nvme.2 asemia ja niiden m.2 kontrollereita tietääkseni.</p>
+<img src="Graphics/PalvelintenHallinta/48.png" alt="" width="700" height=""/>
+<p>Kovalevyn tyyppi, VMware näköjään tukee NVMe asemien tyyppiä, tästä etuna huimasti paremmat lukunopeudet, kuin muilla valinnoilla. Koneessani on NVMe asema, joten tämä valinta toimii hyvin.</p>
+<img src="Graphics/PalvelintenHallinta/49.png" alt="" width="700" height=""/>
+<p>Loin uuden virtuaalisen kovalevyn ja painoin Next.</p>
+<img src="Graphics/PalvelintenHallinta/50.png" alt="" width="700" height=""/>
+<p>Laitoin 100Gb kovalevyn kooksi ja halusin sen vain yhteen tiedostoon, oikeasti mielestäni sen siirtäminen on helpompaa, kuin useamman tiedoston, vaikka VMWare yllä olevassa kuvassa niin väittääkin.</p>
+<img src="Graphics/PalvelintenHallinta/51.png" alt="" width="700" height=""/>
+<p>Valitsin polun, minne vituaalikoneen kovalevy tallennetaan.</p>
+<img src="Graphics/PalvelintenHallinta/52.png" alt="" width="700" height=""/>
+<p>Tämän jälkeen asennus käynnisty.</p>
+<img src="Graphics/PalvelintenHallinta/53.png" alt="" width="700" height=""/>
+<p>
+Valitsin yllä olevat kieli, aika ja valuutta asetukset, sekä syöttökielin näppäimistölle, Painoin Next ja Install.
+</p>
+<img src="Graphics/PalvelintenHallinta/54.png" alt="" width="700" height=""/>
+<p>
+    Seuraavaksi Windows kysyi aktivointi koodia. Syötin koodin ja installeri siirtyi eteenpäin.
+</p>
+<img src="Graphics/PalvelintenHallinta/55.png" alt="" width="700" height=""/>
+<p>
+    Hyväksyin sopimusehdot lukematta ja myin sieluni kaupallisuudelle.
+</p>
+<img src="Graphics/PalvelintenHallinta/56.png" alt="" width="700" height=""/>
+<p>
+    Valitsin Custom: install Windows only (Advanced), koska ylempi valinta ei tee mitään järkeä tyhjässä koneessa.
+</p>
+<img src="Graphics/PalvelintenHallinta/57.png" alt="" width="700" height=""/>
+<p>
+    Tässä riittää, kun klikkaa Next, se luo 100 gigatavun osioinnin levylle ja koko 100gb on siis käytettävissä yhdellä asema kirjaimella ”C:\”
+</p>
+<img src="Graphics/PalvelintenHallinta/58.png" alt="" width="700" height=""/>
+<p>
+    Asentaja alkoi kopioimaan tiedostoja
+</p>
+<img src="Graphics/PalvelintenHallinta/59.png" alt="" width="700" height=""/>
+<p>
+    sitten tuli automaattisen uudelleenkäynnistyksen aika.
+</p>
+<img src="Graphics/PalvelintenHallinta/60.png" alt="" width="700" height=""/>
+<p>
+    Ehdotus oli oikein, klikkasin Yes.
+</p>
+<img src="Graphics/PalvelintenHallinta/61.png" alt="" width="700" height=""/>
+<p>
+    Valitsin näppäimistöksi Suomen.
+</p>
+<img src="Graphics/PalvelintenHallinta/62.png" alt="" width="700" height=""/>
+<p>Valitsin Skip, koska en halua toista näppäimistö asettelua Windowsiin. Tässä vaiheessa Windowsin asennuksen aloituksesta oli kulunut 6 minuuttia. Asentaja alkoi tämän jälkeen määrittämään Windowsia käyttökuntoon, tämän aika virtuaalikone käynnistyi muutaman kerran uudelleen.</p>
+<img src="Graphics/PalvelintenHallinta/63.png" alt="" width="700" height=""/>
+<p>
+    Valitsin Set up for personal use ja klikkasin Next.
+</p>
+<img src="Graphics/PalvelintenHallinta/64.png" alt="" width="700" height=""/>
+<p>
+    Katsotaan, onnistuuko tämä ilman tilin asennusta, en haluisi liittää tätä konetta ja lisenssiä omaan Microsoft tiliini. Valitsi vasemmasta alakulmasta Offline account ja Next.
+</p>
+<img src="Graphics/PalvelintenHallinta/65.png" alt="" width="700" height=""/>
+<p>Ilman Microsoft tiliä saa rajoitetun Windows kokemuksen. Valitsin siis Limited experience vasemmasta alakulmasta. Enkä painanut Next nappia.</p>
+<img src="Graphics/PalvelintenHallinta/66.png" alt="" width="700" height=""/>
+<p>
+    valitsin käyttäjäksi ”ilkkah” ja painoin Next.
+</p>
+<img src="Graphics/PalvelintenHallinta/67.png" alt="" width="700" height=""/>
+<p>
+    Valitsin suht turvallisen salasanan, jonka muistan, koska online toiminnot eivät ole käytössä tämän unohtaminen aiheuttaa isomman päänvaivan. Klikkasin sen jälkeen Next.
+</p>
+<img src="Graphics/PalvelintenHallinta/68.png" alt="" width="700" height=""/>
+<p>Vahvistin salasanan toiseen kertaan, että se varmasti on oikein kirjoitettu.</p>
+<img src="Graphics/PalvelintenHallinta/69.png" alt="" width="700" height=""/>
+<p>
+    Näitä kysytään koska online tominnot eivät ole käytössä, tässä on mielestäni tietoturvariski, koska nämä voidaan mahdollisesti saada henkilöstä selville. En vastannut näihin todenmukaisesti.
+</p>
+<img src="Graphics/PalvelintenHallinta/70.png" alt="" width="700" height=""/>
+<p>Vastasin No ja Accept, en halua, että Microsoft hyödyntää sijaintitietojani.</p>
+<img src="Graphics/PalvelintenHallinta/71.png" alt="" width="700" height=""/>
+<p>
+    Vastasin No ja Accept, tämä on kätevämpi ominaisuus läppärin kanssa, jos vaikka häviää, vaatii tosin aikaisemman hyväksynnän sijainti tiedoille.
+</p>
+<img src="Graphics/PalvelintenHallinta/72.png" alt="" width="700" height=""/>
+<p>Valitsin Send Required diagnostic data, en halunnut lähettää kaikkea valinnaista lisätietoani Microsoftille. Huom! valintaa ei ole, missä mitään telemetria tietoja ei lähetettäisi. Olisi kiva tietää mitä kaikkea tämä Required valinta sisältää tiedoista.</p>
+<img src="Graphics/PalvelintenHallinta/73.png" alt="" width="700" height=""/>
+<p>
+    Valitsin No ja Accept, koska en halua, että Microsoft saa tietää mitä kirjoitan koneellani.
+</p>
+<img src="Graphics/PalvelintenHallinta/74.png" alt="" width="700" height=""/>
+<p>
+    Valitsin No ja Accept, koska en halua tietojeni valuvan jo maksamastani tuotteesta Microsoftille, koska se voi olla arkaluonteista. 
+</p>
+<img src="Graphics/PalvelintenHallinta/75.png" alt="" width="700" height=""/>
+<p>
+    Valitsin No j Accept, en mielelläni halua saada käyttöjärjestelmääni yhtään mainsta, saati sitten kohdennettua.
+</p>
+<img src="Graphics/PalvelintenHallinta/76.png" alt="" width="700" height=""/>
+<p>
+    Valitsin Skip, koska en käytä tätä konetta erityisesti juuri noihin kategorioihin.
+</p>
+<img src="Graphics/PalvelintenHallinta/77.png" alt="" width="700" height=""/>
+<p>
+    Sitten alkoi odotus, tässä vaiheessa aikaa oli kulunut asennuksen aloituksesta 28minuuttia, tosin asennusta hidasti tämän raportin kirjoittaminen samaan aikaan.
+</p>
+<img src="Graphics/PalvelintenHallinta/78.png" alt="" width="700" height=""/>
+<p>
+alle puolituntia kokonaisuudessaan ja työpöytä oli käytössä.
+</p>
+<img src="Graphics/PalvelintenHallinta/79.png" alt="" width="700" height=""/>
+<p>
+    Klikkasin I Finnished Installing VMWaren ikkunaan, joka oli koko asennuksen ajan näkyvissä. En ole tarvinnut tuota virtuaalista näppäimistöä missään Windows tai Linux asennuksessa. Chromebookin käyttöjärjestelmää virtualisoidessa, siitä oli hieman apua. Seuraavaksi päivitin Windowsiin kaikki päivitykset, jotka oli saatavilla Windows updatesta.
+</p>
+<p>
+Kun windows update latasi tiedostoja VMWare antoi ponnhdusikkunan:
+</p>
+<img src="Graphics/PalvelintenHallinta/80.png" alt="" width="700" height=""/>
+<p>
+    Tämä on mielestäni yksi parhaiten toteutettuja asioita VMWaressa, se ehdottaa asentamaan työkalut, jolla virtuaalikoneen käytöstä tulee mielyttävämpää. Esim. Graaffiset ominaisuudet paranevat ja leikepöytä alkaa toimimaan. VirtualBoxilla ja Linuxilla en ole vielä koskaan saanut Guest Additionsia toimimaan, sen takia käytän VMWarea.
+</p>
+<img src="Graphics/PalvelintenHallinta/81.png" alt="" width="700" height=""/>
+<p>
+    Tuli vielä lisäohjeistus asiaan. Eli Run komento D:\setup.exe, jos asennus ei käynnisty.
+<br>
+    Tein sen ja VMWaren työkalut lähtivät asentumaan.
 
+</p>
+
+<img src="Graphics/PalvelintenHallinta/82.png" alt="" width="700" height=""/>
+<p>Valitsin Next.</p>
+<img src="Graphics/PalvelintenHallinta/83.png" alt="" width="700" height=""/>
+<p>Valitsin Typical ja Next.</p>
+<img src="Graphics/PalvelintenHallinta/84.png" alt="" width="700" height=""/>
+<p>
+    Valitsin Install. Työkalut lähtivät asentumaan.
+</p>
+<img src="Graphics/PalvelintenHallinta/85.png" alt="" width="700" height=""/>
+<p>VMWare toolsin asennus vaatii virtuaalikoneen uudelleen käynnistyksen. Klikkasin Finnish, mutta en käynnistänyt konetta vielä uudestaan, koska Windowsin päivityksiä oli vielä asentumassa.</p>
+<img src="Graphics/PalvelintenHallinta/86.png" alt="" width="700" height=""/>
+<p>
+    Päivitykset latautuvat ja oli uudelleenkäynnistyksen aika. Painoin Restart now.
+</p>
+<img src="Graphics/PalvelintenHallinta/87.png" alt="" width="700" height=""/>
+<p>
+    Tämä vie hetken aikaa, omien kokemuksieni mukaan, vaikka virta sammuisi, saattaa Windows silti kyetä hallitsemaan tilanteen ja uudelleen käynnistyksen yhteydessä korjata tilanteen. Ei kyllä toimi aina näin ja voi olla, että joutuu asentamaan Windowsin uudestaan.
+</p>
+<img src="Graphics/PalvelintenHallinta/88.png" alt="" width="700" height=""/>
+<p>Vielä kerran Windowsin päivitykset kuntoon, yhdellä kertaa ei onnistu järjestelmän päivittäminen.</p>
+<img src="Graphics/PalvelintenHallinta/89.png" alt="" width="700" height=""/>
+<p>Päivitykset olivat kunnossa, nyt lataamaan vielä valinnainen laatu päivitys, niin kuin tekisin omallakin koneellani, että saa uusimmat kilkkeet käyttöön.</p>
+<img src="Graphics/PalvelintenHallinta/90.png" alt="" width="700" height=""/>
+<p>
+    Tässä kestää taas aikaa.
+    <br>
+Päätin ajankuluksi katsoa tässä välissä, kykeneekö virtuaalikoneeni rauta pyörittämää Windows 11. Uskoisin, että ei koska käynnistyslohkoa luodessani valitsin UEFI ilman Secure Boottia, jonka käsittääkseni Windows 11 vaatii.
+</p>
+<img src="Graphics/PalvelintenHallinta/91.png" alt="" width="700" height=""/>
+<p>
+    Klikkasin linkkiä Check hardware requirements ja sieltä PC Health Check app linkkiä, koska Käytössäni oli Windows 10.
+</p>
+<img src="Graphics/PalvelintenHallinta/92.png" alt="" width="700" height=""/>
+<p>Käynnistin lataamani tiedoston ja asensin PC Helth Check ohjelman.</p>
+<img src="Graphics/PalvelintenHallinta/93.png" alt="" width="700" height=""/>
+<p>Jätin asian sikseen, koska tarkastus vaatii Microsoftin tilille kirjautumisen. Kokeilen joskus myöhemmin uudestaan.</p>
+<img src="Graphics/PalvelintenHallinta/94.png" alt="" width="700" height=""/>
+<p>Taas tarvittiin uudelleen käynnistys. Tämän uudelleen käynnistyksen jälkeen tarkastin vielä kerran päivitykset ja ei tullut enää uusi päivityksiä.</p>
+<h3>b) Asenna Salt Windowsille. Osoita 'salt-call --local' komentoa ajamalla, että asennus on onnistunut.
+    <br>
+    b ja c tehtävä on yhdistetty.
+    <br>
+    c) Kerää Windows-koneesta tietoa grains.items -toiminnolla. Poimi 'grains.item' perään muutamia keskeisiä tietoja ja analysoi ne, eli selitä perusteellisesti mitä ne ovat. Kuvaile ja vertaile numeroita.
+    </h3>
+<p>
+    <a href="https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/windows.html#install-windows">Latasin saltin tästä linkistä</a>
+</p>
+<p>
+    ja asensin sen, versio oli 3006.4, muistaakseni tämä on sama, kuin Linuxilla, eli Sulfur.
+</p>
+<img src="Graphics/PalvelintenHallinta/95.png" alt="" width="700" height=""/>
+<p>Laitoin Masterin Nimeksi Master ja Minionin nimeksi Minion1, Default Config ja painoin Install.</p>
+<img src="Graphics/PalvelintenHallinta/96.png" alt="" width="700" height=""/>
+<p>
+    Tämä viittaa jonkin näköiseen kirjastoon ilmeisesti, jota Salt tarvitsee, Valitsin Yes. Nimellä voisi googlata, jos haluaa lisätietoja.
+</p>
+<img src="Graphics/PalvelintenHallinta/97.png" alt="" width="700" height=""/>
+<p>
+    Avasin Powershellin Administrator oikeuksilla annoin komennon ”salt-call” ja ”salt-call --version” versio todellakin oli Sulfur.
+</p>
+<img src="Graphics/PalvelintenHallinta/98.png" alt="" width="700" height=""/>
+<p>
+    Kokeilin komentoa “salt-call --local -l info state.user.present ilkkah” joka oli käyttäjänimeni.
+    <br>
+    Tämä ei näyttänyt toimivan windowsilla.
+</p>
+<img src="Graphics/PalvelintenHallinta/99.png" alt="" width="700" height=""/>
+<p>Kokeilin seuraavan komennon, ”salt-call --local grains.items osfinger”</p>
+<p>Tulostui tietoja virtuaalikoneesta. Prosessori, täsmäsi host koneeseeni. Ja tuolla näkyy aikaisemmin valitsemani secure-boot falsena, niin kuin valitsin asennuksessa. IPv4 ja IPv6 osoitteet tietokoneesta. Tuo Secure boot on mielenkiintoine, jos koitan päivitää tämän Windows 11 koneeksi herjaako tuosta ja asennus keskeytyy. Minulla on vanha versio WMWaresta, koska en ole halunnut maksaa uudemmasta, toistaiseksi ainakaan. En edes tiedä kykeneekö tämä VMWare 16.x pyörittämään Windows 11.</p>
+<h3>d) Kokeile Saltin file -toimintoa Windowsilla.</h3>
+<p>
+    En tiedä mikä on Linuxin ”Srv” kansiota vastaava kansio Saltilla Windowsissa, en kerkeä selvittämään tätä tällä hetkellä. Tässä olisi pitänyt luoda init.sls tiedosto YAML kielellä ja käyttää file.managed komentoa.
+</p>
+<h3>e) Kokeile jotain itsellesi uutta toimintoa Saltista Windowsilla. (Voit käyttää apuna edellisten vuosien kotitehtäväraporttia tai Karvinen 2018: <a href="https://terokarvinen.com/2018/04/18/control-windows-with-salt/">Control Windows with Salt.</a>  Huomaa, että noissa muistiinpanoissani voi jo hieman ikä painaa, ja niissä on myös epärelevantteja kokeiluja.)</h3>
+<p>
+    Tämä kiinnostaa kovasti, mutta aika ei nyt vain riitä. Opettelen tämän takuuvarmasti. 
+</p>
+<p>
+    Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/">Terokarvinen.com</a>
+</p>
 </body>
 </html>
