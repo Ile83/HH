@@ -707,9 +707,9 @@ Luin materiaalin, mutta ajan säästämiseskis en tehny tiivistelmää. Tämä o
     “CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR (200));” Tuli virheilmoitus, enkä saanut luotua taulua users.
     ei aikaa nyt perehtyä tähän, jatkan eteenpäin.
 </p>
-<h4>b) SQLi me. Kuvaile yksinkertainen SQL-injektio, ja demonstroi se omaan tietokantaasi psql-komennolla. Selitä, mikä osa on käyttäjän syötettä ja mikä valmiina ohjelmassa. (Tässä harjoituksessa voit vain kertoa koodista, ei siis tarvitse välttämättä koodata sitä ohjelmaa, joka yhdistää käyttäjän syötteen SQL:n)</h3>
+<h4>b) SQLi me. Kuvaile yksinkertainen SQL-injektio, ja demonstroi se omaan tietokantaasi psql-komennolla. Selitä, mikä osa on käyttäjän syötettä ja mikä valmiina ohjelmassa. (Tässä harjoituksessa voit vain kertoa koodista, ei siis tarvitse välttämättä koodata sitä ohjelmaa, joka yhdistää käyttäjän syötteen SQL:n)</h4>
     <p>
-        SQL-injektio on hyökkäys, jossa hyökkääjä syöttää SQL-komentoja käyttäjän syötteeseen. Tämä on mahdollista, kun käyttäjän syöte ei ole tarpeeksi tarkistettu ja se välitetään suoraan tietokantaan. Tämä mahdollistaa hyökkääjän suorittaa SQL-komentoja tietokannassa.
+                SQL-injektio on hyökkäys, jossa hyökkääjä syöttää SQL-komentoja käyttäjän syötteeseen. Tämä on mahdollista, kun käyttäjän syöte ei ole tarpeeksi tarkistettu ja se välitetään suoraan tietokantaan. Tämä mahdollistaa hyökkääjän suorittaa SQL-komentoja tietokannassa.
         <br>
         Helppo SQL injektio, muuttaa selaimessa palautuvaa osoitetta esim.  '-- joka tarkoittaa kommenttia, jolloin -- takana olevaa SQL koodia ei lueta.
         <br>
@@ -764,6 +764,181 @@ Luin materiaalin, mutta ajan säästämiseskis en tehny tiivistelmää. Tämä o
     <p>
         Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
     </p>
+    <h1>Haaga-Helia ammattikorkeakoulu
+    </h1>
+    <h2>
+    Pentest
+    </h2>
+    <br>
+    03.12.2023
+    <br>
+    <h4 id="Luento6">h6 Attaaack</h4>
+    <h3>x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
+        <br>
+        € Yehoshua and Kosayev 2021:<a href="https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/"> Antivirus Bypass Techniques,</a> luku:
+        <br>
+        <a href="https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18">Chapter 1: Introduction to the Security Landscape</a>
+        </h3>
+        <li>Määritellään haittaohjelmia ja niiden eri tyyppejä</li>
+        <li>Artikkelissa käydään läpi ei suojaus moottoreita</li>
+        <li>käydään läpi perusteet virustorjunnasta</li>
+        <li>ja esitellään virustorjunnan ohitus yksinkertaistettuna</li>
+    <h3>Halonen, Rajala ja Ollikainen 2023: <a href="https://www.youtube.com/@phishsticks_pentest/videos"> PhishSticks Youtube Channel</a>, kahdeksan videota, yhteensä noin 15 min</h3>
+        <li>Flipper Zero, monikäyttöinen hakkerointi laite</li>
+        <li>Reverse shell, tekniikka command and controlliin</li>
+        <li>Ransomware, salakirjoitetaan käyttäjän tiedostot ja pyydetään esim. kryptovaluutaa maksuksi, jotta salaus avataan.</li>
+        <li>Digispark, pieni tietokone, jonka voi ohjelmoida ajamaan koodia.</li>
+        <li>Keylogger, varastaa näppäinpainalukset ja lähettää ne esim. HTTP POST pyyntöinä eteenpäin</li>
+<h3><a href="https://github.com/therealhalonen/PhishSticks/tree/master">README.md</a> (Aikajärjestyksessä, jos aloitat pohjalta. Kuvailee, miten näitä tekniikoita opeteltiin ja kehitettiin)</h3>
+        <li>Projektin kuvaus ja eteneminen alusta loppuun</li>
+        <h3><a href="https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell">Revshell</a></h3>
+        <li>Reverse shell, tekniikka command and controlliin</li>
+        <li>Kuinka payload lataantuu koneelle ja netcat latautuu hyökkääjän ip osoitteesta ja revshellin käynnistys.</li>
+        <h3><a href="https://github.com/therealhalonen/PhishSticks/blob/master/documentation/Mitigations.md">Mitigations</a></h3>
+        <li>Reverse shellin torjuntaa</li>
+        <p>
+            Kytketään pois powershell käyttäjältä, blockataan powershellin lähtevä liikenne, Postetaan Run komennon käyttäminen windowsista, kontrolloitu kansion käyttäminen ja ulkoisten medioiden poistaminen käytöstä
+        </p>
+        <h3><a href="https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md">Installing Windows 10 on a virtual machine</a>
+        </h3>
+        <li>Windows 10 asennus virtuaalikoneeseen, Virtualbox alustalle</li>
+        <h3><a href="https://attack.mitre.org/resources/faq/">MITRE Att&ck Frequently Asked Questions:</a>Part 1. General.</h3>
+        <li>MITRE Att&ck on tietoturva kehys, joka on suunniteltu auttamaan organisaatioita ja yksilöitä ymmärtämään hyökkäyksiä, jotka heitä vastaan kohdistuvat.</li>
+        <p>
+            Taktiikat, kuvaavat tekniikkaa tai alitekniikkaa, se on vastapuolen taktinen maali, se syy miksi toteuttaa toimenpide. Esimerkiksi vastapuoli voi haluta saavuttaa tunnuksellisen käyttöoikeuden.
+        </p>
+        <p>
+            Tekniikat, kuvaavat miten vastapuoli saavuttaa taktisen maalin suorittamalla toimenpiteen. Esimerkiksi vastapuoli voi dumpata (oletan, että ne dumpataan muistista) tunnukset saavuttaakseen tunnuksellisen käyttöoikeuden
+        </p>
+        <p>
+            Toimenpiteet, Proseduurit ovat tarkka käyttöönotettuja vastapuolen tekniikoita tai alitekniikoita. Esimerkiksi. Toimenpide voi olla, että vastapuoli käyttää Powershelliä injektoidakseen lssass.exe tiedoston dumpatakseen ulos käyttäjätunnukset scrapeemalla LSASS muistin uhrilta. Toimenpiteet kategorisoidaan ATT&CK:ssa niin kuin ne havaitaan usein moninaisina eri tekniikoina ”toimenpide esimerkeissä” tästä löytyy oma osio tekniikka sivuilla MITRE:llä 
+        </p>
+         <h3><a href="MITRE Att&ck Enterprise Matrix">MITRE Att&ck Enterprise Matrix</a></h3>
+            <li>Matrix on taulukko, joka näyttää taktiikat ja tekniikat</li>
+            <li>Matrix on hyvä työkalu, joka auttaa ymmärtämään miten vastapuoli toimii</li>
+            <li>Aktiivinen skannaus (Tiedustelu vaihe)</li>
+            <li>alitekniikat: IP Blokkien skannus, haaoittuvuus skannaus ja Sanalista skannaus</li>
+            <li>Ulkopuoliset etäpalvelut (Aktuaalinen yhteys vaihe)</li>
+            <li>etäpalvelut: VPN, Citrix ja muut mahdollisuudet päästä yrityksen sisäverkkoon</li>
+        <h3>a)	The OS pwns you. Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä.</h3>
+        <li>”Huomio! tässä asennuksessa käytän oikeaa Windows Pro 10 lisenssiä, syötin WMWareen Win 10 lisenssini luodessa konetta”</li>
+        <img src="Graphics/Penetraatiotestaus/69.png" alt="" width="700" height=""/>
+<p>Valitsin virtuaalikoneeseen 4 prosessoria, joissa kaksi ydintä kussakin, eli yhteensä 8 ydintä. halusin tällä varmistaa pikaisen asennuksen ja koneen toiminnan</p>
+<img src="Graphics/Penetraatiotestaus/70.png" alt="" width="700" height=""/>
+<p>Valitsin 12Gb muistia virtuaalikoneelle, jotta kone toimii sulavasti</p>
+<img src="Graphics/Penetraatiotestaus/71.png" alt="" width="700" height=""/>
+<p>Windowsin asennusvaiheeseen valitsin NAT päälle, jotta saan nettiyhteyden aktivointiin.
+    <br>
+    Latasin Media Creationtoolin windowsin sivuilta 
+    <br>
+    <a href="https://www.microsoft.com/fi-fi/software-download/windows10">Windows 10:n lataaminen</a>    
+</p>
+  <img src="Graphics/Penetraatiotestaus/72.png" alt="" width="700" height=""/>  
+<p>Halusin .iso tiedoston, jotta voin asentaa sen virtuaalikoneeseen.</p>
+<img src="Graphics/Penetraatiotestaus/73.png" alt="" width="700" height=""/>
+<p>Valitsin kuvan mukaiset asetukset ladattavalle medialle</p>
+<img src="Graphics/Penetraatiotestaus/74.png" alt="" width="700" height=""/>
+<p>Tämän jälkeen valitsin minne .iso tiedosto tallennetaan ja ohjelma alkoi lataamaan sitä netistä.</p>
+<p>Sitten takaisin virtuaalikoneeseen valitsin virtuaalikoneen CD/DVD asemalle kyseisen tallentamani tiedoston ja käynnistin koneen</p>
+<img src="Graphics/Penetraatiotestaus/75.png" alt="" width="700" height=""/>
+<p>Windows lähti asentumaan</p>
+<p>Asennus kesti noin kymmenen minuuttia ja valitsin Windowsin bootatessa työpöydälle, että annan luvan muitten tietokoneiden löytää tämän koneen samassa verkossa.</p>
+<img src="Graphics/Penetraatiotestaus/76.png" alt="" width="700" height=""/>
+<p>Menin tarkastamaan päivitykset, siellähän oli aimo kasa päivityksiä. Päivitän tämän, niin on sitten kiva hyökätä kunnolla patchättyä konetta vastaan.</p>
+<img src="Graphics/Penetraatiotestaus/77.png" alt="" width="700" height=""/>
+<p>Koneen päivitys kesti noin 15minuuttia ensimmäisellä, yritys kerralla, toisella kerralla tuli vielä muutama päivitys mm. Microsoft Defenderin, jonka nimenomaisesti halusin tähän koneeseen.</p>
+<img src="Graphics/Penetraatiotestaus/78.png" alt="" width="700" height=""/>
+<p>
+    Tilanne oli tämä, Valinnaisia päivityksiä en ottanut. Samutin koneen ja seuravaksi koneen liittäminen verkkoon Kali hyökkäys koneen kanssa.
+</p>
+<img src="Graphics/Penetraatiotestaus/79.png" alt="" width="700" height=""/>
+<p>Valitsin nämä asetukset windows koneelle. Kali on tuossa VMnet2 virtuaalisessa verkossa. Tämän jälkeen käynnistin Windows koneen.</p>
+<img src="Graphics/Penetraatiotestaus/80.png" alt="" width="700" height=""/>
+<p>Pingasin 8.8.8.8 nimipalvelinta, 100% loss</p>
+<img src="Graphics/Penetraatiotestaus/81.png" alt="" width="700" height=""/>
+<p>Tästä päättelin, että kone oli irti internetistä. Nyt käynnistän Kali koneen.</p>
+<img src="Graphics/Penetraatiotestaus/82.png" alt="" width="700" height=""/>
+<p>Katsoin vielä Windows koneelta sen ip osoitteen sisäverkossa komennolla ipconfig</p>
+<img src="Graphics/Penetraatiotestaus/83.png" alt="" width="700" height=""/>
+<p>kokeilin pingata windows konetta, mutta vastausta ei tullut. Ping komento ikään kuin jumittui paikalleen ja vain terminoimalla sen tuli info 100% loss. Ilmeisesti windows koneen softapalomuuri toimii.</p>
+<img src="Graphics/Penetraatiotestaus/84.png" alt="" width="700" height=""/>
+<p>katsoin kali koneesta kalin ip osoitteen "ifconfig" komennolla</p>
+<img src="Graphics/Penetraatiotestaus/85.png" alt="" width="700" height=""/>
+<p>Pingasin sitä windows koneella ja kali kone vastasi. 0%loss</p>
+<h3>b) Trustme.lnk. Kokeile PhishSticksin revshell vihamielistä tiedostoa, joka avaa käänteisen shellin hyökkääjän koneelle. Selitä, mitä tapahtuu ja miksi. Testaa, että pysyt antamaan kohdekoneelle komentoja reverse shellin kautta.</h3>
+<p>Yrityksistä huolimatta en saanut windows koneelle siirrettyä PhisSticksin tiedostoja. En halunnut laitaaa ssh avainta kali koneeelta Gitin tietoihin, että olisin voinut kloonata repositorion. Olisiko tämä kenties voinut olla vaarallista?
+</p>
+<p>
+    Koitin kokeilla kopioda toisella virtuaalikoneella (Debian) PhisSticksin repositorion ja se onnistui. Kokeilin siirtää repositoriota suoraan Debianista Windows 10 virtuaalikoneeseen, mutta se ei onnistunut leikepöydän kautta. Kokeilin siirtää Debianista PhisSticks kansion Host koneeseen, mutta Host koneen Bitdefender virustentorjunta nappasi sen aina kiinni ja puhdisti koneen. Kokeilin sammuttaa virustentorjunnan, mutta siltikin jokin osa siitä oli vielä hereillä ja se puhdisti koneen uudestaan. En jaksanut enää perehtyä asiaan sen enempää. Joten päätin analysoida hieman.
+    </p>
+    <img src="Graphics/Penetraatiotestaus/86.png" alt="" width="700" height=""/>
+    <p>Koitan analysoida koodin perusteella. Kun klikkaa Comppany raport linkkiä, se suorittaa Payloadin, joka on piilotetussa kansiossa, joka sisältää poweshell skriptin revsh.vbs
+    </p>
+    
+        <li>skripti lataa feikki raportin hyökkääjän ip osoitteesta, raportissa voi käytännössä lukea mitä tahansa mitä hyökkääjä haluaa hämätäkseen uhria. Nykyään tosin tuollaiset raportit eivät ole teksti tiedostoja. vaan esim. Powerpoint.</li>
+        <li>Sitten skripti avaa raportin, tämä kaikki tapahtuu nopeasti, jolloin harjaantumaton silmä ei välttämättä tajua, että maltsu on saastuttanut koneen.</li>
+<li>Sitten skripti avaa raportin, tämä kaikki tapahtuu nopeasti, jolloin harjaantumaton silmä ei välttämättä tajua, että maltsu on saastuttanut koneen.</li>
+<li>Seuraavaksi skripti lataa netcatin hyökkääjän ip osoitteesta. </li>
+<p>” Netcat (nc) on ohjelmisto TCP- ja UDP-yhteyksien käsittelyyn. Sillä voi sekä muodostaa erilaisia yhteyksiä toisiin tietokoneisiin että avata portteja ja ottaa vastaan yhteyksiä muilta koneilta. Netcat antaa ennen kaikkea mahdollisuuden säätää kaikkia mahdollisia eri parametreja, kuten lähdeporttia tai tiettyjä TCP-optioita, mikä tekee siitä erittäin hyödyllisen kaikenlaisten TCP/IP-järjestelmien testaamiseen. Sillä onkin kätevä testata vaikkapa palomuurin tai pakettisuodattimen toimintaa.” Lähde: <a href="https://fi.wikipedia.org/wiki/Netcat">Netcat – Wikipedia</a> 
+</p>
+<li>Sitten skripti käynnistää netcatin, joka jää kuuntelemaan porttia 9001 ja näin hyökkääjä voi ottaa yhteyden uhriin uhrin ip ja kyseisen portin kautta.</li>
+<h3>b)	Attaaack! <a href="https://attack.mitre.org/">MITRE Attack Enterprise Matrix: </a>Demonstroi viisi tekniikkaa viidestä eri taktiikasta.</h3>
+<h2>Tiedustelu vaihe</h2>
+<h2>1.	Active Scanning</h2>
+<p>
+ID: T1595
+<br>
+Sub-techniques:  
+<br>
+
+<li>T1595.001	Scanning IP Blocks</li>
+<li>T1595.002	Vulnerability Scanning</li>
+<li>T1595.003	Wordlist Scanning</li>
+<li>Tactic: Reconnaissance</li>
+</p>
+<img src="Graphics/Penetraatiotestaus/87.png" alt="" width="700" height=""/>
+<p>
+    Haavoittuvuus Skannaus Metasploitablen ip osoitteeseen. Komento ”nmap --script=vuln 192.168.159.130”
+</p>
+<img src="Graphics/Penetraatiotestaus/88.png" alt="" width="700" height=""/>
+<img src="Graphics/Penetraatiotestaus/89.png" alt="" width="700" height=""/>
+<img src="Graphics/Penetraatiotestaus/90.png" alt="" width="700" height=""/>
+<img src="Graphics/Penetraatiotestaus/91.png" alt="" width="700" height=""/>
+<img src="Graphics/Penetraatiotestaus/92.png" alt="" width="700" height=""/>
+<p>
+    Havoittuvuuksia oletettavastikin löytyi paljon, koska kysessa on metasploitable II
+</p>
+<h2>Search Open Websites/Domains</h2>
+<p>
+    ID: T1593
+    <br>
+    Sub-techniques:
+    <br> 
+    
+    T1593.001  Social Media
+</p>
+<img src="Graphics/Penetraatiotestaus/93.png" alt="" width="700" height=""/>
+<a href="https://fameswap.com/browse">Social Media Accounts for Sale (fameswap.com)</a>
+<p>
+    En koittanut ostaa kenenkään tunnuksia
+</p>
+<h2>T1593.002	Search Engines</h2>
+<img src="Graphics/Penetraatiotestaus/94.png" alt="" width="700" height=""/>
+<p>Shodan.io hakukone databases ja Mysql</p>
+<h2>T1593.003	Code Repositories</h2>
+<a href="https://github.com/topics/hacking-tools">hacking-tools · GitHub Topics</a>
+<h2>User Execution ID: T1204
+    </h2>
+    <h2>Sub-techniques: </h2>
+    <li>T1204.001	Malicious Link</li>
+    <img src="Graphics/Penetraatiotestaus/95.png" alt="" width="700" height=""/>
+    <p>Menin osoitteeseen https://www.pirateproxy-bay.com/ se avasi toisen VPN mainos nettisivun, joka antoi yllä olevan varoituksen Bitdefender virustentorjutaani.</p>
+    <h2>T1204.002	Malicious File</h2>
+    <a href="https://www.microsoft.com/en-us/wdsi/threats/threat-search?query=HackTool:Win32/Keygen">Threat description search results - Microsoft Security Intelligence</a>
+    <p>
+        Yritin löytää kyseistä Hacktool: Win32/Keygen mutta tuloksetta. Olin suorittanut sen virtuaalikoneella ja katsonut mitä tapahtuu esim. Wiresharkissa ja Windows Defenderissä. Tämä voi tosin olla kiistelty onko tämä vaarallinen ollenkaan vai luoko vaan sinulle toimivan windows avaimen. Joka on haitallista Microsoftin mielestä.
+    </p>
+    <a href="https://www.pcrisk.com/removal-guides/13669-hacktool-win32-keygen">Lisää tietoa aiheesta www.pcrisk.com</a>
 
 </body>
 </html>
