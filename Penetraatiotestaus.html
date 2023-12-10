@@ -942,5 +942,93 @@ Sub-techniques:
     <p>
         Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
     </p>
+    <h1>Haaga-Helia ammattikorkeakoulu
+    </h1>
+    <h2>
+    Pentest
+    </h2>
+    <br>
+    10.12.2023
+    <br>
+    <h4 id="Luento7">h7 Hash</h4>
+    <h3>x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)</h3>
+    <h4>Karvinen 2022: <a href="https://terokarvinen.com/2022/cracking-passwords-with-hashcat/">Cracking Passwords with Hashcat</a></h4>
+    <li>Hashcat on salasanojen murtamiseen tarkoitettu ohjelma</li>
+    <li>Järjestelmät eivät tallenna salasanoja selkomuodossa, vaan ne tallentavat salasanan tiivisteen.</li>
+<li>Hash tiivisteestä ei voi saada salasanaa selville.</li>
+<li>Tietokoneen voi kuitenkin laittaa testaamaan, jokaista sanaa sanakirjassa ja kertomaan vastaako, jonkun niistä tiiviste salasan tiivistettä, näin salasana paljastuu</li>
+<li>Hashcatin voi laittaa pyörimään GPU:lla nopeuttamiseksi (ei toimi virtuaalikoneessa)</li>
+<li>Nvidian ajurit eivät ole Open sourcea</li>
+<h3>Karvinen 2023: <a href="https://terokarvinen.com/2023/crack-file-password-with-john/"> Crack File Password With John</a></h3>
+<li>John the Ripper on salasanojen murtamiseen tarkoitettu ohjelma</li>
+<li>Cräkätään salasanoja sanakirja hyökkäyksen avulla</li>
+    <li>Ohjeet John cräckäys ohjelman asentamiseen</li>
+    <li>toimii myös pakattuihin tiedostoihin ja useisiin muihinkin</li>
+<h4>a)	Hashcat. Asenna Hashcat ja testaa sen toimivuus ratkaisemalla tiiviste.</h4>
+<p>
+    ”sudo apt-get update”
+    <br>
+”sudo apt-get install hashid hashcat wget”
+<br>
+“mkdir hashed”
+<br>
+“cd hashed”
+<br>
+“wget https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz”
+<br>
+“tar xf rockyou.txt.tar.gz”
+<br>
+“rm rockyou.txt.tar.gz”
+</p>
+<img src="Graphics/Penetraatiotestaus/96.png" alt="" width="700" height=""/>
+<p>
+    “wc -l rockyou.txt”
+</p>
+<img src="Graphics/Penetraatiotestaus/97.png" alt="" width="700" height=""/>
+<p>
+    “hashid -m 6b1628b016dff46e6fa35684be6acc96” (Teron artikkelissa esillä ollut tiiviste)
+</p>
+<img src="Graphics/Penetraatiotestaus/98.png" alt="" width="700" height=""/>
+<p>
+    ”hashcat -m 0 '6b1628b016dff46e6fa35684be6acc96' rockyou.txt -o solved”
+</p>
+<img src="Graphics/Penetraatiotestaus/99.png" alt="" width="700" height=""/>
+<p>
+    “cat solved”
+    <br>
+Salasana oli summer, eli Hashcat toimiii virtuaalikoneessani, aikaa kesti noin minuutti. pitäisi kokeilla myös GPU:lla.
+</p>
+<h4>b)	John. Asenna Jumbo John ja testaa sen toimivuus murtamalla jonkin tiedoston salasana.</h4>
+<img src="Graphics/Penetraatiotestaus/100.png" alt="" width="700" height=""/>
+<p>
+    ”sudo apt-get install git build-essential libssl-dev zlib1g zlib1g-dev zlib-gst libbz2-1.0 libbz2-dev atool zip”
+    <br>
+
+Pakettia zlib-gst ei löytynyt, joten zip tiedostojen cräckäys ei todennäköisesti onnistu. En käytä tähän enempää aikaa. Alan valmistautumaan lipunryöstöä varten.
+</p>
+<h4>c) f5bc7fcc7f5b3b6af7ff79e0feafad6d1a948b6a2c18de414993c1226be48c1f on erään tällä tehtäväsivulla olevan yksittäisen sanan tiiviste. Käytin hyvin yleistä ja tunnettua tiivistealgoritmia. Sanassa voi olla isoja kirjaimia, mutta ei erikoismerkkejä. Minkä sanan tiiviste on kyseessä?</h4>
+<p>
+    Tämä meni liian nopeasti tunnilla ohi, miten sanakirja tehdään.
+</p>
+<h4>d) Cheatsheet. Kerää kurssilaisten raporteista käteviä tekniikoita. Kerää itse tekniikat ja komennot, älä pelkästään kuvaile. Muista lähdeviitteet. Tee tiivis ja selkeä cheatsheet, josta löydät tarvittavat tiedot lipunryöstössä. (Tässä alatehtävässä ei tarvitse tehdä testejä koneella)</h4>
+<p>
+ <li>Fuff ja Nmap <a href="https://github.com/jjenska/PenTest/blob/main/h2/h2.md">PenTest/h2/h2.md at main · jjenska/PenTest (github.com)</a></li>   
+ <li>Totally legit Certificate <a href="https://github.com/aarott/pentest23/blob/main/h-4.md">pentest23/h-4.md at main · aarott/pentest23 (github.com)</a></li>
+ <li>SQL <a href="https://github.com/jjenska/PenTest/blob/main/h5/h5.md">PenTest/h5/h5.md at main · jjenska/PenTest (github.com)</a></li>
+ <li>HASH <a href="https://github.com/aarott/pentest23/blob/main/h-7.md">pentest23/h-7.md at main · aarott/pentest23 (github.com) </a></li>
+ <li>Hyvä Cheatsheet <a href="https://github.com/JanaHalt/Ethical-Hacking-2023/blob/7dde8ab0dca32522fe00fed118f155e7161fdf11/h7%20Hash.md#d-cheatsheet">Ethical-Hacking-2023/h7 Hash.md at 7dde8ab0dca32522fe00fed118f155e7161fdf11 · JanaHalt/Ethical-Hacking-2023 (github.com)</a></li>
+ <li>Toinen hyvä Cheatsheet <a href="https://github.com/jjenska/PenTest/blob/main/h7/h7.md#d-cheatsheet-ker%C3%A4%C3%A4-kurssilaisten-raporteista-k%C3%A4tevi%C3%A4-tekniikoita-ker%C3%A4%C3%A4-itse-tekniikat-ja-komennot-%C3%A4l%C3%A4-pelk%C3%A4st%C3%A4%C3%A4n-kuvaile-muista-l%C3%A4hdeviitteet">PenTest/h7/h7.md at main · jjenska/PenTest (github.com)</a></li>
+</p>
+<h3>
+    e) Viittaa. Tarkista, että jokaisessa raportissasi on lähdeviitteet kunnossa. Jokaisen raportin tulee viitata ainakin kurssiin / tehtäväsivuun. Kaikkiin muihinkin käytettyihin lähteisiin tulee viitata, kuten kurssikavereiden raportteihin, weppisivuihin, man-sivuihin... (Tässä alatehtävässä ei tarvitse tehdä testejä koneella). 
+</h3>
+<p>
+    Raporteissani pitäisi olla Lähdeviitteet kunnossa, jos viittaus tapa vain on kunnossa.
+</p>
+<p>
+    Lähteenä raportissa on käytetty <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/">Hacking 2023 - Tunkeutumistestaus ict4tn027-3012 loppusyksy online (terokarvinen.com)</a>
+</p>
+
+
 </body>
 </html>
