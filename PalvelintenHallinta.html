@@ -794,5 +794,193 @@ Päätin ajankuluksi katsoa tässä välissä, kykeneekö virtuaalikoneeni rauta
 <p>
     Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/">Terokarvinen.com</a>
 </p>
+<h1>Haaga-Helia ammattikorkeakoulu
+</h1>
+<h2>
+Palvelinten Hallinta
+</h2>
+<br>
+10.12.2023
+<br>
+<h4 id="Luento7">h7 Oman moduulin esittely</h4>
+<p>
+    Päätin tehdä oman moduulin, siitä miten Raspberry Pi asetetaan kiosk moodiin. Mahdollinen käyttötarkoitus esim. taloyhtiön infonäyttö tai näyttö, jossa on vaihtuva menu ravintolassa. Esimerkissä käytetty, koodaamani ajansäästö nettisivua, josta kytketty tietoturvasyistä kalenteri pois käytöstä. Minkä tahansa näytön, jossa on HDMI liitäntä voi Raspberry Pi 4 Linux tietokoneella muuttaa infonäytöksi. Demossa vain osa toiminnallisuuksista esitelty ajansäästön vuoksi.
+</p>
+<img src="Graphics/PalvelintenHallinta/100.png" alt="" width="700" height=""/>
+<p>
+    Latasin Pi imagerin windowsille. osoitteesta: <a href="https://www.raspberrypi.com/software/">Raspberry Pi OS - Raspberry Pi</a>
+</p>
+<img src="Graphics/PalvelintenHallinta/101.png" alt="" width="700" height=""/>
+<p>
+    Käynnistin Pi Imagerin ja valitsin Pi 4 version, koska se sopi Raspberry Pi 400 tietokoneelle. Käyttöjärjestelmäksi Debian pohjainen Raspberry Pi OS (32-BIT) ja valitsin Storageksi 16Gb SDHC kortin, jolle image tehdään. En valinnut kustomointeja käyttöjärjestelmään.
+</p>
+<img src="Graphics/PalvelintenHallinta/102.png" alt="" width="700" height=""/>
+<p>
+    Valitsin Yes.
+</p>
+<img src="Graphics/PalvelintenHallinta/103.png" alt="" width="700" height=""/>
+<p>
+    lashäys muistikortille ja muistikortin tarkistus kirjoittamisen jälkeen.
+</p>
+<img src="Graphics/PalvelintenHallinta/104.png" alt="" width="700" height=""/>
+<p>
+    Aikaa kului 5 minuuttia ja SD-kortti oli valmis Rasperry Pi OS sisällään.
+<br>
+Boottasin Raspin ja laitoin asetukset asennuksessa kuntoon.
+<br>
+Ensin tehdään käsin ja sitten automatisoidaan.
+<br>
+Boottasin Raspin ja avasin terminaalin, komennot: 
+<br>
+”sudo apt-get update” 
+<br>
+”sudo apt-get upgrade”
+<br>
+</p>
+<p>
+    Googlasin ohjeet miten Raspberry Pi asetetaan kiosk moodiin. Löysin ohjeet täältä: <a href="https://www.raspberrypi.com/tutorials/how-to-use-a-raspberry-pi-in-kiosk-mode/">How to use a Raspberry Pi in kiosk mode - Raspberry Pi</a>
+</p>
+<p>
+    "sudo raspi-config"
+</p>
+<p>
+    Valitse System Options > Boot / Auto Login > Desktop Autologin: Desktop GUI, automatically logged in as 'pi' user. Tämä valinta pitää olla Enabled kohdassa, itselläni se oli niin ja siihen ei tarvinnut koskea.
+</p>
+<p>
+    ”sudo nano .config/wayfire.ini”
+    <br>
+    Lisäsin allaolevan pätkän tiedostoon: (poistin artikkelissa mainitun switch tabin) tämän takia, ei myöskään tarvitse ladata wtype ohjelmaa. Se on ohjelma, joka lähettää näppäinkomentoja.
+</p>
+<p>
+[autostart]
+<br>
+panel = wfrespawn wf-panel-pi
+<br>
+background = wfrespawn pcmanfm --desktop --profile LXDE-pi
+<br>
+xdg-autostart = lxsession-xdg-autostart
+<br>
+chromium = chromium-browser https://www.heusala.fi/Timesaver/ --kiosk --noerrdialogs --disable-infobars --no-first-run --ozone-platform=wayland --enable-features=OverlayScrollbar --start-maximized
+<br>
+screensaver = false
+<br>
+dpms = false
+</p>
+<p>
+Pahoittelen kuvan puutetta, mutta ajansäästön takia, en ottanut Raspilta kuvia.
+<br>
+Sain toimimaan ja bootissa käynnistyy suoraan Kiosk modeen ja avaa tuon Timesaver sivuston.
+<br>
+Master kone on virtuaalikone Debian 12 käytöjärjestelmällä ja Minion on Raspberry Pi 400 fyysinen tietokone siis.
+</p>
+<img src="Graphics/PalvelintenHallinta/105.png" alt="" width="700" height=""/>
+<p>
+    Katsoin virtuaalikoneen, eli masterin ip osoitteen ”ip -d address” komennolla, se on 192.168.59.129
+</p>
+<img src="Graphics/PalvelintenHallinta/106.png" alt="" width="700" height=""/>
+<p>
+    Avasin portit Saltille herralla, tulimuuri ja Salt oli jo asennettuna.
+</p>
+<p>
+Asensin Salt minionin, minion (raspi400) koneelle komennolla ”sudo apt-get update” ja ”sudo apt-get install salt-minion”
+<br>
+lisäsin ”minion” tiedostoon ”etc/salt/” kansiossa  master: 192.168.59.129
+<br>
+jotta orja voi soitaa ”kotiin”.
+<br>
+sitten käynnistin demonin uudestaan. ”sudo service salt-minion restart”
+<br>
+kokeilin ”salt-call --version” ei toiminut.
+<br>
+Tässä vaiheessa kokeilin Githubista repositorioa, joka lupasi auttaa asiassa, pahoittelen linkin puutetta, en löydä sitä enää. Se loi uuden käyttäjän koneelle. Sammutin heti koneen ja poistin muistikortin ja aloitin kaiken alusta 😊 Ei pitäisi hutkia.
+<br>
+Muistikortin flashäytyessä googlasin Saltin asennusohjeet Raspberry Pi Os asennukselle.
+<br>
+<a href="https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/raspbian.html#install-classic-packages-of-salt-on-raspbian-11-bullseye"> - Salt install guide (saltproject.io)</a>
+</p>
+<p>
+Laitoin muistikortin takaisin Raspiin ja boottasin, tein käyttöjärjestelmän asetukset samalla tavalla kuin aikaisemin. Mutta en laittanut vielä Kiosk moodia toimimaan. Kokeilen Saltin toiminnan ensin.
+<br>
+Tein kuin noissa Saltin asennusohjeissa oheistettiin asentamaan ja Salt toimi versio oli 3005.1 Debian 12 (Master) koneessani oli versio 3006.4 Sulfur saltista. En saanut hommaa toimimaan, missään vaiheessa ei tullut ei hyväksyttyjä avaimia näkyviin. 
+</p>
+<p>
+    Seuraavan kirjoitan ulkomuistista, koska kokeilin lukuisia eri tapoja, tosin mikään ei toiminut. ☹
+</p>
+<img src="Graphics/PalvelintenHallinta/107.png" alt="" width="700" height=""/>
+<p>
+Laitoin minion (Raspi400) koneella id.conf tiedoston kuntoon kansiossa etc/salt/minion.d/
+<br>
+sekä master.conf tiedoston sisälöllä ”master: 192.168.59.129” Masterin IP osoite. Tarkastin sen myös ”hostname -I” komennolla
+<br>
+käynnistin kummatkin demonit uudestaan Masterin ja sen jälkeen Minionin.
+<br>
+kokeilin ”sudo salt-key” komentoa, ei ollut Raspi minionia näkyvissä.
+<br>
+Kokeilin minionilla kutsua Saltia. Komento ”sudo salt-minion” vastaus oli user warning: Setuptools is replacing distutils. The salt Minion is shutdown.
+<br>
+Eli Raspilla ei toimi salt. Mitenhän tämän saa toimimaan?  Täytyykö Salt versioiden myös olla täysin samat? Kokeilin vielä Eindowsillakin saada tätä toimimaan, mutta Ainakin Windows 11 komento ”salt-key” ei toiminut vaikka olin juuri asentanut Salt minionin koneelle ja vielä juuri sopivan version 3005.1.
+<br>
+No en nyt pääse demoamaan verkon yli Herra orja arkkitehtuuria. Omalla moduulilla.
+<br>
+Mutta kokeilen tehdä init.sls kuntoon kuitenkin tätä varten, kyllähän tähän joku ratkaisu on. idea on päällekirjoittaa config tiedosto wayfire.ini file.managed avulla. Nyt nukkumaan.
+</p>
+<p>
+    8.12.2023. 
+</p>
+<p>
+    Päätin kokeilla vielä Ubuntun asentamista Raspille, jos sille saisi asennettua Saltin 3006.4 Sulfur version. Vika tuntuu olevan Saltin versiossa Raspberry Pi Os käyttöjärjestelmässä.
+    <br>
+Etsin Ubuntun asentuessa ohjeita, kuinka asentaa Ubuntu Kiosk moodiin, koska Wayfire ei ole ubuntu 22.04 versiossa käytössä. Löysin ohjeet: <a href="https://www.reddit.com/r/Ubuntu/comments/151f8eq/need_help_configuring_a_chrome_kiosk_on_ubuntu/">(1) Need help configuring a Chrome kiosk on Ubuntu 22.04 LTS : Ubuntu (reddit.com)</a>
+</p>
+<p>
+    Kirjoitan tämän taas ulkomuistista.
+    <br>
+    Ubuntussa:
+    <br>
+    ”sudo apt-get update” 
+    <br>
+    “sudo apt-get install salt-minion”
+    <br>
+    Sama ongelma väärä versio Salt minionista ja onnistuin saamaan paketinhallinnankin sekaisin, kun lisäsin sinne. Kyyrings tietoja Saltin asennusohjeista Ubuntulle. En saanut Salt-minionia, siis myöskää toimimaan Ubuntussa Raspilla.
+    <br>
+    Tähän loppui Ubuntun kanssa säätäminen.
+</p>
+<p>
+    Palasin takasin Raspberry Pi Os käyttöjärjestelemään ja päätin, että teen tämän niin pitkälle, kun saan toimimaan ja toivon, että löydän ratkaisun myöhemmin. 
+   <br>
+    kopioin wayfire.in tiedoston Saltin Master virtuaalikoneelle kansioon ”/srv/salt/Raspikiosk/”
+    <br>
+    Aloin muokkaamaan wayfire.ini tiedostoa ja lisäsin sinne kohdan:  
+</p>
+<img src="Graphics/PalvelintenHallinta/108.png" alt="" width="700" height=""/>
+<p>
+    Tuo [autostart] (alhaalla kuvassa) on minun lisäämäni. Se siis käynnistää Raspin kiosk moodissa, laittaa lepotilan ja näytönsäästäjän pois päältä, sekä avaa Chromium selaimen valitulla nettisivulla fullscreen moodissa.
+</p>
+<p>
+    Nyt luomaan init.sls tiedostoa masterilla.
+</p>
+<img src="Graphics/PalvelintenHallinta/109.png" alt="" width="700" height=""/>
+<p>
+    init.sls tiedoston sisältö kopioi ”srv/salt/Raspikiosk/” kansiosta wayfire.ini tiedoston käyttäjän kotihakemistoon, jos saisin Saltin toimimaan Raspilla, muuttaisin polun tuohon ~./config/ kansioon. En pääse testaamaan tätä siis tällä hetkellä.
+</p>
+<img src="Graphics/PalvelintenHallinta/110.png" alt="" width="700" height=""/>
+<p>
+    ajoin komennon ”sudo salt-call --local state.apply Raspikiosk” Yksi muutos, joka oli tuo wayfire.ini tiedosto.
+</p>
+<img src="Graphics/PalvelintenHallinta/111.png" alt="" width="700" height=""/>
+<p>
+    vielä tarkastus, että tiedosto oli käyttäjän kotikansiossa komennolla ”ls” katsoin vielä ”cat wayfire.ini” ja sisältö oli oikea.
+</p>
+<p>
+    Olisin voinut tämän tehtävän virtuaalisilla koneilla kokonaan ja saada toimimaan, että voin ajaa herra-orja arkkitehtuuria verkon yli, mutta tämä on oikeasti minulle tärkeämpi toteutus, kuin virtuaalinen, vaikka ei toimi toistaiseksi. Olen jo askeleen lähempänä ratkaisua. Lisää opeteltavaa, miten eri Linux käyttöjärjestelmät toimivat toistensa kanssa yhdessä ja eri ohjelmistoversioiden kanssa. Miten Linuxilla voi helposti saada ohjelmat ”juttelemaan” toistensa kanssa, kun paketinhallinnasta ”tuuttaa” koneelle sen versio mikä siellä sattuu uusimpana olemaan. Eikä versiota voi valita mitenkään helposti juuri siksi minkä tarvitsisi. 
+</p>
+<p>
+    Jos haluisi lisätä vielä moduulin tuon Switchtabin, mikä mainitaan Raspin asettamiseksi kiosk moodiin ohje artikkelissa. Moduuliin pitäisi lisätä pkg.installed osio, joka asentaa wtype ohjelman. Se olisi ollut tähän demoon parempi, mutta itse en sitä tarvitse totutuksessani ainakaan toistaiseksi, siksi se puuttuu tästä. Hieman epäselvää minulle on, saisiko pkg.installedin laittaa tuohon samaan init.sls tiedostoon, missä on wayfire.inin kopiointi file.managedilla, vai pitäisikö maininta, mitä moduuleja ajetaan laittaa top.sls tiedostoon ja sitten oma asennetut ohjelmat kansio, jossa oma init.sls, joka sisältää pkg.installed tietoja kuten wtypen asennusta ja mahdollisia muita. Muistaakseni se on näin, mutta en ulkomuistista sitä muista.
+</p>
+<p>
+    Lähteenä on käytetty: <a href="https://terokarvinen.com/2023/configuration-management-2023-autumn/">Terokarvinen.com</a>
+</p>
+
+
 </body>
 </html>
